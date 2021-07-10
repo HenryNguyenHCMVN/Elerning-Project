@@ -1,0 +1,23 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+input {
+    border: 1px solid black;
+    outline: none;
+    padding: 0.5rem 6rem;
+    margin: 0 2rem;
+}
+
+.courseLogo {
+    font-size: 2rem;
+    color: #0056d2;
+}
+
+mat-toolbar {
+    background-color: #d6edf6;
+    .btnSign {
+        color: #0056d2;
+        font-size: 1.2rem;
+    }
+}

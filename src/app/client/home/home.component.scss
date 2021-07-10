@@ -1,0 +1,30 @@
+img {
+    width: 300px;
+    height: 300px;
+}
+
+.container {
+    padding: 3rem 6rem;
+    text-align: center;
+}
+
+button {
+    background-color: #0056d2;
+    color: white;
+}
+
+app-card {
+    padding: 1rem;
+}
+
+.courses {
+    text-align: center;
+    padding-top: 2rem;
+    span {
+        font-size: 2rem;
+        color: #0056d2;
+    }
+    mat-form-field {
+        font-size: 1rem;
+    }
+}

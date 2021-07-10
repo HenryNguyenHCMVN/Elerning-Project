@@ -1,0 +1,107 @@
+<div class="container">
+    <h1>Sign Up</h1>
+
+    <form class="example-form" #formDangKy="ngForm" (ngSubmit)="DangKy(formDangKy.value)">
+        <!-- taiKhoan -->
+        <mat-form-field class="form-group">
+            <mat-label>Account</mat-label>
+            <input matInput name="taiKhoan" required #taiKhoan="ngModel" ngModel minlength="3" maxlength="15" />
+        </mat-form-field>
+        <ng-container *ngIf="taiKhoan.errors && (taiKhoan.dirty || taiKhoan.touched)">
+            <!-- kiểm tra rỗng -->
+            <span *ngIf="taiKhoan.errors.required">Do not empty!!!</span>
+            <!-- kiểm tra minlength -->
+            <span *ngIf="taiKhoan.errors.minlength || taiKhoan.errors.maxlength">Just 3 to 15 characters</span>
+        </ng-container>
+
+        <!-- matKhau -->
+        <mat-form-field class="form-group">
+            <mat-label>Password</mat-label>
+            <input matInput name="matKhau" ngModel required #matKhau="ngModel" minlength="3" maxlength="15" />
+            <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  -->
+        </mat-form-field>
+        <ng-container *ngIf="matKhau.errors && (matKhau.dirty || matKhau.touched)">
+            <!-- kiểm tra rỗng -->
+            <span *ngIf="matKhau.errors.required">Do not empty!!!</span>
+            <!-- kiểm tra minlength -->
+            <span *ngIf="matKhau.errors.minlength || matKhau.errors.maxlength">Just 3 to 15 characters</span>
+            <!-- kiểm tra tính đúng đắn của password -->
+            <!-- <span *ngIf="matKhau.errors.pattern">add some special characters</span> -->
+        </ng-container>
+
+
+        <!-- hoTen -->
+        <mat-form-field class="form-group">
+            <mat-label>User Name</mat-label>
+            <input matInput name="hoTen" ngModel required #hoTen="ngModel" minlength="3" maxlength="15" />
+        </mat-form-field>
+        <ng-container *ngIf="hoTen.errors && (hoTen.dirty || hoTen.touched)">
+            <!-- kiểm tra rỗng -->
+            <span *ngIf="hoTen.errors.required">Do not empty!!!</span>
+            <!-- kiểm tra minlength -->
+            <span *ngIf="hoTen.errors.minlength || hoTen.errors.maxlength">Just 3 to 15 characters</span>
+        </ng-container>
+
+
+        <!-- maNhom -->
+        <mat-form-field class="form-group">
+            <mat-label>Group</mat-label>
+            <mat-select name="maNhom" ngModel required>
+                <mat-option *ngFor="let maNhom of mangMaNhom" value="{{ maNhom }}">
+                    {{ maNhom }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <!-- email -->
+        <mat-form-field class="form-group">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" ngModel required #email="ngModel" pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" />
+        </mat-form-field>
+        <ng-container *ngIf="email.errors && (email.dirty || email.touched)">
+            <!-- kiểm tra rỗng -->
+            <span *ngIf="email.errors.required">Do not empty!!!</span>
+            <!-- kiểm tra định dạng email -->
+            <span *ngIf="email.errors.pattern">Put @, please</span>
+        </ng-container>
+
+
+        <!-- soDT -->
+        <mat-form-field class="form-group">
+            <mat-label>Phone</mat-label>
+            <input matInput name="soDT" ngModel required #soDT="ngModel" pattern="^[0-9]+$" />
+        </mat-form-field>
+        <ng-container *ngIf="soDT.errors && (soDT.dirty || soDT.touched)">
+            <!-- kiểm tra rỗng -->
+            <span *ngIf="soDT.errors.required">Do not empty!!!</span>
+            <!-- kiểm tra minlength -->
+            <span *ngIf="soDT.errors.pattern">Just number, please</span>
+        </ng-container>
+
+
+        <!-- maLoaiNguoiDung -->
+        <div>
+            <mat-radio-group class="form-group" ngModel name="maLoaiNguoiDung">
+                <mat-label>User type: </mat-label>
+                <mat-radio-button value="GV">Teachers </mat-radio-button>
+                <mat-radio-button value="HV">Students </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <!-- button -->
+        <div style="text-align: center;">
+            <button mat-raised-button color="primary" type="submit" [disabled]="formDangKy.invalid">Submit</button>
+        </div>
+    </form>
+
+    <ng-container>
+        <tr *ngFor="let nguoiDung of mangNguoiDung">
+            <td>{{nguoiDung.taiKhoan}}</td>
+            <td>{{nguoiDung.hoTen}}</td>
+            <td>{{nguoiDung.email}}</td>
+            <td>{{nguoiDung.soDT}}</td>
+            <td>{{nguoiDung.maLoaiNguoiDung}}</td>
+        </tr>
+    </ng-container>
+</div>

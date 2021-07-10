@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>Course Lists</h1>
+    <table mat-table [dataSource]="mangKhoaHoc" class="mat-elevation-z8">
+        <!--- Note that these columns can be defined in any order.
+      The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- taiKhoan -->
+        <ng-container matColumnDef="maKhoaHoc">
+            <th mat-header-cell *matHeaderCellDef>Course Codes</th>
+            <td mat-cell *matCellDef="let course">{{ course.maKhoaHoc }}</td>
+        </ng-container>
+
+        <!-- email -->
+        <ng-container matColumnDef="tenKhoaHoc">
+            <th mat-header-cell *matHeaderCellDef>Course Name</th>
+            <td mat-cell *matCellDef="let course">{{ course.tenKhoaHoc }}</td>
+        </ng-container>
+
+        <!-- maLoaiNguoiDung -->
+        <ng-container matColumnDef="danhMucKhoaHoc">
+            <th mat-header-cell *matHeaderCellDef>Course Directories</th>
+            <td mat-cell *matCellDef="let course">{{ course.danhMucKhoaHoc.maDanhMucKhoahoc}} - {{ course.danhMucKhoaHoc.tenDanhMucKhoaHoc}}</td>
+        </ng-container>
+
+        <!-- hoTen -->
+        <ng-container matColumnDef="hinhAnh">
+            <th mat-header-cell *matHeaderCellDef>Images</th>
+            <td mat-cell *matCellDef="let course">
+                <img src={{course.hinhAnh}} alt="">
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

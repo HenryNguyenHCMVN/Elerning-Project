@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>SIGN IN</h1>
+    <form class="example-form" (ngSubmit)="handleLogin()" #formSignIn="ngForm">
+
+        <!-- User name -->
+        <mat-form-field class="example-full-width">
+            <mat-label>User Name</mat-label>
+            <input matInput ngModel name="username" required #username="ngModel" [(ngModel)]="userLogin.taiKhoan" />
+            <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
+
+        </mat-form-field>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
+            <span *ngIf="username.errors?.required">Account cannot be empty!!!</span>
+            <!-- <div *ngIf="username.errors?.pattern || username.errors?.pattern">
+        Email not found!!!
+      </div> -->
+        </div>
+
+        <!-- password -->
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput ngModel name="password" required #password="ngModel" [(ngModel)]="userLogin.matKhau" />
+        </mat-form-field>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+            <span *ngIf="password.errors?.required">Password cannot be empty!!!</span>
+        </div>
+        <button mat-raised-button type="submit" [disabled]="!formSignIn.valid" color="primary">Submit</button>
+    </form>
+</div>

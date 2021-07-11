@@ -7,7 +7,7 @@ export class NguoiDung {
   public matKhau: any;
 }
 
-export class UserSignUpManagement {// gán giá  trị ngươì dùng nhâp vaò từ admin/user-management/user-management.component.ts = ELEMENT_DATA row 18
+export class UserSignUpManagement {
   public email?: string;
   public hoTen?: string;
   public maLoaiNguoiDung?: string;

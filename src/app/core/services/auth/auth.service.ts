@@ -73,6 +73,15 @@ export class AuthService {
         return err
       }))
   }
+  getListUserGroup(maNhom:any): Observable<any> {
+    let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${maNhom}`;
+    return this.httpClient.get(url).pipe(tap((data: any) => {
+    }),
+      catchError(err => {
+        console.log(err);
+        return err
+      }))
+  }
 
   infoUser(token:any): Observable<any> {
     let url ="https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinNguoiDung";

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CourseService } from 'src/app/core/services/course/course.service';
 import {Subscription} from 'rxjs'
 import { ActivatedRoute } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;// material angular
 
   constructor(private courseService: CourseService, private activatedRoute: ActivatedRoute) { }
 
@@ -39,6 +43,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListCourse();
+    this.courseList.paginator = this.paginator;
   }
 
   //hủy API để tối ưu performance

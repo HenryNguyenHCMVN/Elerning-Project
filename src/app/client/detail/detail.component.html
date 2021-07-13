@@ -1,12 +1,15 @@
+<div class="container">
 <mat-card class="example-card">
     <mat-card-header>
-        <mat-card-title>{{courseDetail?.tenKhoaHoc}}</mat-card-title>
-        <mat-card-subtitle>{{courseDetail?.maNhom}}</mat-card-subtitle>
+        <mat-card-title>Mã khóa học: {{courseDetail?.maKhoaHoc}}</mat-card-title>
+        <mat-card-title>Tên khóa học: {{courseDetail?.tenKhoaHoc}}</mat-card-title>
+        <mat-card-subtitle>Tên nhóm:{{courseDetail?.maNhom}}</mat-card-subtitle>
     </mat-card-header>
     <img class="img" mat-card-image src="{{courseDetail?.hinhAnh}}">
     <mat-card-content>
         <p>
-            {{courseDetail?.moTa}}
+            Mô tả khóa học: {{courseDetail?.moTa}}
         </p>
     </mat-card-content>
 </mat-card>
+</div>

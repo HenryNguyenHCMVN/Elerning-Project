@@ -9,6 +9,7 @@ import { ClientModule } from './client/client.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/JWT/jwt.interceptor';
+import { ComponentModule } from './component/component.module';
 
 
 
@@ -23,7 +24,8 @@ import { JwtInterceptor } from './core/JWT/jwt.interceptor';
     AppRoutingModule,
     AdminModule,
     ClientModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentModule
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS , useClass : JwtInterceptor,multi: true}

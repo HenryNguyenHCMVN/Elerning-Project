@@ -52,4 +52,9 @@ export class CourseManagementComponent implements OnInit {
     })
   }
 
+  themKhoaHoc(){
+    console.log('123');
+
+  }
+
 }

@@ -1,15 +1,19 @@
-<mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{course.tenKhoaHoc}}</mat-card-title>
-</mat-card-header>
-<img mat-card-image src="{{course.hinhAnh}}">
-<mat-card-content>
-    <p>
-        {{course.moTa}}
-    </p>
-</mat-card-content>
-
-<mat-card-actions>
-    <button mat-button (onclick)="clickDetail()" routerLink="/detail/{{course.maKhoaHoc}}">DETAILS</button>
-    <button mat-button routerLink="/detail/{{course.maKhoaHoc}}">Description</button>
-</mat-card-actions>
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Course Code: {{course.maKhoaHoc}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{course.hinhAnh}}">
+    <mat-card-subtitle>Course name: {{course.tenKhoaHoc}}</mat-card-subtitle>
+    <mat-card-subtitle>Course creation date: {{course.ngayTao}}</mat-card-subtitle>
+    <mat-card-content>
+      <p>
+        Course description: {{course.moTa}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (onclick)="clickDetail()" routerLink="/detail/{{course.maKhoaHoc}}">DETAILS</button>
+      <button mat-raised-button color="primary" (click)="openDialog()">Description</button>
+    </mat-card-actions>
+  </mat-card>
+  

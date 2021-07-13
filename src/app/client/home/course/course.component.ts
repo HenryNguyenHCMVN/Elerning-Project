@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -14,6 +13,10 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openDialog(){
+    console.log('123');
+
+  }
 
   clickDetail(){
     console.log(123);

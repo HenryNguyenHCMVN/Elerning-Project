@@ -1,4 +1,9 @@
-@import "../home.component.scss";
-button {
-    margin: 0 0.5rem;
-}
+.example-card {
+    max-width: 400px;
+    background-color: #d6edf6;
+  }
+  
+  .example-header-image {
+    background-size: cover;
+  }
+  

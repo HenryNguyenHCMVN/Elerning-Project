@@ -1,47 +1,56 @@
 <mat-toolbar>
-    <span>
+    <mat-toolbar-row fxLayoutAlgin="space-between center">
+        <span>
     <button class="courseLogo" mat-button routerLink="/">COURSERA-VN</button>
   </span>
 
-    <!-- Explore -->
-    <span>
-    <button color="primary"  mat-raised-button [matMenuTriggerFor]="menu">Explore</button>
+        <!-- Explore -->
+        <span>
+    <button color="primary" mat-raised-button [matMenuTriggerFor]="menu">
+      Explore
+    </button>
     <mat-menu #menu="matMenu">
       <span *ngFor="let category of categoryList">
-        <button mat-menu-item>{{category.tenDanhMuc}}</button>
+        <button mat-menu-item>{{ category.maDanhMuc }} - {{ category.tenDanhMuc }}</button>
         <!-- routerLink="/detail/{{course.maKhoaHoc}}" -->
+
       </span>
-    </mat-menu>
-    </span>
-    <!-- Explore -->
+        </mat-menu>
+        </span>
+        <!-- Explore -->
 
-    <!-- search -->
-    <input type="text" placeholder="What do you learn?">
-    <span class="example-spacer"></span>
-    <!-- search -->
+        <!-- search -->
+        <input *ngIf="!deviceXs" type="text" placeholder="What do you learn?" />
+        <span class="example-spacer"></span>
+        <!-- search -->
 
-
-    <span>
-    <button class="btnSign" mat-button routerLink="/signin" *ngIf="!currentUser">Log In </button>
-    <button color="primary" mat-raised-button routerLink="/signup" *ngIf="!currentUser">Sign Up</button>
-  </span>
+        <span>
+    <button class="btnSign" mat-button routerLink="/signin" *ngIf="!currentUser">
+      Log In
+    </button>
+    <button color="primary" mat-raised-button routerLink="/signup" *ngIf="!currentUser">
+      Sign Up
+    </button>
 
     <!-- admin -->
-    <button mat-raised-button color="warn" routerLink="/admin/info-admin" *ngIf="currentUser">Admin</button>
+    <button mat-raised-button color="warn" routerLink="/admin/info-admin" *ngIf="currentUser">
+      Admin
+    </button>
     <!-- admin -->
 
-    <button mat-button *ngIf="currentUser" style="color: black;" [matMenuTriggerFor]="menu1">
-    {{currentUser.hoTen}}
+    <button mat-button *ngIf="currentUser" style="color: black" [matMenuTriggerFor]="menu1">
+      {{ currentUser.hoTen }}
 
-
-
-    <mat-menu #menu1="matMenu">
+      <mat-menu #menu1="matMenu">
         <button mat-menu-item>
-        <span>User Info</span>
-    </button>
-    <button mat-menu-item>
-      <span (click)="handleLogOut()">Log out</span>
-  </button>
-    </mat-menu>
-    </button>
-    <span>
+          <span>User Info</span>
+        </button>
+        <button mat-menu-item>
+          <span (click)="handleLogOut()">Log out</span>
+        </button>
+        </mat-menu>
+        </button>
+        </span>
+
+    </mat-toolbar-row>
+</mat-toolbar>

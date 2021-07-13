@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/guard/auth.guard';
+import { AddCourseComponent } from './add-course/add-course.component';
 import { AdminComponent } from './admin.component';
 import { CourseManagementComponent } from './course-management/course-management.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: "info-admin",
         component: InfoAdminComponent,
+      },
+      {
+        path: "add-course",
+        component: AddCourseComponent,
       },
     ]
   }

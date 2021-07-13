@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/core/services/course/course.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { CourseService } from 'src/app/core/services/course/course.service';
 })
 export class IntroComponent implements OnInit {
 
+  @Input() deviceXs!: boolean;
   constructor() { }
 
 

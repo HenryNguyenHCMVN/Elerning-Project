@@ -7,6 +7,9 @@
             color: #3f51b5;
         }
     }
+    th {
+        text-align: center;
+    }
     .filter {
         width: 100%;
     }
@@ -23,8 +26,4 @@
 
 .search {
     width: 100%;
-}
-
-mat-paginator {
-    text-align: center;
 }

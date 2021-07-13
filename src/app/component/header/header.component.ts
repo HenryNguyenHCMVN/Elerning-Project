@@ -12,6 +12,8 @@ import { CourseService } from 'src/app/core/services/course/course.service';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() deviceXs!: boolean;
+
   @Input() course: any;
 
   constructor(private courseService: CourseService, private authService: AuthService, private router:Router) { }
@@ -21,6 +23,7 @@ export class HeaderComponent implements OnInit {
   currentUser: any = null;
 
   categoryList: any = [];
+
 
   //ngOnInit = componentDisMount
   ngOnInit(): void {

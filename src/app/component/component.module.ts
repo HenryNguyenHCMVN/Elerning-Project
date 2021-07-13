@@ -22,6 +22,7 @@ import { ClientRoutingModule } from '../client/client-routing.module';
     MatToolbarModule,
     MatMenuModule,
     MatInputModule,
+
   ],
   exports:[
     ComponentComponent,
@@ -30,6 +31,7 @@ import { ClientRoutingModule } from '../client/client-routing.module';
     MatToolbarModule,
     MatMenuModule,
     MatInputModule,
+
   ]
 })
 export class ComponentModule { }

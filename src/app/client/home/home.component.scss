@@ -1,12 +1,4 @@
-img {
-    width: 300px;
-    height: 300px;
-}
-
-.container {
-    padding: 3rem 6rem;
-    text-align: center;
-}
+.container {}
 
 button {
     background-color: #0056d2;
@@ -15,6 +7,7 @@ button {
 
 app-card {
     padding: 1rem;
+    margin: 0.5rem;
 }
 
 .courses {

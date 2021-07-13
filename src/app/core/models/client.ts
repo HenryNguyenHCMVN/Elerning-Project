@@ -15,13 +15,27 @@ export class UserSignUpManagement {
   public taiKhoan?: string;
 }
 
+export interface ThemKhoaHoc {
+  maKhoaHoc:        string;
+  biDanh:           string;
+  tenKhoaHoc:       string;
+  moTa:             string;
+  luotXem:          number;
+  danhGia:          number;
+  hinhAnh:          string;
+  maNhom:           string;
+  ngayTao:          string;
+  maDanhMucKhoaHoc: string;
+  taiKhoanNguoiTao: string;
+}
+
+
 export class KhoaHoc {
   public maKhoaHoc?: string;
   public tenKhoaHoc?: string;
   public hinhAnh?: any;
   public danhMucKhoaHoc?: string;
 }
-
 
 export interface UserSignIn {
   taiKhoan:        string;

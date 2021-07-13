@@ -14,16 +14,15 @@
 </div>
 
 
-<mat-paginator [length]="this.courseList.length" [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
 
-<div class="mat-elevation-z8">
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start" class="container">
+    <ng-container *ngFor="let course of courseList">
+        <app-card fxFlex="0 1 calc(32% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
 
-    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start" class="container">
-        <ng-container *ngFor="let course of courseList">
-            <app-card fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+            <!-- truyền khóa học từ course trong component in Home -->
+            <app-course [course]="course"></app-course>
 
-                <app-course [course]="course"></app-course>
-            </app-card>
-        </ng-container>
-    </div>
+
+        </app-card>
+    </ng-container>
 </div>

@@ -12,10 +12,13 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 })
 export class UserManagementComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;// material angular
+  // dùng MatPaginator để phân trang
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // dùng MatSort để sort tên, thứ tự
   @ViewChild(MatSort) sort!:MatSort;
 
-  public ELEMENT_DATA!: NguoiDung[];//đối tượng tạo từ client.ts
+  // lấy đối tượng từ .ts
+  public ELEMENT_DATA!: NguoiDung[];
   public mangNguoiDung = new MatTableDataSource(this.ELEMENT_DATA);
 
   public displayedColumns: string[] = ['taiKhoan', 'email', 'maLoaiNguoiDung', 'soDT', 'hoTen'];

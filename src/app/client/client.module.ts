@@ -18,6 +18,8 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../core/share/material/material.module';
 import { CourseComponent } from './home/course/course.component';
+import { AppModule } from '../app.module';
+import { AdminComponent } from '../admin/admin.component';
 
 
 @NgModule({
@@ -36,19 +38,14 @@ import { CourseComponent } from './home/course/course.component';
     MaterialModule,
     ClientRoutingModule,
     ComponentModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCardModule,
     ReactiveFormsModule,
-    MatSelectModule,
-    MatRadioModule
   ],
   exports: [
     MatButtonModule,
     MatInputModule,
     MatCardModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
   ]
 })
 export class ClientModule { }

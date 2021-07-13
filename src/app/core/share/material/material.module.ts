@@ -19,7 +19,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -44,7 +44,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSidenavModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDatepickerModule,
 
   ],
   exports: [
@@ -66,7 +67,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSidenavModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDatepickerModule
   ]
 })
 export class MaterialModule { }

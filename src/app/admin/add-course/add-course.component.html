@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Add a course</h1>
 
-    <form class="example-form" #formThemKhoaHoc="ngForm" (ngSubmit)="themKhoaHoc(formThemKhoaHoc.value)">
+    <form class="example-form" #formThemKhoaHoc="ngForm" (ngSubmit)="themKhoaHoc(formThemKhoaHoc.value, imgCourse.files)">
 
         <!-- taiKhoanNguoiTao -->
         <div>
@@ -54,7 +54,7 @@
         <!-- danhGia -->
         <mat-form-field class="form-group">
             <mat-label>Course review</mat-label>
-            <input matInput name="danhGia" ngModel required #danhGia="ngModel" minlength="3" maxlength="15" />
+            <input matInput name="danhGia" ngModel required #danhGia="ngModel" />
         </mat-form-field>
         <ng-container *ngIf="danhGia.errors && (danhGia.dirty || danhGia.touched)">
             <!-- kiểm tra rỗng -->
@@ -92,6 +92,17 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+
+        <!-- moTa -->
+        <mat-form-field class="form-group" appearance="fill">
+            <mat-label>Please leave a description</mat-label>
+            <textarea matInput name="moTa" ngModel required #moTa="ngModel" placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+
+        <ng-container class="form-group">
+            <label for="file">Choose File: </label>
+            <input name="hinhAnh" required type="file" #imgCourse>
+        </ng-container>
 
         <!-- button -->
         <div style="text-align: center;">

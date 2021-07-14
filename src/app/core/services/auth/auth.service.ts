@@ -67,6 +67,8 @@ export class AuthService {
   getListUser(): Observable<any> {
     let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`;
     return this.httpClient.get(url).pipe(tap((data: any) => {
+      console.log(data);
+
     }),
       catchError(err => {
         console.log(err);

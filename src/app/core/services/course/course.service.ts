@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, mapTo, tap } from 'rxjs/operators'; //add tap để xử lý thành công hoặc thất bại
 import { Observable } from 'rxjs';
+import { AddCourse } from '../../models/client';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,25 @@ export class CourseService {
         })
       );
   }
-
+  addCourseApi(addCourse: AddCourse): Observable<any> {
+    let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHoc`;
+    return this.httpClient.post(url,addCourse).pipe(tap((data: any) => {
+      console.log(data);
+    }),
+      catchError(err => {
+        console.log(err);
+        return err
+      }))
+  }
+  addImageCourseApi(body:any): Observable<any> {
+    let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/UploadHinhAnhKhoaHoc`;
+    return this.httpClient.post(url,body).pipe(tap((data: any) => {
+      console.log(data);
+    }),
+      catchError(err => {
+        console.log(err);
+        return err
+      }))
+  }
 
 }

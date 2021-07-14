@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AddCourse } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CourseService } from 'src/app/core/services/course/course.service';
 
@@ -9,10 +11,12 @@ import { CourseService } from 'src/app/core/services/course/course.service';
 })
 export class AddCourseComponent implements OnInit {
 
-  constructor(public courseService: CourseService, private authService: AuthService) { }
+  constructor(public courseService: CourseService, private authService: AuthService, private router:Router) { }
 
   categoryList: any = [];
   infoPerson: any = [];
+
+  mangThemKhoaHoc: any = [];
 
   public selected!: Date | null;
 
@@ -37,8 +41,33 @@ export class AddCourseComponent implements OnInit {
     this.getInfoPerson();
   }
 
-  themKhoaHoc(value:any){
-    console.log(value);
+  handleFileInput(event:any) {
 
+}
+
+  themKhoaHoc(value:AddCourse, files:any){
+    console.log(value);
+    console.log(files[0]);
+
+    // thêm ảnh cho khóa học
+    value.hinhAnh = files[0].name;
+
+    this.courseService.addCourseApi(value).subscribe((result) =>{
+      if (typeof result === 'object') {
+        // chuyển dạng FormData
+        var formData = new FormData();
+        formData.append("Files",files[0]);
+        formData.append("tenKhoaHoc",value.tenKhoaHoc);
+        this.courseService.addImageCourseApi(formData).subscribe((result) =>{
+          if (result === true) {
+              alert('Add successfull')
+          }
+        })
+      }
+      alert('Successfully')
+      this.router.navigate(["admin/course-management"])
+    })
   }
+
+
 }

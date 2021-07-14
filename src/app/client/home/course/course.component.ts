@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { DataService } from 'src/app/core/share/data/data.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { DetailComponent } from '../../detail/detail.component';
+
+
+
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -6,20 +12,25 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
+
+  courseDetail: any;
+
   @Input() course: any;
 
-  constructor() { }
+  constructor(public dataService: DataService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+
   }
 
   openDialog(){
-    console.log('123');
-
+    console.log(this.course);
+    this.dataService.sharingDataDetailCourse(this.course);
+    this.matDialog.open(DetailComponent);
   }
 
   clickDetail(){
-    console.log(123);
+    console.log('123');
 
   }
 

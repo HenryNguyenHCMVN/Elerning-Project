@@ -10,6 +10,7 @@ import { SignupComponent } from './signup/signup.component';
 import { IntroComponent } from './intro/intro.component';
 import { ComponentModule } from '../component/component.module';
 
+
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
@@ -18,8 +19,6 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../core/share/material/material.module';
 import { CourseComponent } from './home/course/course.component';
-import { AppModule } from '../app.module';
-import { AdminComponent } from '../admin/admin.component';
 
 
 @NgModule({
@@ -32,6 +31,7 @@ import { AdminComponent } from '../admin/admin.component';
     IntroComponent,
     CourseComponent,
   ],
+  entryComponents:[DetailComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -39,6 +39,7 @@ import { AdminComponent } from '../admin/admin.component';
     ClientRoutingModule,
     ComponentModule,
     ReactiveFormsModule,
+
   ],
   exports: [
     MatButtonModule,

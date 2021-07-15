@@ -20,7 +20,10 @@
         <!-- Explore -->
 
         <!-- search -->
-        <input *ngIf="!deviceXs" type="text" placeholder="What do you learn?" />
+        <input (keyup)="applySearch()" *ngIf="!deviceXs" type="text" placeholder="What do you learn?" [(ngModel)]="searchKey" />
+        <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)="onSearchClear()">
+          <mat-icon>close</mat-icon>
+        </button>
         <span class="example-spacer"></span>
         <!-- search -->
 

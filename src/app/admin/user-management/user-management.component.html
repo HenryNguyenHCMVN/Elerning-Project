@@ -13,9 +13,17 @@
         </mat-form-field>
     </div>
 
-    <mat-form-field class="search">
-        <input (keyup)="applySearch($event)" matInput placeholder="Search">
-    </mat-form-field>
+    <!-- search và clear search -->
+    <ng-container class="search-div">
+        <button mat-raised-button color="primary" routerLink="/signup" (click)="addUser()">Create a user</button>
+        <mat-form-field class="search" floatLabel="never">
+            <input (keyup)="applySearch()" matInput placeholder="Search" [(ngModel)]="searchKey">
+            <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+    </ng-container>
+    <!-- search và clear search -->
 
     <table mat-table [dataSource]="mangNguoiDung" class="mat-elevation-z8" matSort>
 
@@ -29,6 +37,18 @@
         <ng-container matColumnDef="maLoaiNguoiDung">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>Type</th>
             <td mat-cell *matCellDef="let user">{{ user.maLoaiNguoiDung }}</td>
+        </ng-container>
+
+        <!-- tenLoaiNguoiDung -->
+        <ng-container matColumnDef="tenLoaiNguoiDung">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Type Name</th>
+            <td mat-cell *matCellDef="let user">{{ user.tenLoaiNguoiDung }}</td>
+        </ng-container>
+
+        <!-- matKhau -->
+        <ng-container matColumnDef="matKhau">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Password</th>
+            <td mat-cell *matCellDef="let user">{{ user.matKhau }}</td>
         </ng-container>
 
         <!-- email -->
@@ -47,6 +67,15 @@
         <ng-container matColumnDef="soDT">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>Phone</th>
             <td mat-cell *matCellDef="let user">{{ user.soDt }}</td>
+        </ng-container>
+
+        <!-- hanhDong -->
+        <ng-container matColumnDef="hanhDong">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let course">
+                <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+                <button mat-icon-button color="primary"><mat-icon>backup</mat-icon></button>
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

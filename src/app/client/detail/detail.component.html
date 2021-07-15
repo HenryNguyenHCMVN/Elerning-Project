@@ -1,15 +1,20 @@
 <div class="container">
-<mat-card class="example-card">
-    <mat-card-header>
-        <mat-card-title>Mã khóa học: {{courseDetail?.maKhoaHoc}}</mat-card-title>
-        <mat-card-title>Tên khóa học: {{courseDetail?.tenKhoaHoc}}</mat-card-title>
-        <mat-card-subtitle>Tên nhóm:{{courseDetail?.maNhom}}</mat-card-subtitle>
-    </mat-card-header>
-    <img class="img" mat-card-image src="{{courseDetail?.hinhAnh}}">
-    <mat-card-content>
-        <p>
-            Mô tả khóa học: {{courseDetail?.moTa}}
-        </p>
-    </mat-card-content>
-</mat-card>
+    <mat-card class="example-card">
+
+        <mat-card-title>Course code: {{courseDetail?.maKhoaHoc}}</mat-card-title>
+
+        <img class="img" mat-card-image src="{{courseDetail?.hinhAnh}}">
+        <mat-card-subtitle>Course name: {{courseDetail?.tenKhoaHoc}}</mat-card-subtitle>
+        <mat-card-subtitle>Group: {{courseDetail?.maNhom}}</mat-card-subtitle>
+        <mat-card-subtitle>Date: {{courseDetail?.ngayTao}}</mat-card-subtitle>
+        <mat-card-subtitle>View: {{courseDetail?.luotXem}}</mat-card-subtitle>
+
+        <mat-card-content>
+            <p>
+                Course description: {{courseDetail?.moTa}}
+            </p>
+        </mat-card-content>
+
+        <button mat-raised-button color="primary">Register the course</button>
+    </mat-card>
 </div>

@@ -8,6 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
 import { ClientRoutingModule } from '../client/client-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ClientRoutingModule } from '../client/client-routing.module';
     MatToolbarModule,
     MatMenuModule,
     MatInputModule,
-
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports:[
     ComponentComponent,
@@ -31,7 +33,8 @@ import { ClientRoutingModule } from '../client/client-routing.module';
     MatToolbarModule,
     MatMenuModule,
     MatInputModule,
-
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ComponentModule { }

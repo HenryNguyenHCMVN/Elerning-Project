@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/JWT/jwt.interceptor';
 import { ComponentModule } from './component/component.module';
+import { AddCourseComponent } from './admin/add-course/add-course.component';
 
 
 
@@ -30,6 +31,7 @@ import { ComponentModule } from './component/component.module';
   providers: [
     {provide : HTTP_INTERCEPTORS , useClass : JwtInterceptor,multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[AddCourseComponent]
 })
 export class AppModule { }

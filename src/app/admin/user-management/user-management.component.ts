@@ -21,11 +21,11 @@ export class UserManagementComponent implements OnInit {
   public ELEMENT_DATA!: NguoiDung[];
   public mangNguoiDung = new MatTableDataSource(this.ELEMENT_DATA);
 
-  public displayedColumns: string[] = ['taiKhoan', 'email', 'maLoaiNguoiDung', 'soDT', 'hoTen'];
+  public displayedColumns: string[] = ['taiKhoan','matKhau', 'email', 'maLoaiNguoiDung','tenLoaiNguoiDung', 'soDT', 'hoTen', 'hanhDong'];
 
   public mangMaNhom: Array<any> = ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP10"];
 
-  // mangNguoiDung: NguoiDung[] = [];
+  searchKey: any;
 
   constructor(private authService: AuthService) { }
 
@@ -35,15 +35,23 @@ export class UserManagementComponent implements OnInit {
     })
   }
 
-  applySearch(search: any){
-    console.log(search);
-    this.mangNguoiDung.filter = search.key.trim().toLowerCase();
+  // search
+  applySearch(){
+    this.mangNguoiDung.filter = this.searchKey.trim().toLowerCase();
   }
+  //clear search
+  onSearchClear(){
+    this.searchKey = "";
+    this.applySearch();
+  }
+  addUser(){}
 
   ngAfterViewInit() {// material angular
     this.mangNguoiDung.paginator = this.paginator;
     this.mangNguoiDung.sort = this.sort
   }
+
+
   ngOnInit(): void {
     this.authService.getListUser().subscribe((result: any) => {
       console.log(result);

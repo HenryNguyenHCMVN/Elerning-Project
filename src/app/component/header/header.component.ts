@@ -24,6 +24,8 @@ export class HeaderComponent implements OnInit {
 
   categoryList: any = [];
 
+  searchKey: any;
+
 
   //ngOnInit = componentDisMount
   ngOnInit(): void {
@@ -35,6 +37,15 @@ export class HeaderComponent implements OnInit {
       this.currentUser = data;
     })
   }
+    // search
+    applySearch(){
+      this.categoryList.filter = this.searchKey.trim().toLowerCase();
+    }
+    //clear search
+    onSearchClear(){
+      this.searchKey = "";
+      this.applySearch();
+    }
 
   getListCategory() {
     this.courseService.getListCategoryCourseApi().subscribe((data) => {

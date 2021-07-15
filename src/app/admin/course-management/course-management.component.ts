@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { KhoaHoc, UserSignUpManagement } from 'src/app/core/models/client';
+import { UserSignUpManagement } from 'src/app/core/models/client';
 import { CourseService } from 'src/app/core/services/course/course.service';
+import { AddCourseComponent } from '../add-course/add-course.component';
 
 @Component({
   selector: 'app-course-management',
@@ -20,11 +22,11 @@ export class CourseManagementComponent implements OnInit {
 
   public mangMaNhom: Array<any> = ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP10"];
 
-  public displayedColumns: string[] = ['maKhoaHoc', 'tenKhoaHoc', 'danhMucKhoaHoc', 'hinhAnh'];
+  public displayedColumns: string[] = ['maKhoaHoc', 'tenKhoaHoc','hinhAnh','luotXem','danhMucKhoaHoc','nguoiTao','hanhDong'];
 
-  // mangKhoaHoc: KhoaHoc [] = [];
+  searchKey: any;
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, private matDialog: MatDialog) { }
 
   maNhom: any;
 
@@ -40,21 +42,33 @@ export class CourseManagementComponent implements OnInit {
     this.mangKhoaHoc.sort = this.sort;
   }
 
-  applySearch(search: any){
-    console.log(search);
-    this.mangKhoaHoc.filter = search.key.trim().toLowerCase();
+  // search
+  applySearch(){
+    this.mangKhoaHoc.filter = this.searchKey.trim().toLowerCase();
+  }
+  //clear search
+  onSearchClear(){
+    this.searchKey = "";
+    this.applySearch();
   }
 
   ngOnInit(): void {
+
+    //lấy API danh sách tĩnh
     this.courseService.getListCourseApiGP01().subscribe((result:any) => {
       console.log(result);
       this.mangKhoaHoc.data = result;
     })
   }
 
-  themKhoaHoc(){
+  addACourse(){
     console.log('123');
 
+
+    // set cứng top-up khi xuất hiện
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width="60%";
+    this.matDialog.open(AddCourseComponent,matDialogConfig);
   }
 
 }

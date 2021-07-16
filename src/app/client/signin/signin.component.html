@@ -10,7 +10,7 @@
 
         </mat-form-field>
         <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
-            <span *ngIf="username.errors?.required">Account cannot be empty!!!</span>
+            <mat-error *ngIf="username.errors?.required">Account cannot be empty!!!</mat-error>
             <!-- <div *ngIf="username.errors?.pattern || username.errors?.pattern">
         Email not found!!!
       </div> -->
@@ -22,8 +22,11 @@
             <input matInput ngModel name="password" required #password="ngModel" [(ngModel)]="userLogin.matKhau" />
         </mat-form-field>
         <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
-            <span *ngIf="password.errors?.required">Password cannot be empty!!!</span>
+            <mat-error *ngIf="password.errors?.required">Password cannot be empty!!!</mat-error>
         </div>
-        <button mat-raised-button type="submit" [disabled]="!formSignIn.valid" color="primary">Submit</button>
+        <div class="btnSubmit">
+            <button mat-raised-button type="submit" [disabled]="!formSignIn.valid" color="primary">Submit</button>
+        </div>
     </form>
+
 </div>

@@ -1,7 +1,6 @@
 .container {
     width: 60%;
     margin: 0 auto;
-    text-align: center;
     h1 {
         text-align: center;
         color: #0056d2;
@@ -11,7 +10,7 @@
     .example-full-width {
         width: 100%;
     }
-    span {
-        color: red;
+    .btnSubmit {
+        text-align: center;
     }
 }

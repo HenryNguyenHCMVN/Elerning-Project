@@ -13,7 +13,7 @@ export class CourseService {
   constructor(private httpClient: HttpClient) { }
 
   getListCourseApi(maNhom: any): Observable<any> {
-    return this.httpClient.get(`https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maNhom}`)
+    return this.httpClient.get(`https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${maNhom}`)
       .pipe(
         tap((data) => {
           console.log(data);
@@ -88,5 +88,19 @@ export class CourseService {
         return err
       }))
   }
+
+  // getListCourseApi(maNhom: any): Observable<any> {
+  //   return this.httpClient.get(`https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maNhom}`)
+  //     .pipe(
+  //       tap((data) => {
+  //         console.log(data);
+
+  //       }),
+  //       catchError((err) => {
+  //         console.log(err);
+  //         return err;
+  //       })
+  //     );
+  // }
 
 }

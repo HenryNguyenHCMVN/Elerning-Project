@@ -19,6 +19,7 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../core/share/material/material.module';
 import { CourseComponent } from './home/course/course.component';
+import { DataService } from '../core/share/data/data.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { CourseComponent } from './home/course/course.component';
     IntroComponent,
     CourseComponent,
   ],
-  entryComponents:[DetailComponent],
+  entryComponents:[DetailComponent,SignupComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -47,6 +48,7 @@ import { CourseComponent } from './home/course/course.component';
     MatCardModule,
     MatSelectModule,
     MatRadioModule,
-  ]
+  ],
+  providers:[DataService],
 })
 export class ClientModule { }

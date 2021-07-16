@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container" [formGroup]="formDangKy.form">
     <h1>Sign Up</h1>
 
     <form class="example-form" #formDangKy="ngForm" (ngSubmit)="DangKy(formDangKy.value)">
+        <input type="hidden" formControlName="$key">
         <!-- taiKhoan -->
         <mat-form-field class="form-group">
             <mat-label>Account</mat-label>
@@ -92,16 +93,7 @@
         <!-- button -->
         <div style="text-align: center;">
             <button mat-raised-button color="primary" type="submit" [disabled]="formDangKy.invalid">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
         </div>
     </form>
-
-    <ng-container>
-        <tr *ngFor="let nguoiDung of mangNguoiDung">
-            <td>{{nguoiDung.taiKhoan}}</td>
-            <td>{{nguoiDung.hoTen}}</td>
-            <td>{{nguoiDung.email}}</td>
-            <td>{{nguoiDung.soDT}}</td>
-            <td>{{nguoiDung.maLoaiNguoiDung}}</td>
-        </tr>
-    </ng-container>
 </div>

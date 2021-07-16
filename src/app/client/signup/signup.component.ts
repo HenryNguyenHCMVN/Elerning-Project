@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { DataService } from 'src/app/core/share/data/data.service';
+
 
 
 @Component({
@@ -17,15 +19,9 @@ export class SignupComponent implements OnInit {
 
   mangNguoiDung: NguoiDung[] = [];
 
-  constructor( private authService: AuthService, private router:Router) { }
+  constructor( private authService: AuthService, private router:Router, private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.authService.getListUser().subscribe(
-      (result:any)=>{
-        console.log(result);
-        this.mangNguoiDung = result;
-      }
-    )
   }
 
   DangKy(nguoiDung:NguoiDung){
@@ -39,4 +35,10 @@ export class SignupComponent implements OnInit {
     })
 
   }
+
+  onClear(){
+    this.dataService.form.reset();
+    this.dataService.initializeFormGroup();
+  }
+
 }

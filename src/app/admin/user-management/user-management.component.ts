@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { SignupComponent } from 'src/app/client/signup/signup.component';
 import { NguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
@@ -27,7 +29,7 @@ export class UserManagementComponent implements OnInit {
 
   searchKey: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private matDialog: MatDialog) { }
 
   chonNhom(maNhom:any){
     this.authService.getListUserGroup(maNhom).subscribe((result) => {
@@ -44,13 +46,18 @@ export class UserManagementComponent implements OnInit {
     this.searchKey = "";
     this.applySearch();
   }
-  addUser(){}
+  addUser(){
+    this.matDialog.open(SignupComponent);
+  }
 
   ngAfterViewInit() {// material angular
     this.mangNguoiDung.paginator = this.paginator;
     this.mangNguoiDung.sort = this.sort
   }
 
+  onEdit(){
+
+  }
 
   ngOnInit(): void {
     this.authService.getListUser().subscribe((result: any) => {

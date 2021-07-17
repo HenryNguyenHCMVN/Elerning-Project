@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { createCourse } from 'src/app/core/models/client';
 import { CourseService } from 'src/app/core/services/course/course.service';
 
 @Component({
@@ -16,16 +17,19 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.activatedRoute.params.subscribe((params) => {
-      console.log(params);
-      this.id = params.id;
+    this.activatedRoute.params.subscribe((result) => {
+      console.log(this.id);
+      this.id = result.id;
+      this.courseService.getDetailCourseApi(this.id).subscribe((data) => {
+        console.log(data);
+        this.courseDetail = data;
+      })
     });
-
-    this.courseService.getDetailCourseApi(this.id).subscribe((data) => {
-      console.log(data);
-      this.courseDetail = data;
-    })
-
   }
 
+  createRegister(){
+    this.courseService.registerCourse(this.id).subscribe((result:any) =>{
+      console.log(result);
+    })
+  }
 }

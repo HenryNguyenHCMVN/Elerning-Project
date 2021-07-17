@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { DataService } from 'src/app/core/share/data/data.service';
 
 
 
@@ -13,13 +13,15 @@ import { DataService } from 'src/app/core/share/data/data.service';
 })
 export class SignupComponent implements OnInit {
 
+  @ViewChild ('formDangKy') formDK!:NgForm;
+
   public mangMaNhom: Array<any> = [
     "GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP010"
   ];
 
   mangNguoiDung: NguoiDung[] = [];
 
-  constructor( private authService: AuthService, private router:Router, private dataService: DataService) { }
+  constructor( private authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -33,12 +35,8 @@ export class SignupComponent implements OnInit {
     (error:any) => {
       console.log(error);
     })
-
   }
-
   onClear(){
-    this.dataService.form.reset();
-    this.dataService.initializeFormGroup();
+    this.formDK.reset();
   }
-
 }

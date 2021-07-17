@@ -29,6 +29,8 @@ export class UserManagementComponent implements OnInit {
 
   searchKey: any;
 
+  token:any;
+
   constructor(private authService: AuthService, private matDialog: MatDialog) { }
 
   chonNhom(maNhom:any){
@@ -56,6 +58,10 @@ export class UserManagementComponent implements OnInit {
   }
 
   onEdit(){
+    this.authService.infoUser(this.token).subscribe((data) =>{
+      console.log(data);
+    })
+
 
   }
 

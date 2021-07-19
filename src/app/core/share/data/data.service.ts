@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -17,26 +17,34 @@ export class DataService {
   }
 
   form: FormGroup = new FormGroup({
-    $key: new FormControl(null),
-    taiKhoan: new FormControl(''),
-    matKhau: new FormControl(''),
-    hoTen: new FormControl(''),
+    // $key: new FormControl(null),
+    taiKhoan: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    matKhau: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    hoTen: new FormControl('', [Validators.required, Validators.minLength(3)]),
     maNhom: new FormControl(''),
-    email: new FormControl(''),
-    soDT: new FormControl(''),
+    email: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    soDT: new FormControl('',[Validators.required, Validators.minLength(3)]),
     maLoaiNguoiDung: new FormControl('GV'),
   })
 
-  initializeFormGroup() {
+  resetFormGroup() {
     this.form.setValue({
-      $key: null,
+      // $key: null,
       taiKhoan: '',
       matKhau: '',
       hoTen: '',
       maNhom: '',
-      maLoaiNguoiDung: '1',
+      maLoaiNguoiDung: 'GV',
       email: '',
       soDT: '',
     });
+  }
+
+  deleteCourse(){
+
+  }
+
+  popularForm(course:any){
+    this.form.setValue(course);
   }
 }

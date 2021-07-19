@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { NotificationService } from 'src/app/core/share/data/notification.service';
 
 @Component({
   selector: 'app-signin',
@@ -8,6 +9,8 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+
+  constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private notificationService:NotificationService) { }
 
   hide = true;
 
@@ -23,9 +26,14 @@ export class SigninComponent implements OnInit {
       localStorage.setItem("userLogin", JSON.stringify(data));
       //lưu data vào AuthService
       this.authService.setCurrentUser(data);
-      alert("Log in successful")
-      this.router.navigate(["/"]);
-      console.log(data);
+
+      const {successURL} = this.activatedRoute.snapshot.queryParams;
+      if (successURL) {
+        this.router.navigate([successURL]);
+      }else{
+        this.notificationService.success(`::: Log in successfully :::`)
+        this.router.navigate(["/"]);
+      }
     },
     (error) =>{
       console.log(error);
@@ -33,8 +41,6 @@ export class SigninComponent implements OnInit {
     })
 
   }
-
-  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }

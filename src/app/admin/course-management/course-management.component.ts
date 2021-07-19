@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { UserSignUpManagement } from 'src/app/core/models/client';
 import { CourseService } from 'src/app/core/services/course/course.service';
 import { AddCourseComponent } from '../add-course/add-course.component';
@@ -26,9 +27,11 @@ export class CourseManagementComponent implements OnInit {
 
   searchKey: any;
 
-  constructor(private courseService: CourseService, private matDialog: MatDialog) { }
+  constructor(private courseService: CourseService, private matDialog: MatDialog, public activatedRoute: ActivatedRoute) { }
 
   maNhom: any;
+
+  id: any;
 
   chonNhom(maNhom:any){
     this.courseService.getListCourseApi(maNhom).subscribe((result) => {
@@ -70,5 +73,10 @@ export class CourseManagementComponent implements OnInit {
     matDialogConfig.width="60%";
     this.matDialog.open(AddCourseComponent,matDialogConfig);
   }
-
+  delCourse(){
+      this.courseService.deleteCourse(this.id).subscribe((del) => {
+        console.log(del);
+        this.id = del;
+      });
+  }
 }

@@ -14,16 +14,15 @@ export class AuthService {
   //currentUser.asObservable => biến currentUser thành 1 Observable => có thể subscrible
   currentUser = this.currentUserSubject.asObservable();
 
-
   //post data => AdminComponent
   getCurrentUser(): any {
     return this.currentUserSubject.value;
   }
-
   // lấy data(localstrorage) sau khi signin
   setCurrentUser(value: any) {
     this.currentUserSubject.next(value);
   }
+
 
   constructor(private httpClient: HttpClient) {
 

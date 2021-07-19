@@ -61,7 +61,7 @@ export interface AddCourse {
   taiKhoanNguoiTao: string;
 }
 
-export interface createCourse {
-  maKhoaHoc:        any;
+export interface registerCourse {
+  maKhoaHoc: any;
   taiKhoan: any;
 }

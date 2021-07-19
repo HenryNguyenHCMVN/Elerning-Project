@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { createCourse } from 'src/app/core/models/client';
+import { registerCourse } from 'src/app/core/models/client';
 import { CourseService } from 'src/app/core/services/course/course.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class DetailComponent implements OnInit {
   id: any;
   courseDetail: any
 
-  constructor(private activatedRoute: ActivatedRoute, private courseService: CourseService) { }
+  constructor(public activatedRoute: ActivatedRoute, public courseService: CourseService) { }
 
   ngOnInit(): void {
 
@@ -28,8 +28,8 @@ export class DetailComponent implements OnInit {
   }
 
   createRegister(){
-    this.courseService.registerCourse(this.id).subscribe((result:any) =>{
-      console.log(result);
-    })
+  }
+
+  goBack(): void{
   }
 }

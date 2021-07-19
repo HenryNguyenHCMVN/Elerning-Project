@@ -15,6 +15,7 @@ import { InfoAdminComponent } from './info-admin/info-admin.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AddAUserComponent } from './user-management/add-auser/add-auser.component';
 
 
 
@@ -27,6 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     CourseManagementComponent,
     InfoAdminComponent,
     AddCourseComponent,
+    AddAUserComponent,
   ]
   ,
   imports: [

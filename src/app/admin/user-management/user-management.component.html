@@ -68,12 +68,25 @@
             <td mat-cell *matCellDef="let user">{{ user.soDt }}</td>
         </ng-container>
 
-        <!-- hanhDong -->
-        <ng-container matColumnDef="hanhDong">
+        <!-- maNhom -->
+        <ng-container matColumnDef="maNhom">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Group</th>
+            <td mat-cell *matCellDef="let user">{{ user.maNhom }}</td>
+        </ng-container>
+
+        <!-- xoa -->
+        <ng-container matColumnDef="xoa">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let course">
-                <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
-                <button mat-icon-button color="primary" (click)="onEdit()"><mat-icon>backup</mat-icon></button>
+            <td mat-cell *matCellDef="let user">
+                <button mat-icon-button color="warn" (click)="onDelete(user)"><mat-icon>delete</mat-icon></button>
+            </td>
+        </ng-container>
+
+        <!-- capNhat -->
+        <ng-container matColumnDef="capNhat">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let user">
+                <button mat-icon-button color="primary" (click)="onEdit(user)"><mat-icon>backup</mat-icon></button>
             </td>
         </ng-container>
 

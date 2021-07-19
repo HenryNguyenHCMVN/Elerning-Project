@@ -27,6 +27,13 @@ export class AuthGuard implements CanActivate {
     //lấy GV hoặc HV ở authService
     const currentUser = this.authService.getCurrentUser();
 
+    //user chưa đăng nhập
+    if (!currentUser) {
+      alert('You must to Sign In')
+      this.router.navigate(['/signin'], {queryParams: {successURL: state.url}});
+      return false;
+    }
+
     if (currentUser && currentUser.maLoaiNguoiDung === "GV") {
       return true;
     }

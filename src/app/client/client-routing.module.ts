@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SignUpGuard } from '../core/guard/sign-up.guard';
 import { ClientComponent } from './client.component';
 import { DetailComponent } from './detail/detail.component';
 import { HomeComponent } from './home/home.component';

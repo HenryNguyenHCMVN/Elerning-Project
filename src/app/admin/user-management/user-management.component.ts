@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SignupComponent } from 'src/app/client/signup/signup.component';
 import { NguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { DataService } from 'src/app/core/share/data/data.service';
+import { AddAUserComponent } from './add-auser/add-auser.component';
 
 @Component({
   selector: 'app-user-management',
@@ -23,7 +25,7 @@ export class UserManagementComponent implements OnInit {
   public ELEMENT_DATA!: NguoiDung[];
   public mangNguoiDung = new MatTableDataSource(this.ELEMENT_DATA);
 
-  public displayedColumns: string[] = ['taiKhoan','matKhau', 'email', 'maLoaiNguoiDung','tenLoaiNguoiDung', 'soDT', 'hoTen', 'hanhDong'];
+  public displayedColumns: string[] = ['taiKhoan','matKhau', 'email', 'maLoaiNguoiDung','tenLoaiNguoiDung', 'soDT', 'hoTen','maNhom', 'xoa', 'capNhat'];
 
   public mangMaNhom: Array<any> = ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP10"];
 
@@ -31,7 +33,7 @@ export class UserManagementComponent implements OnInit {
 
   token:any;
 
-  constructor(private authService: AuthService, private matDialog: MatDialog) { }
+  constructor(private authService: AuthService, private matDialog: MatDialog, private dataService: DataService) { }
 
   chonNhom(maNhom:any){
     this.authService.getListUserGroup(maNhom).subscribe((result) => {
@@ -49,7 +51,8 @@ export class UserManagementComponent implements OnInit {
     this.applySearch();
   }
   addUser(){
-    this.matDialog.open(SignupComponent);
+    this.dataService.resetFormGroup();
+    this.matDialog.open(AddAUserComponent);
   }
 
   ngAfterViewInit() {// material angular
@@ -57,11 +60,12 @@ export class UserManagementComponent implements OnInit {
     this.mangNguoiDung.sort = this.sort
   }
 
-  onEdit(){
-    this.authService.infoUser(this.token).subscribe((data) =>{
-      console.log(data);
-    })
+  onEdit(user:any){
+    this.dataService.popularForm(user);
+    this.matDialog.open(AddAUserComponent)
+  }
 
+  onDelete(user:any){
 
   }
 

@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, mapTo, tap } from 'rxjs/operators'; //add tap để xử lý thành công hoặc thất bại
 import { Observable } from 'rxjs';
-import { AddCourse, registerCourse } from '../../models/client';
+import { AddCourse, DanhSachKhoaHoc, registerCourse } from '../../models/client';
+import { ApiService } from '../API/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private api:ApiService) { }
 
   getListCourseApi(maNhom: any): Observable<any> {
     return this.httpClient.get(`https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${maNhom}`)
@@ -26,17 +27,14 @@ export class CourseService {
       );
   }
 
-  getListCourseApiGP01(): Observable<any> {
-    return this.httpClient.get(`https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01`)
+  getListCourseApiGP01(): Observable<DanhSachKhoaHoc[]> {
+    return this.api
+    .get<DanhSachKhoaHoc[]>(`QuanLyKhoaHoc/LayDanhSachKhoaHoc`,{
+      params: {maNhom:"GP01"}
+    })
       .pipe(
-        tap((data) => {
-          console.log(data);
-
+        tap((data) => {console.log(data);
         }),
-        catchError((err) => {
-          console.log(err);
-          return err;
-        })
       );
   }
 

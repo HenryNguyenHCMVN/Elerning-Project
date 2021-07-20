@@ -22,6 +22,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatSliderModule,
@@ -73,7 +75,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatRadioModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { LoaderService } from '../core/loader/loader.service';
 
 @Component({
   selector: 'app-client',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ClientComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(public loaderService:LoaderService) { }
 
   ngOnInit(): void {
   }

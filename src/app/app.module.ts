@@ -12,6 +12,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ComponentModule } from './component/component.module';
 import { AddCourseComponent } from './admin/add-course/add-course.component';
 import { AddAUserComponent } from './admin/user-management/add-auser/add-auser.component';
+import { JwtInterceptor } from './core/JWT/jwt.interceptor';
+import { IntereptorService } from './core/loader/intereptor.service';
 
 
 
@@ -30,7 +32,8 @@ import { AddAUserComponent } from './admin/user-management/add-auser/add-auser.c
     ComponentModule
   ],
   providers: [
-
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass:IntereptorService, multi: true}
   ],
   bootstrap: [AppComponent],
   entryComponents:[AddCourseComponent, AddAUserComponent ]

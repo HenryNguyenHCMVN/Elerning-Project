@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/core/share/data/data.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { DetailComponent } from '../../detail/detail.component';
+import { Event, NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 
 
@@ -12,12 +13,25 @@ import { DetailComponent } from '../../detail/detail.component';
 })
 export class CourseComponent implements OnInit {
 
+  isLoading: boolean = false;
 
   courseDetail: any;
 
   @Input() course: any;
 
-  constructor(public dataService: DataService, private matDialog: MatDialog) { }
+  constructor(public dataService: DataService, private matDialog: MatDialog, private router:Router) {
+
+      //isloading
+      this.router.events.subscribe((routerEvent: Event) =>{
+        if (routerEvent instanceof NavigationStart) {
+          this.isLoading = true;
+        }
+        if (routerEvent instanceof NavigationEnd) {
+          this.isLoading = false;
+        }
+      })
+
+  }
 
   ngOnInit(): void {
 
@@ -33,5 +47,8 @@ export class CourseComponent implements OnInit {
     console.log('123');
 
   }
+
+
+
 
 }

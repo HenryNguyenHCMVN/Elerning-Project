@@ -7,6 +7,16 @@ export class NguoiDung {
   public matKhau: any;
 }
 
+export interface DangKyNguoiDung {
+  taiKhoan: string;
+  matKhau:  string;
+  hoTen:    string;
+  soDT:     string;
+  maNhom:   string;
+  email:    string;
+}
+
+
 export class UserSignUpManagement {
   public email?: string;
   public hoTen?: string;
@@ -15,20 +25,31 @@ export class UserSignUpManagement {
   public taiKhoan?: string;
 }
 
-export interface ThemKhoaHoc {
-  maKhoaHoc:        string;
-  biDanh:           string;
-  tenKhoaHoc:       string;
-  moTa:             string;
-  luotXem:          number;
-  danhGia:          number;
-  hinhAnh:          string;
-  maNhom:           string;
-  ngayTao:          string;
-  maDanhMucKhoaHoc: string;
-  taiKhoanNguoiTao: string;
+export interface DanhSachKhoaHoc {
+  maKhoaHoc:      string;
+  biDanh:         string;
+  tenKhoaHoc:     string;
+  moTa:           string;
+  luotXem:        number;
+  hinhAnh:        string;
+  maNhom:         string;
+  ngayTao:        string;
+  soLuongHocVien: number;
+  nguoiTao:       NguoiTAO;
+  danhMucKhoaHoc: DanhMucKhoaHoc;
 }
 
+export interface DanhMucKhoaHoc {
+  maDanhMucKhoahoc:  string;
+  tenDanhMucKhoaHoc: string;
+}
+
+export interface NguoiTAO {
+  taiKhoan:         string;
+  hoTen:            string;
+  maLoaiNguoiDung:  string;
+  tenLoaiNguoiDung: string;
+}
 
 export class KhoaHoc {
   public maKhoaHoc?: string;
@@ -37,7 +58,7 @@ export class KhoaHoc {
   public danhMucKhoaHoc?: string;
 }
 
-export interface UserSignIn {
+export interface NguoiDungDangNhap {
   taiKhoan:        string;
   email:           string;
   soDT:            string;
@@ -64,4 +85,25 @@ export interface AddCourse {
 export interface registerCourse {
   maKhoaHoc: any;
   taiKhoan: any;
+}
+
+export interface TimKiemNguoiDung {
+  taiKhoan:         string;
+  hoTen:            string;
+  email:            string;
+  soDt:             string;
+  matKhau:          string;
+  maLoaiNguoiDung:  string;
+  tenLoaiNguoiDung: string;
+}
+
+export interface ThongTinNguoiDung {
+  chiTietKhoaHocGhiDanh: any[];
+  taiKhoan:              string;
+  matKhau:               string;
+  hoTen:                 string;
+  soDT:                  string;
+  maLoaiNguoiDung:       string;
+  maNhom:                string;
+  email:                 string;
 }

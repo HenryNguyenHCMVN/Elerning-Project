@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'; //add tap để xử lý thành công hoặc thất bại
 import { BehaviorSubject, Observable } from 'rxjs';
-import { NguoiDung, UserSignIn } from '../../models/client';
+import { DangKyNguoiDung, NguoiDung, NguoiDungDangNhap, ThongTinNguoiDung, TimKiemNguoiDung } from '../../models/client';
+import { ApiService } from '../API/api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class AuthService {
   }
 
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private api: ApiService) {
 
     // setState lại data khi user signout & signin
     // sẽ setstate ở day rat nhieu lan ko chi o sigin service mà còn nhiều tác vụ khác
@@ -35,64 +36,69 @@ export class AuthService {
 
   }
 
-  loginApi(userLogin: any): Observable<any> {
-    return this.httpClient
-      .post(
-        'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap',
-        userLogin
-      )
+  loginApi(userLogin: any): Observable<NguoiDungDangNhap> {
+    return this.api.post<NguoiDungDangNhap>('QuanLyNguoiDung/DangNhap',userLogin)
       .pipe(
         tap((data) => {
           console.log(data);
-        }),
-        catchError((err) => {
-          console.log(err);
-          return err;
         })
-      );
+        )}
 
-  }
-  addListUser(nguoiDung:NguoiDung): Observable<any> {
-    let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy`;
-    return this.httpClient.post(url,nguoiDung).pipe(tap((data: any) => {
+
+  addListUser(nguoiDung:DangKyNguoiDung): Observable<DangKyNguoiDung> {
+    let url = `QuanLyNguoiDung/DangKy`;
+    return this.httpClient.post<DangKyNguoiDung>(url,nguoiDung).pipe(tap((data: any) => {
       console.log(data);
     }),
-      catchError(err => {
-        console.log(err);
-        return err
-      }))
+      )
   }
 
-  getListUser(): Observable<any> {
-    let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01`;
-    return this.httpClient.get(url).pipe(tap((data: any) => {
+  getListUser(): Observable<TimKiemNguoiDung> {
+    let url = `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01`;
+    return this.httpClient.get<TimKiemNguoiDung>(url).pipe(tap((data: any) => {
       console.log(data);
 
     }),
-      catchError(err => {
-        console.log(err);
-        return err
-      }))
+    )
   }
-  getListUserGroup(maNhom:any): Observable<any> {
-    let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${maNhom}`;
-    return this.httpClient.get(url).pipe(tap((data: any) => {
+  getListUserGroup(maNhom:any): Observable<TimKiemNguoiDung[]> {
+    let url = `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${maNhom}`;
+    return this.httpClient.get<TimKiemNguoiDung[]>(url).pipe(tap((data: any) => {
+      console.log(data);
+
     }),
-      catchError(err => {
-        console.log(err);
-        return err
-      }))
+     )
   }
 
-  infoUser(token:any): Observable<any> {
-    let url ="https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinNguoiDung";
-    return this.httpClient.post(url,token).pipe(tap((data: any) => {
+  infoUser(token:any): Observable<ThongTinNguoiDung> {
+    let url ="QuanLyNguoiDung/ThongTinNguoiDung";
+    return this.httpClient.post<ThongTinNguoiDung>(url,token).pipe(tap((data: any) => {
       console.log(data);
     }),
+    )
+  }
+
+  // updateUser(): Observable<any> {
+  //   let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`;
+  //   return this.httpClient.put(url).pipe(tap((data: any) => {
+  //     console.log(data);
+
+  //   }),
+  //     catchError(err => {
+  //       console.log(err);
+  //       return err
+  //     }))
+  // }
+
+  deteteUser(taiKhoan:any): Observable<any> {
+    let url = `http://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`;
+    return this.httpClient.delete(url).pipe(tap((data: any) => {
+      console.log(data);
+
+    }),
       catchError(err => {
         console.log(err);
         return err
       }))
   }
-
 }

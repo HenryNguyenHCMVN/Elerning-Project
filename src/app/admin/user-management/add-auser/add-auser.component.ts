@@ -16,8 +16,6 @@ export class AddAUserComponent implements OnInit {
     "GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP010"
   ];
 
-  arrNguoiDung: NguoiDung[] = [];
-
   constructor(public dataService:DataService,
     public authService:AuthService,
     public notificationService: NotificationService,
@@ -30,7 +28,6 @@ export class AddAUserComponent implements OnInit {
     if (this.dataService.form.valid) {
         this.authService.addListUser(this.dataService.form.value).subscribe((result) =>{
           console.log(result);
-          this.arrNguoiDung = result;
           this.dataService.form.reset();
           this.dataService.resetFormGroup();
           this.notificationService.success(`::: Submitted successfully :::`);

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {MediaChange, MediaObserver} from '@angular/flex-layout'
 import {Subscription} from 'rxjs'
+import { LoaderService } from './core/loader/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,13 @@ export class AppComponent implements OnInit, OnDestroy{
   title = 'my-app';
   mediaSub!: Subscription;
   deviceXs!: boolean;
-  constructor(public mediaObserver: MediaObserver){}
+
+
+  constructor(public mediaObserver: MediaObserver, public loaderService:LoaderService){
+    setTimeout(() => {
+
+    }, 5000);
+  }
   ngOnInit(){
     this.mediaSub = this.mediaObserver.media$.subscribe((result:MediaChange) =>{
       console.log(result.mqAlias);
@@ -21,5 +28,4 @@ export class AppComponent implements OnInit, OnDestroy{
   ngOnDestroy(){
     this.mediaSub.unsubscribe();
   }
-
 }

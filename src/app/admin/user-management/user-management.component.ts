@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SignupComponent } from 'src/app/client/signup/signup.component';
 import { NguoiDung, TimKiemNguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DataService } from 'src/app/core/share/data/data.service';
+import { NotificationService } from 'src/app/core/share/data/notification.service';
 import { AddAUserComponent } from './add-auser/add-auser.component';
 
 @Component({
@@ -33,9 +35,13 @@ export class UserManagementComponent implements OnInit {
 
   token:any;
 
-  userDel:any = {taiKhoan: ""}
+  error: string = "";
 
-  constructor(private authService: AuthService, private matDialog: MatDialog, private dataService: DataService) { }
+  delUser: string = "";
+
+  isLoading: boolean = false;
+
+  constructor(private authService: AuthService, private matDialog: MatDialog, private dataService: DataService, private notificationService:NotificationService) { }
 
   chonNhom(maNhom:any){
     this.authService.getListUserGroup(maNhom).subscribe((result) => {
@@ -63,19 +69,22 @@ export class UserManagementComponent implements OnInit {
   }
 
   onEdit(user:any){
-    this.dataService.popularForm(user);
-    this.matDialog.open(AddAUserComponent)
+
+
   }
 
+
   onDelete(user:any){
-    this.authService.deteteUser(user.taiKhoan).subscribe((res) =>{
-      console.log(res);
-    })
+    if (confirm('Are you sure to delete???')) {
+      this.authService.deteteUser(user).subscribe((res) =>{
+        alert('res' + res)
+      },(error) =>{
+      });
+    }
   }
 
   ngOnInit(): void {
     this.authService.getListUser().subscribe((result: any) => {
-      console.log(result);
       this.mangNguoiDung.data = result;
     })
   }

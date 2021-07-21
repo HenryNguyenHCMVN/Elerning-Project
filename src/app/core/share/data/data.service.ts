@@ -40,11 +40,15 @@ export class DataService {
     });
   }
 
-  deleteCourse(){
-
-  }
-
-  popularForm(course:any){
-    this.form.setValue(course);
+  popularForm(user:any){
+    this.form.setValue({
+      taiKhoan: user.taiKhoan,
+      matKhau: user.matKhau,
+      hoTen: user.hoTen,
+      maNhom: user.maNhom,
+      maLoaiNguoiDung: user.maLoaiNguoiDung,
+      email: user.email,
+      soDT: user.soDT,
+    });
   }
 }

@@ -47,7 +47,7 @@ export class AuthService {
 
   addListUser(nguoiDung:DangKyNguoiDung): Observable<DangKyNguoiDung> {
     let url = `QuanLyNguoiDung/DangKy`;
-    return this.httpClient.post<DangKyNguoiDung>(url,nguoiDung).pipe(tap((data: any) => {
+    return this.api.post<DangKyNguoiDung>(url,nguoiDung).pipe(tap((data: any) => {
       console.log(data);
     }),
       )
@@ -55,24 +55,21 @@ export class AuthService {
 
   getListUser(): Observable<TimKiemNguoiDung> {
     let url = `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01`;
-    return this.httpClient.get<TimKiemNguoiDung>(url).pipe(tap((data: any) => {
-      console.log(data);
+    return this.api.get<TimKiemNguoiDung>(url).pipe(tap((data: any) => {
 
     }),
     )
   }
   getListUserGroup(maNhom:any): Observable<TimKiemNguoiDung[]> {
     let url = `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${maNhom}`;
-    return this.httpClient.get<TimKiemNguoiDung[]>(url).pipe(tap((data: any) => {
-      console.log(data);
-
+    return this.api.get<TimKiemNguoiDung[]>(url).pipe(tap((data: any) => {
     }),
      )
   }
 
   infoUser(token:any): Observable<ThongTinNguoiDung> {
     let url ="QuanLyNguoiDung/ThongTinNguoiDung";
-    return this.httpClient.post<ThongTinNguoiDung>(url,token).pipe(tap((data: any) => {
+    return this.api.post<ThongTinNguoiDung>(url,token).pipe(tap((data: any) => {
       console.log(data);
     }),
     )
@@ -91,8 +88,8 @@ export class AuthService {
   // }
 
   deteteUser(taiKhoan:any): Observable<any> {
-    let url = `http://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`;
-    return this.httpClient.delete(url).pipe(tap((data: any) => {
+    let url = `QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`;
+    return this.api.delete(url,taiKhoan).pipe(tap((data: any) => {
       console.log(data);
 
     }),

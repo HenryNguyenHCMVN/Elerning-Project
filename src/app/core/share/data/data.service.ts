@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import * as _ from 'lodash';
+
 
 @Injectable({
   providedIn: 'root'
@@ -41,14 +43,15 @@ export class DataService {
   }
 
   popularForm(user:any){
-    this.form.setValue({
-      taiKhoan: user.taiKhoan,
-      matKhau: user.matKhau,
-      hoTen: user.hoTen,
-      maNhom: user.maNhom,
-      maLoaiNguoiDung: user.maLoaiNguoiDung,
-      email: user.email,
-      soDT: user.soDT,
-    });
+    this.form.setValue(_.omit(user,'taiKhoan'));
   }
 }
+    //   {
+    //   taiKhoan: user.taiKhoan,
+    //   matKhau: user.matKhau,
+    //   hoTen: user.hoTen,
+    //   maNhom: user.maNhom,
+    //   maLoaiNguoiDung: user.maLoaiNguoiDung,
+    //   email: user.email,
+    //   soDT: user.soDT,
+    // }

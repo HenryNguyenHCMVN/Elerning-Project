@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,6 +11,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DataService } from 'src/app/core/share/data/data.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';
 import { AddAUserComponent } from './add-auser/add-auser.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user-management',
@@ -17,6 +19,8 @@ import { AddAUserComponent } from './add-auser/add-auser.component';
   styleUrls: ['./user-management.component.scss']
 })
 export class UserManagementComponent implements OnInit {
+
+  @ViewChild('form') formDK!:NgForm;
 
   // dùng MatPaginator để phân trang
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -69,8 +73,16 @@ export class UserManagementComponent implements OnInit {
   }
 
   onEdit(user:any){
-
-
+    this.matDialog.open(EditUserComponent);
+    this.dataService.form.setValue({
+    taiKhoan:user.taiKhoan,
+    maLoaiNguoiDung:user.maLoaiNguoiDung,
+    matKhau:user.matKhau,
+    email:user.email,
+    hoTen:user.hoTen,
+    soDT:user.soDt,
+    maNhom:this.mangMaNhom,
+    });
   }
 
 

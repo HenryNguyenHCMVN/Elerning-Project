@@ -1,0 +1,75 @@
+<div class="container">
+    <h1>Edit User</h1>
+    <form [formGroup]="dataService.form" (ngSubmit)="handleAddUser()">
+
+        <div class="controles-container">
+            <!-- <input type="hidden" formControlName="$key"> -->
+            <!-- taiKhoan -->
+            <mat-form-field class="form-group">
+                <mat-label>Account</mat-label>
+                <input matInput required formControlName="taiKhoan" [disabled]="true" />
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+            </mat-form-field>
+
+            <!-- matKhau -->
+            <mat-form-field class="form-group">
+                <mat-label>Password</mat-label>
+                <input matInput required formControlName="matKhau" />
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+                <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  -->
+            </mat-form-field>
+
+            <!-- hoTen -->
+            <mat-form-field class="form-group">
+                <mat-label>User Name</mat-label>
+                <input matInput required formControlName="hoTen" />
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+            </mat-form-field>
+
+            <!-- maNhom -->
+            <mat-form-field class="form-group">
+                <mat-label>Group</mat-label>
+                <mat-select required formControlName="maNhom">
+                    <mat-option *ngFor="let maNhom of mangMaNhom" value="{{ maNhom }}">
+                        {{ maNhom }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- email -->
+            <mat-form-field class="form-group">
+                <mat-label>Email</mat-label>
+                <input matInput required formControlName="email" />
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+            </mat-form-field>
+
+            <!-- soDT -->
+            <mat-form-field class="form-group">
+                <mat-label>Phone</mat-label>
+                <input matInput required formControlName="soDT" />
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
+                <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+            </mat-form-field>
+
+            <!-- maLoaiNguoiDung -->
+            <div>
+                <mat-radio-group class="form-group" required formControlName="maLoaiNguoiDung">
+                    <mat-label>User type: </mat-label>
+                    <mat-radio-button value="GV">Teachers </mat-radio-button>
+                    <mat-radio-button value="HV">Students </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+
+            <!-- button -->
+            <div style="text-align: center;">
+                <button mat-raised-button color="primary" type="submit" [disabled]="dataService.form.invalid">Submit</button>
+            </div>
+        </div>
+
+    </form>
+</div>

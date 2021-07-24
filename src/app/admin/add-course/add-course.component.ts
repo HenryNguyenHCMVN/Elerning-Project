@@ -36,6 +36,7 @@ export class AddCourseComponent implements OnInit {
     })
   }
 
+  //componentdis mount
   ngOnInit(): void {
     this.getListCategory();
     this.getInfoPerson();

@@ -95,6 +95,7 @@ export interface TimKiemNguoiDung {
   matKhau:          string;
   maLoaiNguoiDung:  string;
   tenLoaiNguoiDung: string;
+  maNhom:           string;
 }
 
 export interface ThongTinNguoiDung {
@@ -106,4 +107,14 @@ export interface ThongTinNguoiDung {
   maLoaiNguoiDung:       string;
   maNhom:                string;
   email:                 string;
+}
+
+export interface CapNhatNguoiDung {
+  taiKhoan:        string;
+  matKhau:         string;
+  hoTen:           string;
+  soDT:            string;
+  maLoaiNguoiDung: string;
+  maNhom:          string;
+  email:           string;
 }

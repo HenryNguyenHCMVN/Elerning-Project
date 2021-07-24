@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'; //add tap để xử lý thành công hoặc thất bại
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DangKyNguoiDung, NguoiDung, NguoiDungDangNhap, ThongTinNguoiDung, TimKiemNguoiDung } from '../../models/client';
+import { CapNhatNguoiDung, DangKyNguoiDung, NguoiDung, NguoiDungDangNhap, ThongTinNguoiDung, TimKiemNguoiDung } from '../../models/client';
 import { ApiService } from '../API/api.service';
+import { JwtInterceptor } from '../../JWT/jwt.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -56,36 +57,37 @@ export class AuthService {
   getListUser(): Observable<TimKiemNguoiDung> {
     let url = `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01`;
     return this.api.get<TimKiemNguoiDung>(url).pipe(tap((data: any) => {
+      console.log(data);
 
     }),
     )
   }
   getListUserGroup(maNhom:any): Observable<TimKiemNguoiDung[]> {
     let url = `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${maNhom}`;
-    return this.api.get<TimKiemNguoiDung[]>(url).pipe(tap((data: any) => {
+    return this.api.get<TimKiemNguoiDung[]>(url,maNhom).pipe(tap((data: any) => {
+      console.log(data,maNhom);
+
     }),
      )
   }
 
-  infoUser(token:any): Observable<ThongTinNguoiDung> {
+  infoUser(taiKhoan:any, accessToken:any): Observable<ThongTinNguoiDung> {
     let url ="QuanLyNguoiDung/ThongTinNguoiDung";
-    return this.api.post<ThongTinNguoiDung>(url,token).pipe(tap((data: any) => {
+    const headers = {Authorization :`Bearer ${accessToken}`};
+    return this.api.post<ThongTinNguoiDung>(url,taiKhoan,{headers:headers}).pipe(tap((data: any) => {
       console.log(data);
     }),
     )
   }
 
-  // updateUser(): Observable<any> {
-  //   let url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`;
-  //   return this.httpClient.put(url).pipe(tap((data: any) => {
-  //     console.log(data);
-
-  //   }),
-  //     catchError(err => {
-  //       console.log(err);
-  //       return err
-  //     }))
-  // }
+  updateUser(user:any, accessToken:any): Observable<CapNhatNguoiDung> {
+    let url = `QuanLyNguoiDung/CapNhatThongTinNguoiDung`;
+    const headers = {Authorization :`Bearer ${accessToken}`};
+    return this.api.put<CapNhatNguoiDung>(url,user,{headers:headers}).pipe(tap((data: any) => {
+      console.log(data);
+    }),
+    )
+  }
 
   deteteUser(taiKhoan:any): Observable<any> {
     let url = `QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`;

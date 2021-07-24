@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { result } from 'lodash';
 import { SignupComponent } from 'src/app/client/signup/signup.component';
 import { NguoiDung, TimKiemNguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -31,21 +32,29 @@ export class UserManagementComponent implements OnInit {
   public ELEMENT_DATA!: TimKiemNguoiDung[];
   public mangNguoiDung = new MatTableDataSource(this.ELEMENT_DATA);
 
-  public displayedColumns: string[] = ['taiKhoan','matKhau', 'email', 'maLoaiNguoiDung','tenLoaiNguoiDung', 'soDT', 'hoTen','maNhom', 'xoa', 'capNhat'];
+  public displayedColumns: string[] = ['taiKhoan', 'email', 'maLoaiNguoiDung','tenLoaiNguoiDung','matKhau', 'soDT','maNhom', 'hoTen', 'xoa', 'capNhat'];
 
   public mangMaNhom: Array<any> = ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP10"];
 
   searchKey: any;
 
+  error: string = "";
+
+  user: any = {
+    taiKhoan: this.authService.getCurrentUser().taiKhoan
+  }
+
+  infoUser:any = {};
+
   token:any;
 
-  error: string = "";
+  currentUsers: any = null;
 
   delUser: string = "";
 
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private matDialog: MatDialog, private dataService: DataService, private notificationService:NotificationService) { }
+  constructor(private authService: AuthService, private matDialog: MatDialog, public dataService: DataService, private notificationService:NotificationService) { }
 
   chonNhom(maNhom:any){
     this.authService.getListUserGroup(maNhom).subscribe((result) => {
@@ -73,15 +82,16 @@ export class UserManagementComponent implements OnInit {
   }
 
   onEdit(user:any){
-    this.matDialog.open(EditUserComponent);
-    this.dataService.form.setValue({
-    taiKhoan:user.taiKhoan,
-    maLoaiNguoiDung:user.maLoaiNguoiDung,
-    matKhau:user.matKhau,
-    email:user.email,
-    hoTen:user.hoTen,
-    soDT:user.soDt,
-    maNhom:this.mangMaNhom,
+    // this.matDialog.open(EditUserComponent);
+
+    this.dataService.formEdit.setValue({
+    taiKhoan:         user.taiKhoan,
+    maLoaiNguoiDung:  user.maLoaiNguoiDung,
+    matKhau:          user.matKhau,
+    email:            user.email,
+    hoTen:            user.hoTen,
+    soDT:             user.soDt,
+    maNhom:           "GP01",
     });
   }
 
@@ -89,15 +99,43 @@ export class UserManagementComponent implements OnInit {
   onDelete(user:any){
     if (confirm('Are you sure to delete???')) {
       this.authService.deteteUser(user).subscribe((res) =>{
-        alert('res' + res)
       },(error) =>{
+        alert('res' + error)
       });
     }
   }
 
+  handleEditUser(){
+    console.log(this.dataService.formEdit.value);
+    this.authService.updateUser(this.dataService.formEdit.value,this.token).subscribe((data) =>{
+      console.log(data);
+    })
+  }
+
+  //componet dismount
   ngOnInit(): void {
     this.authService.getListUser().subscribe((result: any) => {
       this.mangNguoiDung.data = result;
+      console.log(result);
+
     })
+
+    // this.authService.currentUser.subscribe((data) =>{
+    //   this.currentUser = data;
+    //   this.token = this.currentUser.accessToken;
+    // })
+
+    this.authService.currentUser.subscribe((data) => {
+      this.currentUsers = data;
+      this.token = this.currentUsers.accessToken
+    })
+
+    this.authService.infoUser(this.user, this.token).subscribe((data) => {
+      this.infoUser = data;
+      console.log(data);
+
+  })
   }
+
+
 }

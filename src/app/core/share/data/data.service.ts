@@ -19,7 +19,16 @@ export class DataService {
   }
 
   form: FormGroup = new FormGroup({
-    // $key: new FormControl(null),
+    taiKhoan: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    matKhau: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    hoTen: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    maNhom: new FormControl(''),
+    email: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    soDT: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    maLoaiNguoiDung: new FormControl('GV'),
+  })
+
+  formEdit: FormGroup = new FormGroup({
     taiKhoan: new FormControl('',[Validators.required, Validators.minLength(3)]),
     matKhau: new FormControl('',[Validators.required, Validators.minLength(3)]),
     hoTen: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -46,12 +55,3 @@ export class DataService {
     this.form.setValue(_.omit(user,'taiKhoan'));
   }
 }
-    //   {
-    //   taiKhoan: user.taiKhoan,
-    //   matKhau: user.matKhau,
-    //   hoTen: user.hoTen,
-    //   maNhom: user.maNhom,
-    //   maLoaiNguoiDung: user.maLoaiNguoiDung,
-    //   email: user.email,
-    //   soDT: user.soDT,
-    // }

@@ -2,17 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { result } from 'lodash';
-import { SignupComponent } from 'src/app/client/signup/signup.component';
 import { NguoiDung, TimKiemNguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DataService } from 'src/app/core/share/data/data.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';
 import { AddAUserComponent } from './add-auser/add-auser.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user-management',

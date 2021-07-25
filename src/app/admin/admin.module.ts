@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AddAUserComponent } from './user-management/add-auser/add-auser.component';
 import { EditUserComponent } from './user-management/edit-user/edit-user.component';
+import { EditCourseComponent } from './course-management/edit-course/edit-course.component';
 
 
 
@@ -31,6 +32,7 @@ import { EditUserComponent } from './user-management/edit-user/edit-user.compone
     AddCourseComponent,
     AddAUserComponent,
     EditUserComponent,
+    EditCourseComponent,
   ]
   ,
   imports: [

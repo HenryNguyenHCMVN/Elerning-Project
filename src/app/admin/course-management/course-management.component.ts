@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserSignUpManagement } from 'src/app/core/models/client';
 import { CourseService } from 'src/app/core/services/course/course.service';
 import { AddCourseComponent } from '../add-course/add-course.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
 
 @Component({
   selector: 'app-course-management',
@@ -23,7 +24,7 @@ export class CourseManagementComponent implements OnInit {
 
   public mangMaNhom: Array<any> = ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP10"];
 
-  public displayedColumns: string[] = ['maKhoaHoc', 'tenKhoaHoc','hinhAnh','luotXem','danhMucKhoaHoc','nguoiTao','hanhDong'];
+  public displayedColumns: string[] = ['maKhoaHoc', 'tenKhoaHoc','hinhAnh','luotXem','danhMucKhoaHoc','nguoiTao','xoa','capNhat','caiDat'];
 
   searchKey: any;
 
@@ -65,18 +66,26 @@ export class CourseManagementComponent implements OnInit {
   }
 
   addACourse(){
-    console.log('123');
-
-
     // set cứng top-up khi xuất hiện
     const matDialogConfig = new MatDialogConfig();
-    matDialogConfig.width="60%";
+    matDialogConfig.width="50%";
     this.matDialog.open(AddCourseComponent,matDialogConfig);
   }
-  delCourse(){
-      this.courseService.deleteCourse(this.id).subscribe((del) => {
-        console.log(del);
-        this.id = del;
-      });
+
+  delCourse(course:any){
+      if (confirm('Are you sure to delete???')) {
+        this.courseService.deleteCourse(course).subscribe((res) =>{
+          alert('res' + res)
+        },(error) =>{
+          console.log('error' + error);
+
+        });
+      }
+  }
+
+  updateCourse(course:any){
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.width="50%";
+    this.matDialog.open(EditCourseComponent,matDialogConfig)
   }
 }

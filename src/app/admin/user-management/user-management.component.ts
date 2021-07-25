@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DataService } from 'src/app/core/share/data/data.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';
 import { AddAUserComponent } from './add-auser/add-auser.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user-management',
@@ -36,16 +37,6 @@ export class UserManagementComponent implements OnInit {
 
   error: string = "";
 
-  user: any = {
-    taiKhoan: this.authService.getCurrentUser().taiKhoan
-  }
-
-  infoUser:any = {};
-
-  token:any;
-
-  currentUsers: any = null;
-
   delUser: string = "";
 
   isLoading: boolean = false;
@@ -67,19 +58,20 @@ export class UserManagementComponent implements OnInit {
     this.searchKey = "";
     this.applySearch();
   }
+
   addUser(){
     this.dataService.resetFormGroup();
     this.matDialog.open(AddAUserComponent);
   }
 
-  ngAfterViewInit() {// material angular
+  // material angular : sort trên thanh menu và chuyển trang
+  ngAfterViewInit() {
     this.mangNguoiDung.paginator = this.paginator;
     this.mangNguoiDung.sort = this.sort
   }
 
   onEdit(user:any){
-    // this.matDialog.open(EditUserComponent);
-
+    this.matDialog.open(EditUserComponent);
     this.dataService.formEdit.setValue({
     taiKhoan:         user.taiKhoan,
     maLoaiNguoiDung:  user.maLoaiNguoiDung,
@@ -95,42 +87,25 @@ export class UserManagementComponent implements OnInit {
   onDelete(user:any){
     if (confirm('Are you sure to delete???')) {
       this.authService.deteteUser(user).subscribe((res) =>{
+        alert('res' + res)
+
       },(error) =>{
-        alert('res' + error)
+        console.log('error' + error);
+
       });
     }
   }
 
-  handleEditUser(){
-    console.log(this.dataService.formEdit.value);
-    this.authService.updateUser(this.dataService.formEdit.value,this.token).subscribe((data) =>{
-      console.log(data);
-    })
-  }
 
   //componet dismount
   ngOnInit(): void {
+
+    // lấy thông tin người dùng
     this.authService.getListUser().subscribe((result: any) => {
       this.mangNguoiDung.data = result;
       console.log(result);
-
     })
 
-    // this.authService.currentUser.subscribe((data) =>{
-    //   this.currentUser = data;
-    //   this.token = this.currentUser.accessToken;
-    // })
-
-    this.authService.currentUser.subscribe((data) => {
-      this.currentUsers = data;
-      this.token = this.currentUsers.accessToken
-    })
-
-    this.authService.infoUser(this.user, this.token).subscribe((data) => {
-      this.infoUser = data;
-      console.log(data);
-
-  })
   }
 
 

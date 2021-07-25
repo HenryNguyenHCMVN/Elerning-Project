@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AddCourse } from 'src/app/core/models/client';
+import { ThemKhoaHoc } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CourseService } from 'src/app/core/services/course/course.service';
+import { NotificationService } from 'src/app/core/share/data/notification.service';
 
 @Component({
   selector: 'app-add-course',
@@ -11,9 +12,10 @@ import { CourseService } from 'src/app/core/services/course/course.service';
 })
 export class AddCourseComponent implements OnInit {
 
-  constructor(public courseService: CourseService, private authService: AuthService, private router:Router) { }
+  constructor(public courseService: CourseService, private authService: AuthService, private notificationService:NotificationService) { }
 
   categoryList: any = [];
+
   infoPerson: any = [];
 
   mangThemKhoaHoc: any = [];
@@ -46,13 +48,12 @@ export class AddCourseComponent implements OnInit {
 
 }
 
-  themKhoaHoc(value:AddCourse, files:any){
+  themKhoaHoc(value:ThemKhoaHoc, files:any){
     console.log(value);
     console.log(files[0]);
 
     // thêm ảnh cho khóa học
     value.hinhAnh = files[0].name;
-
     this.courseService.addCourseApi(value).subscribe((result) =>{
       if (typeof result === 'object') {
         // chuyển dạng FormData
@@ -65,9 +66,10 @@ export class AddCourseComponent implements OnInit {
           }
         })
       }
-      alert('Successfully')
-      this.router.navigate(["admin/course-management"])
+      this.notificationService.success('::: Add A Successfull :::');
+      window.location.reload();
     })
+    this.notificationService.error('::: Course code or course name already exists :::');
   }
 
 

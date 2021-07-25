@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'; //add tap để xử lý thành công hoặc thất bại
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { CapNhatNguoiDung, DangKyNguoiDung, NguoiDung, NguoiDungDangNhap, ThongTinNguoiDung, TimKiemNguoiDung } from '../../models/client';
 import { ApiService } from '../API/api.service';
-import { JwtInterceptor } from '../../JWT/jwt.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -71,10 +70,9 @@ export class AuthService {
      )
   }
 
-  infoUser(taiKhoan:any, accessToken:any): Observable<ThongTinNguoiDung> {
+  infoUser(taiKhoan:any): Observable<ThongTinNguoiDung> {
     let url ="QuanLyNguoiDung/ThongTinNguoiDung";
-    const headers = {Authorization :`Bearer ${accessToken}`};
-    return this.api.post<ThongTinNguoiDung>(url,taiKhoan,{headers:headers}).pipe(tap((data: any) => {
+    return this.api.post<ThongTinNguoiDung>(url,taiKhoan).pipe(tap((data: any) => {
       console.log(data);
     }),
     )
@@ -82,8 +80,8 @@ export class AuthService {
 
   updateUser(user:any, accessToken:any): Observable<CapNhatNguoiDung> {
     let url = `QuanLyNguoiDung/CapNhatThongTinNguoiDung`;
-    const headers = {Authorization :`Bearer ${accessToken}`};
-    return this.api.put<CapNhatNguoiDung>(url,user,{headers:headers}).pipe(tap((data: any) => {
+    // const headers = {Authorization :`Bearer ${accessToken}`};
+    return this.api.put<CapNhatNguoiDung>(url,user).pipe(tap((data: any) => {
       console.log(data);
     }),
     )

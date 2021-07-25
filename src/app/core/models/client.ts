@@ -25,39 +25,6 @@ export class UserSignUpManagement {
   public taiKhoan?: string;
 }
 
-export interface DanhSachKhoaHoc {
-  maKhoaHoc:      string;
-  biDanh:         string;
-  tenKhoaHoc:     string;
-  moTa:           string;
-  luotXem:        number;
-  hinhAnh:        string;
-  maNhom:         string;
-  ngayTao:        string;
-  soLuongHocVien: number;
-  nguoiTao:       NguoiTAO;
-  danhMucKhoaHoc: DanhMucKhoaHoc;
-}
-
-export interface DanhMucKhoaHoc {
-  maDanhMucKhoahoc:  string;
-  tenDanhMucKhoaHoc: string;
-}
-
-export interface NguoiTAO {
-  taiKhoan:         string;
-  hoTen:            string;
-  maLoaiNguoiDung:  string;
-  tenLoaiNguoiDung: string;
-}
-
-export class KhoaHoc {
-  public maKhoaHoc?: string;
-  public tenKhoaHoc?: string;
-  public hinhAnh?: any;
-  public danhMucKhoaHoc?: string;
-}
-
 export interface NguoiDungDangNhap {
   taiKhoan:        string;
   email:           string;
@@ -66,25 +33,6 @@ export interface NguoiDungDangNhap {
   maLoaiNguoiDung: string;
   hoTen:           string;
   accessToken:     string;
-}
-
-export interface AddCourse {
-  maKhoaHoc:        string;
-  biDanh:           string;
-  tenKhoaHoc:       string;
-  moTa:             string;
-  luotXem:          number;
-  danhGia:          number;
-  hinhAnh:          string;
-  maNhom:           string;
-  ngayTao:          string;
-  maDanhMucKhoaHoc: string;
-  taiKhoanNguoiTao: string;
-}
-
-export interface registerCourse {
-  maKhoaHoc: any;
-  taiKhoan: any;
 }
 
 export interface TimKiemNguoiDung {
@@ -118,3 +66,58 @@ export interface CapNhatNguoiDung {
   maNhom:          string;
   email:           string;
 }
+
+//COURSE
+
+export interface DanhSachKhoaHoc {
+  maKhoaHoc:      string;
+  biDanh:         string;
+  tenKhoaHoc:     string;
+  moTa:           string;
+  luotXem:        number;
+  hinhAnh:        string;
+  maNhom:         string;
+  ngayTao:        string;
+  soLuongHocVien: number;
+  nguoiTao:       NguoiTAO;
+  danhMucKhoaHoc: DanhMucKhoaHoc;
+}
+
+export interface DanhMucKhoaHoc {
+  maDanhMucKhoahoc:  string;
+  tenDanhMucKhoaHoc: string;
+}
+
+export interface NguoiTAO {
+  taiKhoan:         string;
+  hoTen:            string;
+  maLoaiNguoiDung:  string;
+  tenLoaiNguoiDung: string;
+}
+
+export class KhoaHoc {
+  public maKhoaHoc?: string;
+  public tenKhoaHoc?: string;
+  public hinhAnh?: any;
+  public danhMucKhoaHoc?: string;
+}
+
+export interface ThemKhoaHoc {
+  maKhoaHoc:        string;
+  biDanh:           string;
+  tenKhoaHoc:       string;
+  moTa:             string;
+  luotXem:          number;
+  danhGia:          number;
+  hinhAnh:          string;
+  maNhom:           string;
+  ngayTao:          string;
+  maDanhMucKhoaHoc: string;
+  taiKhoanNguoiTao: string;
+}
+
+export interface DangKyKhoaHoc {
+  maKhoaHoc: string;
+  taiKhoan:  string;
+}
+

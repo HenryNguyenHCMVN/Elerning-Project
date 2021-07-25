@@ -13,13 +13,13 @@
             </mat-form-field>
 
             <!-- matKhau -->
-            <!-- <mat-form-field class="form-group"> -->
-            <!-- <mat-label>Password</mat-label>
+            <mat-form-field class="form-group">
+                <mat-label>Password</mat-label>
                 <input matInput required formControlName="matKhau" />
                 <mat-error *ngIf="dataService.formEdit.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
-                <mat-error *ngIf="dataService.formEdit.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error> -->
-            <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  -->
-            <!-- </mat-form-field> -->
+                <mat-error *ngIf="dataService.formEdit.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+                <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  -->
+            </mat-form-field>
 
             <!-- hoTen -->
             <mat-form-field class="form-group">

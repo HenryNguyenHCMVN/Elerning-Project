@@ -1,103 +1,78 @@
 <div class="container">
-    <h1>Edit a course</h1>
+    <h1>Edit</h1>
+    <form [formGroup]="dataService.formeditCourse" (ngSubmit)="editCourse(dataService.formeditCourse.value,imgCourse.files)">
 
-    <form class="example-form" #formThemKhoaHoc="ngForm" (ngSubmit)="editCourse(formThemKhoaHoc.value, imgCourse.files)">
+        <div class="controles-container">
 
-        <!-- maKhoaHoc -->
-        <mat-form-field class="form-group">
-            <mat-label>Course code</mat-label>
-            <input matInput name="maKhoaHoc" required #maKhocHoc="ngModel" ngModel minlength="3" maxlength="15" />
-        </mat-form-field>
-        <ng-container *ngIf="maKhocHoc.errors && (maKhocHoc.dirty || maKhocHoc.touched)">
-            <!-- kiểm tra rỗng -->
-            <span *ngIf="maKhocHoc.errors.required">Do not empty!!!</span>
-            <!-- kiểm tra minlength -->
-            <span *ngIf="maKhocHoc.errors.minlength || maKhocHoc.errors.maxlength">Just 3 to 15 characters</span>
-        </ng-container>
+            <!-- maKhoaHoc -->
+            <mat-form-field class="form-group">
+                <mat-label>maKhoaHoc</mat-label>
+                <input matInput required formControlName="maKhoaHoc" />
+            </mat-form-field>
 
-        <!-- tenKhoaHoc -->
-        <mat-form-field class="form-group">
-            <mat-label>Course name</mat-label>
-            <input matInput name="tenKhoaHoc" ngModel required #tenKhoaHoc="ngModel" minlength="3" maxlength="15" />
-            <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  -->
-        </mat-form-field>
-        <ng-container *ngIf="tenKhoaHoc.errors && (tenKhoaHoc.dirty || tenKhoaHoc.touched)">
-            <!-- kiểm tra rỗng -->
-            <span *ngIf="tenKhoaHoc.errors.required">Do not empty!!!</span>
-            <!-- kiểm tra minlength -->
-            <span *ngIf="tenKhoaHoc.errors.minlength || tenKhoaHoc.errors.maxlength">Just 3 to 15 characters</span>
-            <!-- kiểm tra tính đúng đắn của password -->
-            <!-- <span *ngIf="matKhau.errors.pattern">add some special characters</span> -->
-        </ng-container>
+            <!-- tenKhoaHoc -->
+            <mat-form-field class="form-group">
+                <mat-label>tenKhoaHoc</mat-label>
+                <input matInput required formControlName="tenKhoaHoc" />
+            </mat-form-field>
+
+            <!-- moTa -->
+            <mat-form-field class="form-group">
+                <mat-label>moTa</mat-label>
+                <input matInput required formControlName="moTa" /></mat-form-field>
+
+            <!-- maNhom -->
+            <mat-form-field class="form-group">
+                <mat-label>Group</mat-label>
+                <mat-select formControlName="maNhom">
+                    <mat-option *ngFor="let maNhom of mangMaNhom" value="{{ maNhom }}">
+                        {{ maNhom }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- luotXem -->
+            <mat-form-field class="form-group">
+                <mat-label>luotXem</mat-label>
+                <input matInput formControlName="luotXem" /></mat-form-field>
+
+            <!-- danhGia -->
+            <mat-form-field class="form-group">
+                <mat-label>danhGia</mat-label>
+                <input matInput formControlName="danhGia" /></mat-form-field>
+
+            <!-- ngayTao -->
+            <mat-form-field class="form-group" appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="ngayTao">
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <!-- maDanhMucKhoaHoc -->
+            <mat-form-field class="form-group">
+                <mat-label>maDanhMucKhoaHoc</mat-label>
+                <input matInput formControlName="maDanhMucKhoaHoc" /></mat-form-field>
+
+            <!-- taiKhoanNguoiTao -->
+            <mat-form-field class="form-group">
+                <mat-label>taiKhoanNguoiTao</mat-label>
+                <input matInput formControlName="taiKhoanNguoiTao" /></mat-form-field>
 
 
-        <!-- luotXem -->
-        <mat-form-field class="form-group">
-            <mat-label>View</mat-label>
-            <input matInput name="luotXem" ngModel required #luotXem="ngModel" minlength="3" maxlength="15" />
-        </mat-form-field>
-        <ng-container *ngIf="luotXem.errors && (luotXem.dirty || luotXem.touched)">
-            <!-- kiểm tra rỗng -->
-            <span *ngIf="luotXem.errors.required">Do not empty!!!</span>
-            <!-- kiểm tra minlength -->
-            <span *ngIf="luotXem.errors.minlength || luotXem.errors.maxlength">Just 3 to 15 characters</span>
-        </ng-container>
+            <!-- hinhAnh -->
+            <ng-container class="form-group">
+                <label for="file">Choose File: </label>
+                <input formControlName="" type="file" #imgCourse>
+            </ng-container>
 
-        <!-- danhGia -->
-        <mat-form-field class="form-group">
-            <mat-label>Course review</mat-label>
-            <input matInput name="danhGia" ngModel required #danhGia="ngModel" />
-        </mat-form-field>
-        <ng-container *ngIf="danhGia.errors && (danhGia.dirty || danhGia.touched)">
-            <!-- kiểm tra rỗng -->
-            <span *ngIf="danhGia.errors.required">Do not empty!!!</span>
-            <!-- kiểm tra minlength -->
-            <span *ngIf="danhGia.errors.minlength || danhGia.errors.maxlength">Just 3 to 15 characters</span>
-        </ng-container>
-
-        <!-- maNhom -->
-        <mat-form-field class="form-group">
-            <mat-label>Group</mat-label>
-            <mat-select name="maNhom" ngModel required>
-                <mat-option *ngFor="let maNhom of mangMaNhom" value="{{ maNhom }}">
-                    {{ maNhom }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <!-- ngayTao -->
-        <mat-form-field class="form-group" appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" name="ngayTao" ngModel required>
-            <mat-datepicker-toggle matSuffix [for]="picker">
-                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-            </mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
-        <!-- maDanhMucKhoaHoc -->
-        <mat-form-field class="form-group">
-            <mat-label>Course catalog code</mat-label>
-            <mat-select name="maDanhMucKhoaHoc" ngModel required>
-                <mat-option *ngFor="let mangDanhMuc of categoryList" value="{{mangDanhMuc.maDanhMuc}}">
-                    {{ mangDanhMuc.maDanhMuc }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <!-- moTa -->
-        <mat-form-field class="form-group" appearance="fill">
-            <mat-label>Please leave a description</mat-label>
-            <textarea matInput name="moTa" ngModel required #moTa="ngModel" placeholder="Ex. It makes me feel..."></textarea>
-        </mat-form-field>
-
-        <ng-container class="form-group">
-            <label for="file">Choose File: </label>
-            <input name="hinhAnh" required type="file" #imgCourse>
-        </ng-container>
-
-        <!-- button -->
-        <div style="text-align: center;">
-            <button mat-raised-button color="primary" type="submit" [disabled]="formThemKhoaHoc.invalid">Submit</button>
+            <!-- button -->
+            <div style="text-align: center;">
+                <button mat-raised-button color="primary" type="submit" [disabled]="dataService.formeditCourse.invalid">Submit</button>
+            </div>
         </div>
+
     </form>
+</div>

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'; //add tap để xử lý thành công hoặc thất bại
 import { Observable } from 'rxjs';
-import { DangKyKhoaHoc, DanhMucKhoaHoc, DanhSachKhoaHoc, ThemKhoaHoc } from '../../models/client';
+import { CapNhatKhoaHoc, DangKyKhoaHoc, DanhMucKhoaHoc, DanhSachKhoaHoc, ThemKhoaHoc } from '../../models/client';
 import { ApiService } from '../API/api.service';
 import { NotificationService } from '../../share/data/notification.service';
 
@@ -99,6 +99,15 @@ export class CourseService {
         }
         return err
       }))
+  }
+
+  updateCourse(course:any): Observable<CapNhatKhoaHoc> {
+    let url = `QuanLyKhoaHoc/CapNhatKhoaHoc`;
+    // const headers = {Authorization :`Bearer ${accessToken}`};
+    return this.api.put<CapNhatKhoaHoc>(url,course).pipe(tap((data: any) => {
+      console.log(data);
+    }),
+    )
   }
 
 }

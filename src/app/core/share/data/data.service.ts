@@ -14,6 +14,7 @@ export class DataService {
   constructor() { }
 
   sharingDataDetailCourse(course:any){
+    console.log(course);
     this.detailCourse.next(course);
   }
 
@@ -49,4 +50,17 @@ export class DataService {
       soDT: '',
     });
   }
+
+  formeditCourse: FormGroup = new FormGroup({
+    maKhoaHoc: new FormControl(''),
+    tenKhoaHoc: new FormControl(''),
+    moTa: new FormControl(''),
+    maNhom: new FormControl(''),
+    luotXem: new FormControl('0'),
+    danhGia: new FormControl('0'),
+    hinhAnh: new FormControl(''),
+    ngayTao: new FormControl(''),
+    maDanhMucKhoaHoc: new FormControl(''),
+    taiKhoanNguoiTao: new FormControl(''),
+  })
 }

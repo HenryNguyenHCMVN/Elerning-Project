@@ -34,18 +34,18 @@ export class EditUserComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.authService.currentUser.subscribe((data) => {
-      this.currentUsers = data;
-      this.token = this.currentUsers.accessToken
-    })
-    this.authService.infoUser(this.user).subscribe((data) => {
-      this.infoUser = data;
-    })
+    // this.authService.currentUser.subscribe((data) => {
+    //   this.currentUsers = data;
+    //   this.token = this.currentUsers.accessToken
+    // })
+    // this.authService.infoUser(this.user).subscribe((data) => {
+    //   this.infoUser = data;
+    // })
   }
 
   handleEditUser() {
     console.log(this.dataService.formEdit.value);
-    this.authService.updateUser(this.dataService.formEdit.value, this.token).subscribe((data) => {
+    this.authService.updateUser(this.dataService.formEdit.value).subscribe((data) => {
       this.matDialogRef.close();
       window.location.reload();
       this.notificationService.success('::: Update Successful :::');

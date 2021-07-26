@@ -78,7 +78,7 @@ export class AuthService {
     )
   }
 
-  updateUser(user:any, accessToken:any): Observable<CapNhatNguoiDung> {
+  updateUser(user:any): Observable<CapNhatNguoiDung> {
     let url = `QuanLyNguoiDung/CapNhatThongTinNguoiDung`;
     // const headers = {Authorization :`Bearer ${accessToken}`};
     return this.api.put<CapNhatNguoiDung>(url,user).pipe(tap((data: any) => {

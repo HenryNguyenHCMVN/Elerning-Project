@@ -17,7 +17,6 @@
         </mat-form-field>
     </div>
 
-
     <!-- search và clear search -->
     <ng-container class="search-div">
         <button mat-raised-button color="primary" (click)="addACourse()">Create a course</button>
@@ -29,8 +28,6 @@
         </mat-form-field>
     </ng-container>
     <!-- search và clear search -->
-
-
 
 
     <table mat-table [dataSource]="mangKhoaHoc" matSort class="mat-elevation-z8">
@@ -59,10 +56,22 @@
             <td mat-cell *matCellDef="let course">{{ course.luotXem }}</td>
         </ng-container>
 
+        <!-- maNhom -->
+        <ng-container matColumnDef="maNhom">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>View</th>
+            <td mat-cell *matCellDef="let course">{{ course.maNhom }}</td>
+        </ng-container>
+
         <!-- nguoiTao -->
         <ng-container matColumnDef="nguoiTao">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>Creator</th>
             <td mat-cell *matCellDef="let course">{{ course.nguoiTao.taiKhoan }}</td>
+        </ng-container>
+
+        <!-- ngayTao -->
+        <ng-container>
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>...</th>
+            <td mat-cell *matCellDef="let course">{{ course.nguoiTao.ngayTao }}</td>
         </ng-container>
 
         <!-- hinhAnh -->
@@ -103,3 +112,5 @@
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+
+<!-- ------------------------------------------------------------------------------------ -->

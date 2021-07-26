@@ -6,7 +6,6 @@ import { AdminComponent } from './admin.component';
 import { CourseManagementComponent } from './course-management/course-management.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InfoAdminComponent } from './info-admin/info-admin.component';
-import { EditUserComponent } from './user-management/edit-user/edit-user.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 
 const routes: Routes = [
@@ -35,10 +34,6 @@ const routes: Routes = [
       {
         path: "add-course",
         component: AddCourseComponent,
-      },
-      {
-        path: "edit-course",
-        component: EditUserComponent,
       },
     ]
   }

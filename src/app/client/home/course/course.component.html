@@ -1,18 +1,21 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Course Code: {{course.maKhoaHoc}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="{{course.hinhAnh}}">
-    <mat-card-subtitle>Course name: {{course.tenKhoaHoc}}</mat-card-subtitle>
-    <mat-card-subtitle>Course creation date: {{course.ngayTao}}</mat-card-subtitle>
-    <mat-card-content>
-        <p>
-            Course description: {{course.moTa}}
-        </p>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="clickDetail()" [routerLink]="['/detail',course.maKhoaHoc]">DETAILS</button>
-        <button mat-raised-button color="primary" (click)="openDialog()">Description</button>
-    </mat-card-actions>
-</mat-card>
+<div class="container">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Course Code: {{course.maKhoaHoc}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{course.hinhAnh}}">
+        <mat-card-subtitle>Course name: {{course.tenKhoaHoc}}</mat-card-subtitle>
+        <mat-card-subtitle>Course creation date: {{course.ngayTao}}</mat-card-subtitle>
+        <mat-card-content>
+            <p>
+                Course description: {{course.moTa}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="clickDetail()" [routerLink]="['/detail',course.maKhoaHoc]">DETAILS</button>
+            <button mat-raised-button color="primary" (click)="openDialog()">Description</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>

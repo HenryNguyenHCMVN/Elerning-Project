@@ -1,12 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { NguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DataService } from 'src/app/core/share/data/data.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';
-import { SigninComponent } from '../signin/signin.component';
 
 
 

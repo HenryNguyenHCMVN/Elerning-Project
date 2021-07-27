@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ThemKhoaHoc } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CourseService } from 'src/app/core/services/course/course.service';
@@ -91,10 +90,12 @@ export class AddCourseComponent implements OnInit {
           }
         })
       }
-      // this.notificationService.success('::: Add A Successfull :::');
-      // window.location.reload();
+      this.notificationService.success('::: Add A Successfull :::');
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     })
-    // this.notificationService.error('::: Course code or course name already exists :::');
+    this.notificationService.error('::: Course code or course name already exists :::');
   }
 
 

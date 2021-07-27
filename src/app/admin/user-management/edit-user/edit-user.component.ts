@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DataService } from 'src/app/core/share/data/data.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';

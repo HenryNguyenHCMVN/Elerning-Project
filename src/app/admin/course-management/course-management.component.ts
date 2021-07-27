@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, NgForm, FormControl } from '@angular/forms';
+import { FormGroup, NgForm} from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { CapNhatKhoaHoc, CapNhatNguoiDung, UserSignUpManagement } from 'src/app/core/models/client';
+import { UserSignUpManagement } from 'src/app/core/models/client';
 import { CourseService } from 'src/app/core/services/course/course.service';
 import { DataService } from 'src/app/core/share/data/data.service';
 import { AddCourseComponent } from '../add-course/add-course.component';

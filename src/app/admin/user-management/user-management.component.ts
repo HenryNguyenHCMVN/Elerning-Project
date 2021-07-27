@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { NguoiDung, TimKiemNguoiDung } from 'src/app/core/models/client';
+import { TimKiemNguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DataService } from 'src/app/core/share/data/data.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';

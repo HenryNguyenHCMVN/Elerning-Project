@@ -76,8 +76,7 @@ editCourse(value:CapNhatKhoaHoc, files:any) {
 
     }
     this.notificationService.success('::: Add A Successfull :::');
-    setTimeout(() => {window.location.reload()}, 2000)
-      // window.location.reload();
+    setTimeout(() => {window.location.reload()}, 2000);
 
   })
   this.notificationService.error('::: Image is wrong format or size :::');

@@ -17,7 +17,7 @@ export class AppComponent implements OnInit, OnDestroy{
   constructor(public mediaObserver: MediaObserver, public loaderService:LoaderService){
     setTimeout(() => {
 
-    }, 5000);
+    }, 4000);
   }
   ngOnInit(){
     this.mediaSub = this.mediaObserver.media$.subscribe((result:MediaChange) =>{

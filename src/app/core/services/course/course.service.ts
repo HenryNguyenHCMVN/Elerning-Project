@@ -68,16 +68,17 @@ export class CourseService {
 
   addImageCourseApi(body:any): Observable<any> {
     let url = `QuanLyKhoaHoc/UploadHinhAnhKhoaHoc`;
-    return this.api.post(url,body).pipe(tap((data: any) => {
+    return this.api.
+    post(url,body).pipe(tap((data: any) => {
       console.log(data);
     }),
     )
   }
 
-  registerCourse(createCourse:DangKyKhoaHoc): Observable<DangKyKhoaHoc> {
+  registerCourse(course:any): Observable<DangKyKhoaHoc> {
     let url = `QuanLyKhoaHoc/DangKyKhoaHoc`;
     return this.api.
-    post<DangKyKhoaHoc>(url,createCourse).pipe(tap((data: any) => {
+    post<DangKyKhoaHoc>(url,course).pipe(tap((data: any) => {
       console.log(data);
     }),
     )

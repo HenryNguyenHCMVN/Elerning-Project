@@ -24,6 +24,31 @@ export class AddCourseComponent implements OnInit {
 
   public mangMaNhom: Array<any> = ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP010"];
 
+  url: any;
+
+  msg = "";
+
+  imgAddCourse(event:any){
+    if(!event.target.files[0] || event.target.files[0].length == 0){
+      this.msg = 'You must select an image';
+			return;
+    }
+    var mimeType = event.target.files[0].type;
+
+		if (mimeType.match(/image\/*/) == null) {
+			this.msg = "Only images are supported";
+			return;
+		}
+
+		var reader = new FileReader();
+		reader.readAsDataURL(event.target.files[0]);
+
+		reader.onload = (_event) => {
+			this.msg = "";
+			this.url = reader.result;
+		}
+  }
+
   getListCategory() {
       this.courseService.getListCategoryCourseApi().subscribe((result) =>{
         console.log(result);
@@ -59,17 +84,17 @@ export class AddCourseComponent implements OnInit {
         // chuyển dạng FormData
         var formData = new FormData();
         formData.append("Files",files[0]);
-        formData.append("tenKhoaHoc",value.tenKhoaHoc);
+        formData.append("hinhAnh",value.hinhAnh);
         this.courseService.addImageCourseApi(formData).subscribe((result) =>{
           if (result === true) {
               alert('Add successfull')
           }
         })
       }
-      this.notificationService.success('::: Add A Successfull :::');
-      window.location.reload();
+      // this.notificationService.success('::: Add A Successfull :::');
+      // window.location.reload();
     })
-    this.notificationService.error('::: Course code or course name already exists :::');
+    // this.notificationService.error('::: Course code or course name already exists :::');
   }
 
 

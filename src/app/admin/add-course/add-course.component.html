@@ -102,7 +102,9 @@
         <!-- hinhAnh -->
         <ng-container class="form-group">
             <label for="file">Choose File: </label>
-            <input name="hinhAnh" required type="file" #imgCourse>
+            <img [src]="url" *ngIf="url" style="width:80px; height:80px">
+            <input name="hinhAnh" required type="file" #imgCourse (change)="imgAddCourse($event)">
+            <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
         </ng-container>
 
         <!-- button -->

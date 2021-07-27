@@ -102,16 +102,16 @@ export class CourseManagementComponent implements OnInit {
     this.matDialog.open(EditCourseComponent,matDialogConfig);
 
     this.dataService.formeditCourse.setValue({
-      maKhoaHoc:  course.maKhoaHoc,
-      tenKhoaHoc: course.tenKhoaHoc,
-      moTa: course.moTa,
-      luotXem: course.luotXem,
-      danhGia: "0",
-      hinhAnh: course.hinhAnh,
-      maNhom: "GP01",
-      ngayTao: course.ngayTao,
-      maDanhMucKhoaHoc: course.danhMucKhoaHoc.maDanhMucKhoahoc,
-      taiKhoanNguoiTao: course.nguoiTao.taiKhoan,
+      maKhoaHoc:          course.maKhoaHoc,
+      tenKhoaHoc:         course.tenKhoaHoc,
+      moTa:               course.moTa,
+      luotXem:            course.luotXem,
+      danhGia:            "0",
+      hinhAnh:            course.hinhAnh,
+      maNhom:             course.maNhom,
+      ngayTao:            course.ngayTao,
+      maDanhMucKhoaHoc:   course.danhMucKhoaHoc.maDanhMucKhoahoc,
+      taiKhoanNguoiTao:   course.nguoiTao.taiKhoan,
     })
   }
   }

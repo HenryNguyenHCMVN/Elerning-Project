@@ -11,6 +11,8 @@ import { NotificationService } from 'src/app/core/share/data/notification.servic
 })
 export class EditCourseComponent implements OnInit {
 
+  imgFile: any;
+
   constructor(public dataService:DataService, public courseService:CourseService, public notificationService:NotificationService) { }
 
   ngOnInit(): void {
@@ -26,6 +28,32 @@ export class EditCourseComponent implements OnInit {
       this.categoryList = result;
     })
 }
+
+url: any;
+
+  msg = "";
+
+  imgEditCourse(event:any){
+    if(!event.target.files[0] || event.target.files[0].length == 0){
+      this.msg = 'You must select an image';
+			return;
+    }
+    var mimeType = event.target.files[0].type;
+
+		if (mimeType.match(/image\/*/) == null) {
+			this.msg = "Only images are supported";
+			return;
+		}
+
+		var reader = new FileReader();
+		reader.readAsDataURL(event.target.files[0]);
+
+		reader.onload = (_event) => {
+			this.msg = "";
+			this.url = reader.result;
+		}
+  }
+
 // value:CapNhatNguoiDung, file:any
 editCourse(value:CapNhatKhoaHoc, files:any) {
   console.log(this.dataService.formeditCourse.value);
@@ -48,6 +76,7 @@ editCourse(value:CapNhatKhoaHoc, files:any) {
 
     }
     this.notificationService.success('::: Add A Successfull :::');
+    setTimeout(() => {window.location.reload()}, 2000)
       // window.location.reload();
 
   })

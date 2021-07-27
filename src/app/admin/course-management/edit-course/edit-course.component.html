@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Edit</h1>
+    <h1>Edit Courses</h1>
     <form [formGroup]="dataService.formeditCourse" (ngSubmit)="editCourse(dataService.formeditCourse.value,imgCourse.files)">
 
         <div class="controles-container">
@@ -65,7 +65,9 @@
             <!-- hinhAnh -->
             <ng-container class="form-group">
                 <label for="file">Choose File: </label>
-                <input formControlName="" type="file" #imgCourse>
+                <input formControlName="hinhAnh" type="file" #imgCourse (change)="imgEditCourse($event)">
+                <img [src]="imgCourse" style="width:80px; height:80px" alt="">
+                <mat-error [innerHtml]='msg' *ngIf="msg"></mat-error>
             </ng-container>
 
             <!-- button -->

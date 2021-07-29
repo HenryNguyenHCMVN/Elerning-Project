@@ -29,7 +29,8 @@ export class EditCourseComponent implements OnInit {
     })
 }
 
-url: any;
+//set hinhAnh và alert hình
+  url: any;
 
   msg = "";
 
@@ -75,7 +76,7 @@ editCourse(value:CapNhatKhoaHoc, files:any) {
       })
 
     }
-    this.notificationService.success('::: Add A Successfull :::');
+    this.notificationService.success('::: Edit Successfull :::');
     setTimeout(() => {window.location.reload()}, 2000);
 
   })

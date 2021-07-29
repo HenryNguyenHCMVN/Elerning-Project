@@ -14,15 +14,26 @@
 </div>
 
 
-
-<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start" class="container">
-    <ng-container *ngFor="let course of courseList">
-        <app-card fxFlex="0 1 calc(32% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
-
-            <!-- truyền khóa học từ course trong component in Home -->
-            <app-course [course]="course"></app-course>
+<!-- truyền khóa học từ course trong component in Home -->
+<!-- <app-course [course]="course"></app-course> -->
 
 
-        </app-card>
-    </ng-container>
+<!-- <ng-container *ngFor="let course of courseList"></ng-container> -->
+
+
+<div class="container">
+    <div>Some tags before</div>
+
+    <owl-carousel-o [options]="customOptions">
+
+        <ng-container *ngFor="let course of courseList" class="carouselSlide">
+            <ng-template carouselSlide>
+                <img [src]="course.hinhAnh">
+                <p>{{course.moTa | shortcut}}</p>
+            </ng-template>
+        </ng-container>
+
+    </owl-carousel-o>
+    <div>Some tags after</div>
+
 </div>

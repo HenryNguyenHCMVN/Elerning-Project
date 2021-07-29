@@ -20,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../core/share/material/material.module';
 import { CourseComponent } from './home/course/course.component';
 import { DataService } from '../core/share/data/data.service';
-
+import { ShortcutPipe } from './home/course/shortcut.pipe';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DataService } from '../core/share/data/data.service';
     SignupComponent,
     IntroComponent,
     CourseComponent,
+    ShortcutPipe,
   ],
   entryComponents:[DetailComponent,SignupComponent],
   imports: [
@@ -40,7 +42,7 @@ import { DataService } from '../core/share/data/data.service';
     ClientRoutingModule,
     ComponentModule,
     ReactiveFormsModule,
-
+    CarouselModule
   ],
   exports: [
     MatButtonModule,

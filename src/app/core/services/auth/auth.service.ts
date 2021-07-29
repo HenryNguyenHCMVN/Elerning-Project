@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'; //add tap để xử lý thành công hoặc thất bại
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { CapNhatNguoiDung, DangKyNguoiDung, NguoiDung, NguoiDungDangNhap, ThongTinNguoiDung, TimKiemNguoiDung } from '../../models/client';
+import { CapNhatNguoiDung, DangKyNguoiDung, NguoiDungDangNhap, ThongTinNguoiDung, TimKiemNguoiDung } from '../../models/client';
 import { ApiService } from '../API/api.service';
+import { NotificationService } from '../../share/data/notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class AuthService {
   }
 
 
-  constructor(private httpClient: HttpClient, private api: ApiService) {
+  constructor(private httpClient: HttpClient, private api: ApiService, public notificationService:NotificationService) {
 
     // setState lại data khi user signout & signin
     // sẽ setstate ở day rat nhieu lan ko chi o sigin service mà còn nhiều tác vụ khác
@@ -91,10 +92,15 @@ export class AuthService {
     let url = `QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`;
     return this.api.delete(url,taiKhoan).pipe(tap((data: any) => {
       console.log(data);
-
     }),
       catchError(err => {
         console.log(err);
+        if (err.status === 500) {
+          this.notificationService.error('Registered User - Cannot be deleted')
+        } else {
+          this.notificationService.success (' ::: Deleted successful :::');
+          window.location.reload();
+        }
         return err
       }))
   }

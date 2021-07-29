@@ -1,15 +1,15 @@
-<div class="container">
+<!-- <div class="container">
     <mat-card class="example-card">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Course Code: {{course.maKhoaHoc}}</mat-card-title>
+            <mat-card-title>Course Code: {{course.maKhoaHoc | uppercase | shortcut: 5}}</mat-card-title>
         </mat-card-header>
         <img mat-card-image src="{{course.hinhAnh}}">
-        <mat-card-subtitle>Course name: {{course.tenKhoaHoc}}</mat-card-subtitle>
+        <mat-card-subtitle>Course name: {{course.tenKhoaHoc | uppercase}}</mat-card-subtitle>
         <mat-card-subtitle>Course creation date: {{course.ngayTao}}</mat-card-subtitle>
         <mat-card-content>
             <p>
-                Course description: {{course.moTa}}
+                Course description: {{course.moTa | shortcut}}
             </p>
         </mat-card-content>
         <mat-card-actions>
@@ -18,4 +18,4 @@
         </mat-card-actions>
     </mat-card>
 
-</div>
+</div> -->

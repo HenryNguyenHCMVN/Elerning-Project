@@ -14,7 +14,7 @@ import { AddCourseComponent } from './admin/add-course/add-course.component';
 import { AddAUserComponent } from './admin/user-management/add-auser/add-auser.component';
 import { JwtInterceptor } from './core/JWT/jwt.interceptor';
 import { IntereptorService } from './core/loader/intereptor.service';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { IntereptorService } from './core/loader/intereptor.service';
     AdminModule,
     ClientModule,
     HttpClientModule,
-    ComponentModule
+    ComponentModule,
+    CarouselModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true},

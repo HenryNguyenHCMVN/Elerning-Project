@@ -93,7 +93,7 @@ export class CourseService {
       catchError(err => {
         console.log(err);
         if (err.status === 500) {
-          this.notificationService.error('::: Courses already enrolled students cannot be deleted :::')
+          this.notificationService.error('Courses already enrolled students cannot be deleted')
         } else {
           this.notificationService.success (' ::: Deleted successful :::');
           window.location.reload();

@@ -6,20 +6,15 @@
 
             <!-- maKhoaHoc -->
             <mat-form-field class="form-group">
-                <mat-label>maKhoaHoc</mat-label>
+                <mat-label>Course code</mat-label>
                 <input matInput required formControlName="maKhoaHoc" />
             </mat-form-field>
 
             <!-- tenKhoaHoc -->
             <mat-form-field class="form-group">
-                <mat-label>tenKhoaHoc</mat-label>
+                <mat-label>Course name</mat-label>
                 <input matInput required formControlName="tenKhoaHoc" />
             </mat-form-field>
-
-            <!-- moTa -->
-            <mat-form-field class="form-group">
-                <mat-label>moTa</mat-label>
-                <input matInput required formControlName="moTa" /></mat-form-field>
 
             <!-- maNhom -->
             <mat-form-field class="form-group">
@@ -33,12 +28,12 @@
 
             <!-- luotXem -->
             <mat-form-field class="form-group">
-                <mat-label>luotXem</mat-label>
+                <mat-label>View</mat-label>
                 <input matInput formControlName="luotXem" /></mat-form-field>
 
             <!-- danhGia -->
             <mat-form-field class="form-group">
-                <mat-label>danhGia</mat-label>
+                <mat-label>Course review</mat-label>
                 <input matInput formControlName="danhGia" /></mat-form-field>
 
             <!-- ngayTao -->
@@ -53,20 +48,25 @@
 
             <!-- maDanhMucKhoaHoc -->
             <mat-form-field class="form-group">
-                <mat-label>maDanhMucKhoaHoc</mat-label>
+                <mat-label>Course catalog code</mat-label>
                 <input matInput formControlName="maDanhMucKhoaHoc" /></mat-form-field>
 
             <!-- taiKhoanNguoiTao -->
             <mat-form-field class="form-group">
-                <mat-label>taiKhoanNguoiTao</mat-label>
+                <mat-label>Account</mat-label>
                 <input matInput formControlName="taiKhoanNguoiTao" /></mat-form-field>
 
+            <!-- moTa -->
+            <mat-form-field class="form-group">
+                <mat-label>Please leave a description</mat-label>
+                <textarea matInput required formControlName="moTa" placeholder="Ex. It makes me feel..."></textarea>
+            </mat-form-field>
 
             <!-- hinhAnh -->
             <ng-container class="form-group">
                 <label for="file">Choose File: </label>
                 <input formControlName="hinhAnh" type="file" #imgCourse (change)="imgEditCourse($event)">
-                <img [src]="imgCourse" style="width:80px; height:80px" alt="">
+                <img style="width:80px; height:80px" [src]="url" *ngIf="url">
                 <mat-error [innerHtml]='msg' *ngIf="msg"></mat-error>
             </ng-container>
 

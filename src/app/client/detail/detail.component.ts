@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/core/services/course/course.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';
@@ -16,9 +16,11 @@ export class DetailComponent implements OnInit {
   }
 
   id: any;
-  courseDetail: any
+  courseDetail: any;
 
-  constructor(public activatedRoute: ActivatedRoute, public courseService: CourseService, public notificationService:NotificationService) { }
+  constructor(public activatedRoute: ActivatedRoute,
+    public courseService: CourseService,
+    public notificationService:NotificationService) { }
 
   ngOnInit(): void {
 

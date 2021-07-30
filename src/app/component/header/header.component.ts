@@ -68,3 +68,6 @@ export class HeaderComponent implements OnInit {
     this.subcription.unsubscribe();
   }
 }
+
+// ---------------------------------------------------------------------------
+

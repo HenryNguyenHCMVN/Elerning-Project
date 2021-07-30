@@ -28,8 +28,8 @@ xl: 1800px, // Large Desktop
 
 $container-sizes: ( sm: map-get($breakpoints, sm) - 30px, md: map-get($breakpoints, md) - 40px, lg: map-get($breakpoints, lg) - 50px, xl: map-get($breakpoints, xl) - 400px);
 .container {
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
     &:not(.is-fluid) {
         margin: 0 auto;
         @each $bp,
@@ -49,8 +49,8 @@ $container-sizes: ( sm: map-get($breakpoints, sm) - 30px, md: map-get($breakpoin
 $container-size in $container-sizes {
     .container-#{$bp} {
         margin: 0 auto;
-        padding-right: 1rem;
-        padding-left: 1rem;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
         width: 100%;
         $i: index($container-sizes, $bp $container-size);
         @for $j from $i through length($container-sizes) {

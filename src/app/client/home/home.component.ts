@@ -56,15 +56,25 @@ export class HomeComponent implements OnInit {
     this.subcription.unsubscribe();
   }
 
+  openDialog(){
+    console.log(this.course);
+    this.dataService.sharingDataDetailCourse(this.course);
+  }
+
+  clickDetail(){
+    console.log('123');
+
+  }
+
   customOptions: OwlOptions = {
-    autoplay: true,
+    autoplay: false,
     loop: true,
-    mouseDrag: false,
+    mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: [ '<i class="fa-chevron-left"></i>', '<i class="fa-chevron-right></i>"' ],
     responsive: {
       0: {
         items: 1
@@ -77,9 +87,13 @@ export class HomeComponent implements OnInit {
       },
       940: {
         items: 4
-      }
+      },
     },
-    nav: true
+    nav: true,
+    margin: 10,
   }
+
+
+
 
 }

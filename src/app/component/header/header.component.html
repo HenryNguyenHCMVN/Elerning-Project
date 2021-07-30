@@ -1,20 +1,18 @@
 <mat-toolbar>
     <mat-toolbar-row fxLayoutAlgin="space-between center">
         <span>
-    <button class="courseLogo" mat-button routerLink="/">COURSERA-VN</button>
-  </span>
+      <button class="courseLogo" mat-button routerLink="/">COURSERA-VN</button>
+    </span>
 
         <!-- Explore -->
         <span>
-    <button color="primary" mat-raised-button [matMenuTriggerFor]="menu">
-      Explore
-    </button>
-    <mat-menu #menu="matMenu">
-      <span *ngFor="let category of categoryList">
-        <button mat-menu-item>{{ category.maDanhMuc }} - {{ category.tenDanhMuc }}</button>
-        <!-- routerLink="/detail/{{course.maKhoaHoc}}" -->
-
-      </span>
+      <button color="primary" mat-raised-button [matMenuTriggerFor]="menu">
+        Explore
+      </button>
+      <mat-menu #menu="matMenu">
+        <span *ngFor="let category of categoryList">
+          <button mat-menu-item>{{ category.maDanhMuc }} - {{ category.tenDanhMuc }}</button>
+        </span>
         </mat-menu>
         </span>
         <!-- Explore -->
@@ -22,35 +20,35 @@
         <!-- search -->
         <input (keyup)="applySearch()" *ngIf="!deviceXs" type="text" placeholder="What do you learn?" [(ngModel)]="searchKey" />
         <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)="onSearchClear()">
-          <mat-icon>close</mat-icon>
-        </button>
+      <mat-icon>close</mat-icon>
+    </button>
         <span class="example-spacer"></span>
         <!-- search -->
 
         <span>
-    <button class="btnSign" mat-button routerLink="/signin" *ngIf="!currentUser">
-      Log In
-    </button>
-    <button color="primary" mat-raised-button routerLink="/signup" *ngIf="!currentUser">
-      Sign Up
-    </button>
+      <button class="btnSign" mat-button routerLink="/signin" *ngIf="!currentUser">
+        Log In
+      </button>
+      <button color="primary" mat-raised-button routerLink="/signup" *ngIf="!currentUser">
+        Sign Up
+      </button>
 
-    <!-- admin -->
-    <button mat-raised-button color="warn" routerLink="/admin/info-admin" *ngIf="currentUser">
-      Admin
-    </button>
-    <!-- admin -->
+      <!-- admin -->
+      <button mat-raised-button color="warn" routerLink="/admin/info-admin" *ngIf="currentUser">
+        Admin
+      </button>
+      <!-- admin -->
 
-    <button mat-button *ngIf="currentUser" style="color: black" [matMenuTriggerFor]="menu1">
-      {{ currentUser.hoTen }}
+      <button mat-button *ngIf="currentUser" style="color: black" [matMenuTriggerFor]="menu1">
+        {{ currentUser.hoTen }}
 
-      <mat-menu #menu1="matMenu">
-        <button mat-menu-item>
-          <span>User Info</span>
+        <mat-menu #menu1="matMenu">
+          <button mat-menu-item>
+            <span>User Info</span>
         </button>
         <button mat-menu-item>
-          <span (click)="handleLogOut()">Log out</span>
-        </button>
+            <span (click)="handleLogOut()">Log out</span>
+          </button>
         </mat-menu>
         </button>
         </span>
@@ -58,3 +56,5 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <mat-progress-bar mode="buffer"></mat-progress-bar>
+
+<!-- ---------------------------------------------------------------------------- -->

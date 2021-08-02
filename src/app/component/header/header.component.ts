@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CourseService } from 'src/app/core/services/course/course.service';
 
@@ -16,7 +18,12 @@ export class HeaderComponent implements OnInit {
 
   @Input() course: any;
 
-  constructor(private courseService: CourseService, private authService: AuthService, private router:Router) { }
+  @ViewChild('drawer') drawer: any;
+
+  constructor(private courseService: CourseService,
+    private authService: AuthService,
+    private router:Router,
+    private breakpointObserver: BreakpointObserver) { }
 
   private subcription = new Subscription();
 
@@ -67,6 +74,19 @@ export class HeaderComponent implements OnInit {
     console.log("out!!!");
     this.subcription.unsubscribe();
   }
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
+
+  closeSideNav() {
+    if (this.drawer._mode=='over') {
+      this.drawer.close();
+    }
+  }
+
 }
 
 // ---------------------------------------------------------------------------

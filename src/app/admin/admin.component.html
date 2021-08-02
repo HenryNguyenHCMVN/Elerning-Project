@@ -2,13 +2,13 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar class="menuPrimary">Admin Page</mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item routerLink="/admin/course-management">
+            <a mat-list-item routerLink="/admin/course-management" (click)="closeSideNav()">
                 <mat-icon>library_books</mat-icon> Course Management</a>
-            <a mat-list-item routerLink="/admin/user-management">
+            <a mat-list-item routerLink="/admin/user-management" (click)="closeSideNav()">
                 <mat-icon>supervised_user_circle</mat-icon> User Management</a>
-            <a mat-list-item routerLink="/admin/info-admin">
+            <a mat-list-item routerLink="/admin/info-admin" (click)="closeSideNav()">
                 <mat-icon> person_pin</mat-icon> User Information</a>
-            <a mat-list-item routerLink="/">
+            <a mat-list-item routerLink="/" (click)="closeSideNav()">
                 <mat-icon>backspace</mat-icon> Back Home Page</a>
         </mat-nav-list>
     </mat-sidenav>

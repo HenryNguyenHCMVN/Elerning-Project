@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -12,13 +12,15 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
+  @ViewChild('drawer') drawer: any;
+
   currentUser: any;
 
   showFiller = false;
 
   thongTinNguoiDung: any = null;
 
-  constructor( private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router) { }
+  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe((result) => {
@@ -26,7 +28,7 @@ export class AdminComponent implements OnInit {
     })
   }
 
-  handleLogOut(){
+  handleLogOut() {
     this.currentUser = null;
     localStorage.clear();
     alert("Log out successful");
@@ -34,10 +36,17 @@ export class AdminComponent implements OnInit {
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-  .pipe(
-    map(result => result.matches),
-    shareReplay()
-  );
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
+  closeSideNav() {
+    if (this.drawer._mode == 'over') {
+      this.drawer.close();
+    }
+  }
+
 }
 
 

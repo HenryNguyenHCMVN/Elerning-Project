@@ -67,30 +67,37 @@ export class HomeComponent implements OnInit {
   }
 
   customOptions: OwlOptions = {
-    autoplay: false,
+    autoplay: true,
     loop: true,
     mouseDrag: true,
-    touchDrag: false,
+    touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: [ '<i class="fa-chevron-left"></i>', '<i class="fa-chevron-right></i>"' ],
+    navText: ['', ''],
+    margin: 20,
     responsive: {
       0: {
-        items: 1
+        items: 1,
+    nav: false,
+
       },
       400: {
-        items: 2
+        items: 2,
+    nav: false,
+
       },
       740: {
-        items: 3
+        items: 3,
+    nav: false,
+
       },
       940: {
-        items: 4
-      },
+        items: 4,
+
+      }
     },
     nav: true,
-    margin: 10,
   }
 
 

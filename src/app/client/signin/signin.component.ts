@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit {
       if (successURL) {
         this.router.navigate([successURL]);
       }else{
-        this.notificationService.success(`::: Log in successfully :::`)
+        alert('Xin chào ' + data.hoTen);
         this.router.navigate(["/"]);
       }
     },

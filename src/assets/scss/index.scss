@@ -1,0 +1,16 @@
+@import "./variables.scss";
+@import "./container.scss";
+
+
+
+::ng-deep .mat-primary::-webkit-scrollbar {
+    width: 6px;
+}
+::ng-deep .mat-primary::-webkit-scrollbar-thumb {
+    background: $color-white-2;
+    border-radius: 10px;
+}
+::ng-deep .mat-primary::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px $color-white-2;
+    border-radius: 10px;
+}

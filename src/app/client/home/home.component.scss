@@ -1,4 +1,7 @@
 @import '../../../assets/scss/container.scss';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
 .courses {
     text-align: center;
     padding-top: 5rem;
@@ -12,14 +15,15 @@
 }
 
 img {
-    width: 250px !important;
-    height: 250px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .example-header-image {
-        background-size: cover;
-    }
+    width: 200px !important;
+    height: 200px !important;
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.example-header-image {
+    background-size: cover;
 }
 
 mat-card {
@@ -29,4 +33,73 @@ mat-card {
 
 .owl-nav {
     position: absolute !important;
+}
+
+
+// ::ng-deep owl-stage {
+
+// }
+
+::ng-deep ngx-slick-carousel .slick-prev {
+    background-color: red !important;
+    border-radius: 50% !important;
+}
+::ng-deep ngx-slick-carousel .slick-next {
+    background-color: red !important;
+    border-radius: 50% !important;
+}
+
+::ng-deep .owl-stage {
+    margin-bottom: 50px !important;
+}
+::ng-deep .owl-nav .owl-prev {
+    background-color: #d6edf6 !important;
+    width: 10px;
+    height: 180px;
+    position: absolute;
+    top: 20%;
+    left: -2%;
+    transform: translate(-40%, 2%);
+}
+::ng-deep .owl-nav .owl-prev::before {
+    content: "‹";
+    color: #3f51b5;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    top: 45%;
+    left: 25%;
+}
+::ng-deep .owl-nav .owl-next {
+    background-color: #d6edf6 !important;
+    width: 10px;
+    height: 180px;
+    position: absolute;
+    top: 20%;
+    right: -4%;
+    transform: translate(-40%, 0%);
+}
+::ng-deep .owl-nav .owl-next::before {
+    content: "›";
+    color: #3f51b5;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    top: 45%;
+    right: 25%;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: none !important;
+    display: none !important;
+}
+::ng-deep .mat-select-value-text {
+    color: none !important;
+    font-size: 12px !important;
+}
+::ng-deep .mat-select-arrow {
+    color: none !important;
+}
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: none !important;
 }

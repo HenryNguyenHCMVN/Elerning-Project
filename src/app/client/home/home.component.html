@@ -22,8 +22,6 @@
 
 
 <div class="container">
-    <div>Some tags before</div>
-
     <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide *ngFor="let course of courseList">
             <mat-card class="example-card">
@@ -47,6 +45,9 @@
         </ng-template>
 
     </owl-carousel-o>
-    <div>Some tags after</div>
+    <div>
+        <app-course>
+        </app-course>
+    </div>
 
 </div>

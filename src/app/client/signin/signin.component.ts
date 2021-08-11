@@ -14,6 +14,8 @@ export class SigninComponent implements OnInit {
 
   hide = true;
 
+  noSignIn: string ="";
+
   userLogin: any = {
     taiKhoan: "",
     matKhau: "",
@@ -32,13 +34,13 @@ export class SigninComponent implements OnInit {
       if (successURL) {
         this.router.navigate([successURL]);
       }else{
-        alert('Xin chào ' + data.hoTen);
+        this.notificationService.success(`Hello` + data.hoTen);
         this.router.navigate(["/"]);
       }
     },
     (error) =>{
-      console.log(error);
-      alert("User or Password is wrong");
+      console.log(error.error);
+      this.noSignIn = error.error;
     })
 
   }

@@ -1,11 +1,13 @@
+@import '../../../assets/scss/container.scss';
+@import '../../../assets/scss/index.scss';
+
 .container {
     width: 60%;
     margin: 0 auto;
     h1 {
         text-align: center;
         color: #0056d2;
-        padding: 3rem 0;
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     button {
         text-align: center;
@@ -19,4 +21,58 @@
     span {
         color: red;
     }
+}
+
+.backGroundsignUp {
+    background: url(https://s3.amazonaws.com/coursera/media/Grid_Coursera_Partners_updated.png);
+    background-size: cover;
+    min-height: 600px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .wrapSignUp {
+        max-width: 600px;
+        width: 700px;
+        padding: 20px;
+        background-color: $background-3;
+        border-radius: $boderR5;
+        overflow: hidden;
+        backdrop-filter: blur(6px);
+        border: $border;
+        box-shadow: $box-shadow;
+        h5 {
+            text-align: center;
+            font-size: $fs20;
+            color: $color-black-2;
+        }
+        .example-full-width {
+            width: 100%;
+        }
+        .errorValid {
+            font-size: $fs10;
+            color: $color-red;
+        }
+        .notifySignUp {
+            color: $color-red;
+            font-size: $fs13;
+            margin-bottom: 20px;
+        }
+        .btnSubmit {
+            text-align: center;
+            margin-top: 20px;
+            button {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+mat-label {
+    color: $color-black-2;
+    font-size: $fs13;
+}
+
+::ng-deep .mat-placeholder-required {
+    color: $color-black-2 !important;
 }

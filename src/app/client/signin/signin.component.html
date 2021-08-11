@@ -1,32 +1,41 @@
-<div class="container">
-    <h1>SIGN IN</h1>
-    <form class="example-form" (ngSubmit)="handleLogin()" #formSignIn="ngForm">
+<div class="backGroundsignIn">
+<div class="wrapSignIn">
+    <div class="container">
+        <h1>SIGN IN</h1>
+        <form class="example-form" (ngSubmit)="handleLogin()" #formSignIn="ngForm">
+    
+            <!-- User name -->
+            <mat-form-field class="example-full-width">
+                <mat-label> User Name</mat-label>
+                <input matInput ngModel name="username" required #username="ngModel" [(ngModel)]="userLogin.taiKhoan" />
+                <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
+    
+            </mat-form-field>
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
+                <mat-error *ngIf="username.errors?.required">Account cannot be empty!!!</mat-error>
+                <!-- <div *ngIf="username.errors?.pattern || username.errors?.pattern">
+            Email not found!!!
+          </div> -->
+            </div>
+    
+            <!-- password -->
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input matInput ngModel name="password" required #password="ngModel" [(ngModel)]="userLogin.matKhau" />
+            </mat-form-field>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+                <mat-error *ngIf="password.errors?.required">Password cannot be empty!!!</mat-error>
+            </div>
 
-        <!-- User name -->
-        <mat-form-field class="example-full-width">
-            <mat-label> User Name</mat-label>
-            <input matInput ngModel name="username" required #username="ngModel" [(ngModel)]="userLogin.taiKhoan" />
-            <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
+            <span class="noSignIn">{{noSignIn}}</span>
 
-        </mat-form-field>
-        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
-            <mat-error *ngIf="username.errors?.required">Account cannot be empty!!!</mat-error>
-            <!-- <div *ngIf="username.errors?.pattern || username.errors?.pattern">
-        Email not found!!!
-      </div> -->
-        </div>
 
-        <!-- password -->
-        <mat-form-field class="example-full-width">
-            <mat-label>Password</mat-label>
-            <input matInput ngModel name="password" required #password="ngModel" [(ngModel)]="userLogin.matKhau" />
-        </mat-form-field>
-        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
-            <mat-error *ngIf="password.errors?.required">Password cannot be empty!!!</mat-error>
-        </div>
-        <div class="btnSubmit">
-            <button mat-raised-button type="submit" [disabled]="!formSignIn.valid" color="primary">Submit</button>
-        </div>
-    </form>
+            <div class="btnSubmit">
+                <button mat-raised-button type="submit" [disabled]="!formSignIn.valid" color="primary">Submit</button>
+            </div>
+        </form>
+    
+    </div>
+</div>
 
 </div>

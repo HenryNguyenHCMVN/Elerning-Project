@@ -1,3 +1,4 @@
+<ng-container *ngIf="!noInfo else infoUser">
 <div class="backGroundsignUp">
     <div class="wrapSignUp">
         <div class="container">
@@ -18,8 +19,12 @@
                     <mat-form-field class="form-group">
                         <mat-label>Password</mat-label>
                         <input matInput required formControlName="matKhau" />
-                        <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
-                        <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+                        <mat-error *ngIf="dataService.form.controls['matKhau'].errors?.required">Do not empty!!!</mat-error>
+                        <mat-error *ngIf="dataService.form.controls['matKhau'].errors?.pattern">At least 9 characters in length,
+                            Lowercase letters,
+                            Uppercase letters,
+                            Numbers,
+                            Special characters</mat-error>
                         <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  -->
                     </mat-form-field>
         
@@ -27,8 +32,8 @@
                     <mat-form-field class="form-group">
                         <mat-label>User Name</mat-label>
                         <input matInput required formControlName="hoTen" />
-                        <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
-                        <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+                        <mat-error *ngIf="dataService.form.controls['hoTen'].errors?.required">Do not empty!!!</mat-error>
+                        <mat-error *ngIf="dataService.form.controls['hoTen'].errors?.minlength">Just 3 to 15 characters</mat-error>
                     </mat-form-field>
         
                     <!-- maNhom -->
@@ -45,27 +50,28 @@
                     <mat-form-field class="form-group">
                         <mat-label>Email</mat-label>
                         <input matInput required formControlName="email" />
-                        <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
-                        <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+                        <mat-error *ngIf="dataService.form.controls['email'].errors?.required">Do not empty!!!</mat-error>
+                        <mat-error *ngIf="dataService.form.controls['email'].errors?.pattern">Email is invalid</mat-error>
                     </mat-form-field>
         
                     <!-- soDT -->
                     <mat-form-field class="form-group">
                         <mat-label>Phone</mat-label>
                         <input matInput required formControlName="soDT" />
-                        <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
-                        <mat-error *ngIf="dataService.form.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+                        <mat-error *ngIf="dataService.form.controls['soDT'].errors?.required">Do not empty!!!</mat-error>
+                        <mat-error *ngIf="dataService.form.controls['soDT'].errors?.pattern">Just Numbers</mat-error>
                     </mat-form-field>
         
                     <!-- maLoaiNguoiDung -->
                     <div>
                         <mat-radio-group class="form-group" required formControlName="maLoaiNguoiDung">
                             <mat-label>User type: </mat-label>
-                            <mat-radio-button value="GV">Teachers </mat-radio-button>
-                            <mat-radio-button value="HV">Students </mat-radio-button>
+                            <mat-radio-button value="Teacher" disabled >Teacher </mat-radio-button>
+                            <mat-radio-button value="Student">Student </mat-radio-button>
                         </mat-radio-group>
                     </div>
         
+                    <span class="noSignUp">{{noSignUp}}</span>
         
                     <!-- button -->
                     <div style="text-align: center;">
@@ -78,5 +84,52 @@
         </div>
     </div>
 </div>
+</ng-container>
+
+<ng-template #infoUser>
+    <div class="backGroundsignUp">
+        <div class="wrapSignUp">
+            <div class="container">
+                <h5>Your Infomation</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>User Name: </td>
+                            <td>{{noInfo.hoTen}}</td>
+                        </tr>
+                        <tr>
+                            <td>Account: </td>
+                            <td>{{noInfo.taiKhoan}}</td>
+                        </tr>
+                        <tr>
+                            <td>Password: </td>
+                            <td>{{noInfo.matKhau}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email: </td>
+                            <td>{{noInfo.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td>{{noInfo.soDT}}</td>
+                        </tr>
+                        <!-- <tr>
+                            <td>User type:</td>
+                            <td>{{noInfo.maLoaiNguoiDung}}</td>
+                        </tr> -->
+                        <tr>
+                            <td>Group:</td>
+                            <td>{{noInfo.maNhom}}</td>
+                        </tr>
+                    </thead>
+                </table>
+                <div style="text-align: center;">
+                    <button mat-raised-button color="primary" routerLink="/signin">Go to sign in</button>
+                    <button mat-raised-button color="warn" routerLink="/">Back home</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+</ng-template>

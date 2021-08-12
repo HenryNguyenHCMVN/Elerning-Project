@@ -20,22 +20,22 @@ export class DataService {
 
   form: FormGroup = new FormGroup({
     taiKhoan: new FormControl('',[Validators.required, Validators.minLength(3)]),
-    matKhau: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    matKhau: new FormControl('',[Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}")]),
     hoTen: new FormControl('', [Validators.required, Validators.minLength(3)]),
     maNhom: new FormControl(''),
-    email: new FormControl('',[Validators.required, Validators.minLength(3)]),
-    soDT: new FormControl('',[Validators.required, Validators.minLength(3)]),
-    maLoaiNguoiDung: new FormControl('GV'),
+    email: new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]),
+    soDT: new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$")]),
+    maLoaiNguoiDung: new FormControl('Student'),
   })
 
   formEdit: FormGroup = new FormGroup({
     taiKhoan: new FormControl('',[Validators.required, Validators.minLength(3)]),
-    matKhau: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    matKhau: new FormControl('',[Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}")]),
     hoTen: new FormControl('', [Validators.required, Validators.minLength(3)]),
     maNhom: new FormControl(''),
-    email: new FormControl('',[Validators.required, Validators.minLength(3)]),
-    soDT: new FormControl('',[Validators.required, Validators.minLength(3)]),
-    maLoaiNguoiDung: new FormControl('GV'),
+    email: new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]),
+    soDT: new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$")]),
+    maLoaiNguoiDung: new FormControl('Student'),
   })
 
   resetFormGroup() {
@@ -45,7 +45,7 @@ export class DataService {
       matKhau: '',
       hoTen: '',
       maNhom: '',
-      maLoaiNguoiDung: 'GV',
+      maLoaiNguoiDung: 'Student',
       email: '',
       soDT: '',
     });

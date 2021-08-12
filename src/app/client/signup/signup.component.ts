@@ -13,7 +13,9 @@ import { NotificationService } from 'src/app/core/share/data/notification.servic
 })
 export class SignupComponent implements OnInit {
 
+  noInfo: any = null;
 
+  noSignUp: string = "";
 
   public mangMaNhom: Array<any> = [
     "GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP010"
@@ -32,13 +34,15 @@ export class SignupComponent implements OnInit {
     if (this.dataService.form.valid) {
         this.authService.addListUser(this.dataService.form.value).subscribe((result) =>{
           console.log(result);
+          this.noInfo = result;
           this.dataService.form.reset();
           this.dataService.resetFormGroup();
-          this.notificationService.success(`::: Submitted successfully :::`);
-          this.router.navigate(["/signin"]);
+          this.notificationService.success(`You have successfully registered`);
+          setTimeout(() => {this.router.navigate(["/signin"])}, 10000);
         },
         (error) => {
-          console.log(error);
+        console.log(error.error);
+        this.noSignUp = error.error;
         }
         )
     }

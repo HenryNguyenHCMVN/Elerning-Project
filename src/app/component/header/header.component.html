@@ -11,13 +11,13 @@
                 </mat-menu>
             </a>
 
-            <a>
+            <!-- <a>
                 <input (keyup)="applySearch()" type="text" placeholder="What do you learn?" [(ngModel)]="searchKey" />
                 <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)="onSearchClear()">
       <mat-icon>close</mat-icon>
     </button>
                 <span class="example-spacer"></span>
-            </a>
+            </a> -->
 
             <a mat-list-item routerLink="/signin" *ngIf="!currentUser" (click)="closeSideNav()">
                 <mat-icon>person</mat-icon> Log In
@@ -32,7 +32,7 @@
             </a>
 
             <button mat-button *ngIf="currentUser" style="color: black" [matMenuTriggerFor]="menu1">
-        <mat-icon> person_pin</mat-icon> {{ currentUser.hoTen }}
+        <mat-icon> person_pin</mat-icon> {{ currentUser.hoTen | uppercase }}
         <mat-menu #menu1="matMenu">
           <button mat-menu-item>
             <span>User Info</span>
@@ -96,7 +96,7 @@
                   <!-- admin -->
 
                   <button mat-button *ngIf="currentUser" style="color: black" [matMenuTriggerFor]="menu1">
-                    {{ currentUser.hoTen }}
+                    Welcome: {{ currentUser.hoTen | uppercase}}
 
                     <mat-menu #menu1="matMenu">
                       <button mat-menu-item>

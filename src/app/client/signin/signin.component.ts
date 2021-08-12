@@ -34,13 +34,16 @@ export class SigninComponent implements OnInit {
       if (successURL) {
         this.router.navigate([successURL]);
       }else{
-        this.notificationService.success(`Hello` + data.hoTen);
-        this.router.navigate(["/"]);
+        this.notificationService.success(`Hello ` + data.hoTen);
+        setTimeout(() => {
+          this.router.navigate(["/"]);
+        }, 1000); 
       }
     },
     (error) =>{
       console.log(error.error);
       this.noSignIn = error.error;
+      this.notificationService.error("Incorrect account or password")
     })
 
   }

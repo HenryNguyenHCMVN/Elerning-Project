@@ -1,6 +1,5 @@
 @import '../../../assets/scss/container.scss';
 @import '../../../assets/scss/index.scss';
-
 .container {
     width: 60%;
     margin: 0 auto;
@@ -75,4 +74,8 @@ mat-label {
 
 ::ng-deep .mat-placeholder-required {
     color: $color-black-2 !important;
+}
+
+mat-radio-button {
+    padding-left: 1rem;
 }

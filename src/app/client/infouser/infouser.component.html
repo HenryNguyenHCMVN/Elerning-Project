@@ -1,0 +1,74 @@
+<div class="bgInfoUser">
+  <div class="container">
+    <mat-tab-group>
+      <mat-tab label="User Infomation">
+        <div class="account">
+          <div class="row">
+            <div class="block col-xs-6">
+              <h6>User name: </h6>
+              <p>{{infoUser?.taiKhoan}}</p>
+            </div>
+            <div class="block col-xs-6">
+              <h6>Password: </h6>
+              <p>{{infoUser?.matKhau}}</p>
+            </div>
+            <div class="block col-xs-6">
+              <h6>Full name: </h6>
+              <p>{{infoUser?.hoTen}}</p>
+            </div>
+            <div class="block col-xs-6">
+              <h6>Email: </h6>
+              <p>{{infoUser?.email}}</p>
+            </div>
+            <div class="block col-xs-6">
+              <h6>Phone: </h6>
+              <p>{{infoUser?.soDT}}</p>
+            </div>
+            <div class="block col-xs-6">
+              <h6>Group: </h6>
+              <p>{{infoUser?.maNhom}}</p>
+            </div>
+          </div>
+          <div class="btnEdit">
+            <button mat-raised-button color="primary" (click)="updateInfoUser()">Edit</button>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="History Registered">
+        <div class="ticket">
+          <input type="text" placeholder="Find courses" class="inputSearch" (keyup)="searchHistory($event)">
+
+          <table mat-table [dataSource]="historyCourse">
+            <ng-container matColumnDef="stt">
+              <th mat-header-cell *matHeaderCellDef> STT </th>
+              <td mat-cell *matCellDef="let stt = index">{{stt + 1}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="maKhoaHoc">
+              <th mat-header-cell *matHeaderCellDef> Course Code </th>
+              <td mat-cell *matCellDef="let item">{{item.maKhoaHoc}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="tenKhoaHoc">
+              <th mat-header-cell *matHeaderCellDef> Course Name </th>
+              <td mat-cell *matCellDef="let item">{{item.tenKhoaHoc}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="ngayDat">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let item">
+                <button mat-icon-button color="warn" (click)="onDelete()">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

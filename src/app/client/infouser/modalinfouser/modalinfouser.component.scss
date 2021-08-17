@@ -1,0 +1,25 @@
+@import '../../../../assets/scss/container.scss';
+@import '../../../../assets/scss/index.scss';
+
+.container {
+  width: 60%;
+  margin: 0 auto;
+  h1 {
+      text-align: center;
+      color: #0056d2;
+      padding: 3rem 0;
+      font-size: 3rem;
+  }
+  button {
+      text-align: center;
+  }
+  .example-form {
+      width: 100%;
+  }
+  .form-group {
+      width: 100%
+  }
+  span {
+      color: red;
+  }
+}

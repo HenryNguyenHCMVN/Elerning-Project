@@ -35,7 +35,7 @@
         <mat-icon> person_pin</mat-icon> {{ currentUser.hoTen | uppercase }}
         <mat-menu #menu1="matMenu">
           <button mat-menu-item>
-            <span>User Info</span>
+            <span routerLink="/infouser">User Infomation</span>
           </button>
             <button mat-menu-item>
             <span (click)="closeSideNav()" (click)="handleLogOut()" >Log out</span>
@@ -100,7 +100,7 @@
 
                     <mat-menu #menu1="matMenu">
                       <button mat-menu-item>
-                        <span>User Info</span>
+                        <span routerLink="/infouser">User Infomation</span>
                         </button>
                         <button mat-menu-item>
                         <span (click)="handleLogOut()">Log out</span>

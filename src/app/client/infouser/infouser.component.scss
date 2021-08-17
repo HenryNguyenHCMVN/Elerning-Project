@@ -1,0 +1,87 @@
+@import '../../../assets/scss/container.scss';
+@import '../../../assets/scss/index.scss';
+
+
+.bgInfoUser {
+  width: 100%;
+  padding: 50px 0;
+  background: #fff;
+  background-size: cover;
+  mat-tab-group {
+      ::ng-deep .mat-tab-label-content {
+          color: #0056d2;
+      }
+      ::ng-deep .mat-tab-body-content {
+          display: flex;
+          justify-content: space-around;
+      }
+      ::ng-deep .mat-ink-bar {
+          background-color: blue !important;
+      }
+      ::ng-deep .mat-tab-label {
+          padding: 0 24px !important;
+          min-width: 160px !important;
+      }
+
+      ::ng-deep.mat-tab-body-content {
+          overflow: hidden !important;
+      }
+      .account {
+          width: 100%;
+          max-width: 400px;
+          padding-top: 1rem;
+          .block {
+            border: $border;
+            border-radius: $boderR5;
+            box-shadow: $box-shadow;
+            h6 {
+                font-size: 0.8rem;
+            }
+            p {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+        }
+        .block:hover {
+            background:#d6edf6;
+        }
+        .btnEdit {
+            text-align: center;
+            margin-top: 20px;
+        }
+      }
+      .ticket {
+        overflow-y: scroll;
+        overflow-x: scroll;
+        max-height: 350px;
+        width: 100%;
+        padding-top: 1rem;
+        .inputSearch {
+          width: 80%;
+          margin-left: 3rem;
+        }
+        .inputSearch::placeholder {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            min-width: 700px;
+            tr td {
+                color: black;
+            }
+            tr:hover {
+                background-color: #d6edf6;
+            }
+        }
+    }
+    }
+  }
+.ticket::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #f5f5f5;
+}
+.ticket::-webkit-scrollbar-thumb {
+  background: #e2dfdf;
+  border-radius: 6px;
+}

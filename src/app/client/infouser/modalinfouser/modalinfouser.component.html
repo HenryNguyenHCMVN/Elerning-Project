@@ -1,0 +1,74 @@
+<div class="container">
+  <h1>Edit User</h1>
+  <form [formGroup]="dataService.formEdit" (ngSubmit)="handleEditUser()">
+
+      <div class="controles-container">
+
+          <!-- taiKhoan -->
+          <mat-form-field class="form-group">
+              <mat-label>Account</mat-label>
+              <input matInput disabled value={{dataService.formEdit.value.taiKhoan}} />
+              <mat-error *ngIf="dataService.formEdit.controls['taiKhoan'].errors?.required">Do not empty!!!</mat-error>
+              <mat-error *ngIf="dataService.formEdit.controls['taiKhoan'].errors?.minlength">Just 3 to 15 characters</mat-error>
+          </mat-form-field>
+
+          <!-- matKhau -->
+          <mat-form-field class="form-group">
+              <mat-label>Password</mat-label>
+              <input matInput required formControlName="matKhau" />
+              <mat-error *ngIf="dataService.formEdit.controls['matKhau'].errors?.required">Do not empty!!!</mat-error>
+              <mat-error *ngIf="dataService.formEdit.controls['matKhau'].errors?.minlength">Just 3 to 15 characters</mat-error>
+          </mat-form-field>
+
+          <!-- hoTen -->
+          <mat-form-field class="form-group">
+              <mat-label>User Name</mat-label>
+              <input matInput required formControlName="hoTen" />
+              <mat-error *ngIf="dataService.formEdit.controls['hoTen'].errors?.required">Do not empty!!!</mat-error>
+              <mat-error *ngIf="dataService.formEdit.controls['hoTen'].errors?.minlength">Just 3 to 15 characters</mat-error>
+          </mat-form-field>
+
+          <!-- maNhom -->
+          <mat-form-field class="form-group">
+              <mat-label>Group</mat-label>
+              <mat-select disabled value={{dataService.formEdit.value.maNhom}}>
+                  <mat-option *ngFor="let maNhom of mangMaNhom" value="{{ maNhom }}">
+                      {{ maNhom }}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+
+          <!-- email -->
+          <mat-form-field class="form-group">
+              <mat-label>Email</mat-label>
+              <input matInput required formControlName="email" />
+              <mat-error *ngIf="dataService.formEdit.controls['email'].errors?.required">Do not empty!!!</mat-error>
+              <mat-error *ngIf="dataService.formEdit.controls['email'].errors?.minlength">Just 3 to 15 characters</mat-error>
+          </mat-form-field>
+
+          <!-- soDT -->
+          <mat-form-field class="form-group">
+              <mat-label>Phone</mat-label>
+              <input matInput required formControlName="soDT" />
+              <mat-error *ngIf="dataService.formEdit.controls['soDT'].errors?.required">Do not empty!!!</mat-error>
+              <mat-error *ngIf="dataService.formEdit.controls['soDT'].errors?.minlength">Just 3 to 15 characters</mat-error>
+          </mat-form-field>
+
+          <!-- maLoaiNguoiDung -->
+          <div>
+              <mat-radio-group class="form-group" disabled value={{dataService.formEdit.value.maLoaiNguoiDung}}>
+                  <mat-label>User type: </mat-label>
+                  <mat-radio-button value="GV">Teachers </mat-radio-button>
+                  <mat-radio-button value="HV">Students </mat-radio-button>
+              </mat-radio-group>
+          </div>
+
+
+          <!-- button -->
+          <div style="text-align: center;">
+              <button mat-raised-button color="primary" type="submit" [disabled]="dataService.formEdit.invalid">Submit</button>
+          </div>
+      </div>
+
+  </form>
+</div>

@@ -22,6 +22,8 @@ import { CourseComponent } from './home/course/course.component';
 import { DataService } from '../core/share/data/data.service';
 import { ShortcutPipe } from './home/course/shortcut.pipe';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { InfouserComponent } from './infouser/infouser.component';
+import { ModalinfouserComponent } from './infouser/modalinfouser/modalinfouser.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     IntroComponent,
     CourseComponent,
     ShortcutPipe,
+    InfouserComponent,
+    ModalinfouserComponent,
   ],
   entryComponents:[DetailComponent,SignupComponent],
   imports: [

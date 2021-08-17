@@ -25,8 +25,18 @@ export class AuthService {
     this.currentUserSubject.next(value);
   }
 
+    // Account
+    private currentAccount = new BehaviorSubject(null)
+    shareAccount = this.currentAccount.asObservable();
+    getCurrentAccount(): any {
+      return this.currentAccount.value
+    }
+    setCurrentAccount(value: any) {
+      this.currentAccount.next(value)
+    }
 
-  constructor(private httpClient: HttpClient, private api: ApiService, public notificationService:NotificationService) {
+
+  constructor(private api: ApiService, public notificationService:NotificationService) {
 
     // setState lại data khi user signout & signin
     // sẽ setstate ở day rat nhieu lan ko chi o sigin service mà còn nhiều tác vụ khác

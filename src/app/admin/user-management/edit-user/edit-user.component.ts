@@ -20,12 +20,6 @@ export class EditUserComponent implements OnInit {
     taiKhoan: this.authService.getCurrentUser().taiKhoan
   }
 
-  infoUser: any = {};
-
-  token: any;
-
-  currentUsers: any = null;
-
 
   public mangMaNhom: Array<any> = [
     "GP01", "GP02", "GP03", "GP04", "GP05", "GP06", "GP07", "GP08", "GP09", "GP010"
@@ -33,13 +27,7 @@ export class EditUserComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.authService.currentUser.subscribe((data) => {
-    //   this.currentUsers = data;
-    //   this.token = this.currentUsers.accessToken
-    // })
-    // this.authService.infoUser(this.user).subscribe((data) => {
-    //   this.infoUser = data;
-    // })
+
   }
 
   handleEditUser() {

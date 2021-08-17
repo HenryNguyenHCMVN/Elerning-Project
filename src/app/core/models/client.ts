@@ -47,7 +47,7 @@ export interface TimKiemNguoiDung {
 }
 
 export interface ThongTinNguoiDung {
-  chiTietKhoaHocGhiDanh: any[];
+  chiTietKhoaHocGhiDanh: ChiTietKhoaHocGhiDanh[];
   taiKhoan:              string;
   matKhau:               string;
   hoTen:                 string;
@@ -55,6 +55,11 @@ export interface ThongTinNguoiDung {
   maLoaiNguoiDung:       string;
   maNhom:                string;
   email:                 string;
+}
+
+export interface ChiTietKhoaHocGhiDanh {
+  maKhoaHoc:  string;
+  tenKhoaHoc: string;
 }
 
 export interface CapNhatNguoiDung {

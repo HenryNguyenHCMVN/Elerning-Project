@@ -7,7 +7,7 @@
             <!-- maKhoaHoc -->
             <mat-form-field class="form-group">
                 <mat-label>Course code</mat-label>
-                <input matInput required formControlName="maKhoaHoc" />
+                <input matInput value={{dataService.formeditCourse.value.maKhoaHoc}} disabled/>
             </mat-form-field>
 
             <!-- tenKhoaHoc -->
@@ -54,7 +54,7 @@
             <!-- taiKhoanNguoiTao -->
             <mat-form-field class="form-group">
                 <mat-label>Account</mat-label>
-                <input matInput formControlName="taiKhoanNguoiTao" /></mat-form-field>
+                <input matInput value={{dataService.formeditCourse.value.taiKhoanNguoiTao}} disabled /></mat-form-field>
 
             <!-- moTa -->
             <mat-form-field class="form-group">
@@ -69,6 +69,8 @@
                 <img style="width:80px; height:80px" [src]="url" *ngIf="url">
                 <mat-error [innerHtml]='msg' *ngIf="msg"></mat-error>
             </ng-container>
+
+            <mat-error>{{showError}}</mat-error>
 
             <!-- button -->
             <div style="text-align: center;">

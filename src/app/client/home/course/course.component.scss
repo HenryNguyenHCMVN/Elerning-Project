@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     margin: 0px;
     padding: 0px;
     background: url("http://digital.bnint.com/filelib/s9/photos/white_wood_4500x3000_lo_res.jpg");
@@ -16,7 +17,7 @@ html, body {
     width: 100%;
 }
 
-.carousel-open:checked + .carousel-item {
+.carousel-open:checked+.carousel-item {
     position: static;
     opacity: 100;
 }
@@ -67,9 +68,9 @@ html, body {
     color: #aaaaaa;
 }
 
-#carousel-1:checked ~ .control-1,
-#carousel-2:checked ~ .control-2,
-#carousel-3:checked ~ .control-3 {
+#carousel-1:checked~.control-1,
+#carousel-2:checked~.control-2,
+#carousel-3:checked~.control-3 {
     display: block;
 }
 
@@ -101,9 +102,9 @@ html, body {
     color: #aaaaaa;
 }
 
-#carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
-#carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
-#carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+#carousel-1:checked~.control-1~.carousel-indicators li:nth-child(1) .carousel-bullet,
+#carousel-2:checked~.control-2~.carousel-indicators li:nth-child(2) .carousel-bullet,
+#carousel-3:checked~.control-3~.carousel-indicators li:nth-child(3) .carousel-bullet {
     color: #428bca;
 }
 

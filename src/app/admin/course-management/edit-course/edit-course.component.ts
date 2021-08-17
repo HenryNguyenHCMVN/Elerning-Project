@@ -11,6 +11,8 @@ import { NotificationService } from 'src/app/core/share/data/notification.servic
 })
 export class EditCourseComponent implements OnInit {
 
+  showError: any;
+
   imgFile: any;
 
   constructor(public dataService:DataService, public courseService:CourseService, public notificationService:NotificationService) { }
@@ -73,6 +75,9 @@ editCourse(value:CapNhatKhoaHoc, files:any) {
         if (result === true) {
             alert('Add successfull')
         }
+      },(error) => {
+        console.log(error.error);
+        this.showError = error.error;
       })
 
     }

@@ -1,23 +1,31 @@
-<div class="container">
-    <mat-card class="example-card">
+<div class="courseDetail">
+  <div class="wrapCourseDetail">
+    <div class="bgCourseDetail">
+      <img src="{{courseDetail.hinhAnh}}" alt="">
+    </div>
+    <div class="container inCourseDetail" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+      <mat-card class="example-card">
 
-        <mat-card-title>Course code: {{courseDetail?.maKhoaHoc}}</mat-card-title>
-        <ng-container>
+          <mat-card-title>Course code: {{courseDetail?.maKhoaHoc}}</mat-card-title>
+          <ng-container>
 
-        </ng-container>
-        <img class="img" mat-card-image src="{{courseDetail?.hinhAnh}}">
-        <mat-card-subtitle>Course name: {{courseDetail?.tenKhoaHoc}}</mat-card-subtitle>
-        <mat-card-subtitle>Group: {{courseDetail?.maNhom}}</mat-card-subtitle>
-        <mat-card-subtitle>Date: {{courseDetail?.ngayTao}}</mat-card-subtitle>
-        <mat-card-subtitle>View: {{courseDetail?.luotXem}}</mat-card-subtitle>
+          </ng-container>
+          <img class="img" mat-card-image src="{{courseDetail?.hinhAnh}}">
+          <mat-card-subtitle>Course name: {{courseDetail?.tenKhoaHoc}}</mat-card-subtitle>
+          <mat-card-subtitle>Group: {{courseDetail?.maNhom}}</mat-card-subtitle>
+          <mat-card-subtitle>Date: {{courseDetail?.ngayTao}}</mat-card-subtitle>
+          <mat-card-subtitle>View: {{courseDetail?.luotXem}}</mat-card-subtitle>
 
-        <mat-card-content>
-            <p>
-                Course description: {{courseDetail?.moTa }}
-            </p>
-        </mat-card-content>
+          <mat-card-content>
+              <p>
+                  Course description: {{courseDetail?.moTa }}
+              </p>
+          </mat-card-content>
 
-        <button mat-raised-button color="primary" (click)="createRegister()">Register the course</button>
-        <button mat-raised-button color="warn" routerLink="/">Back home</button>
-    </mat-card>
+          <button mat-raised-button color="primary" (click)="createRegister()">Register the course</button>
+          <button mat-raised-button color="warn" routerLink="/">Back home</button>
+      </mat-card>
+  </div>
+  </div>
 </div>
+

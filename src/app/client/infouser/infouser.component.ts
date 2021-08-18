@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ChiTietKhoaHocGhiDanh, ThongTinNguoiDung } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { CourseService } from 'src/app/core/services/course/course.service';
 import { DataService } from 'src/app/core/share/data/data.service';
 import { ModalinfouserComponent } from './modalinfouser/modalinfouser.component';
 
@@ -12,8 +13,6 @@ import { ModalinfouserComponent } from './modalinfouser/modalinfouser.component'
   styleUrls: ['./infouser.component.scss']
 })
 export class InfouserComponent implements OnInit {
-
-  maKhoaHoc?:ChiTietKhoaHocGhiDanh[];
   chiTiet: any;
   infoUser: any;
   ELEMENT_DATA!: ChiTietKhoaHocGhiDanh[];
@@ -26,7 +25,9 @@ export class InfouserComponent implements OnInit {
     "ngayDat",
   ];
 
-  constructor( public authService:AuthService, public matDialog:MatDialog, public dataService:DataService) { }
+  unRegister = { taikhoan: "", maKhoaHoc:"" };
+
+  constructor( public authService:AuthService, public matDialog:MatDialog, public dataService:DataService, public courseService: CourseService) { }
 
   ngOnInit(): void {
     this.getInfoAccount();
@@ -47,11 +48,10 @@ export class InfouserComponent implements OnInit {
       this.infoUser = data;
       this.chiTiet = data.chiTietKhoaHocGhiDanh;
     });
-    this.historyCourse.data = this.chiTiet;
   }
 
   searchHistory(event: any){
-    this.historyCourse.filter = event.target.value.trim().toLowerCase();
+    this.chiTiet.maKhoaHoc.filter = event.target.value.trim().toLowerCase();
   }
   updateInfoUser(){
     this.matDialog.open(ModalinfouserComponent);
@@ -66,11 +66,9 @@ export class InfouserComponent implements OnInit {
     maNhom:           "GP01",
     })
   }
-  onDelete(){
-    let unRegister = { taikhoan: "", maKhoaHoc:"" };
-    unRegister.taikhoan = this.authService.getCurrentUser().taiKhoan;
-    unRegister.maKhoaHoc = this.chiTiet.maKhoaHoc;
-    console.log(unRegister);
-
+  onDelete(maKhoaHoc:any){
+    this.unRegister.taikhoan = this.authService.getCurrentUser().taiKhoan;
+    this.unRegister.maKhoaHoc = maKhoaHoc;
+    this.courseService.unsubscribeCourse(this.unRegister).subscribe((data) => {})
   }
 }

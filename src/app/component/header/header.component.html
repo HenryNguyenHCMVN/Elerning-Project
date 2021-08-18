@@ -11,14 +11,6 @@
                 </mat-menu>
             </a>
 
-            <!-- <a>
-                <input (keyup)="applySearch()" type="text" placeholder="What do you learn?" [(ngModel)]="searchKey" />
-                <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)="onSearchClear()">
-      <mat-icon>close</mat-icon>
-    </button>
-                <span class="example-spacer"></span>
-            </a> -->
-
             <a mat-list-item routerLink="/signin" *ngIf="!currentUser" (click)="closeSideNav()">
                 <mat-icon>person</mat-icon> Log In
             </a>
@@ -27,7 +19,7 @@
                 <mat-icon>person_add</mat-icon> Sign Up
             </a>
 
-            <a mat-list-item color="warn" routerLink="/admin/info-admin" *ngIf="currentUser" (click)="closeSideNav()">
+            <a mat-list-item color="warn" routerLink="/admin/dash-board" *ngIf="currentUser" (click)="closeSideNav()">
                 <mat-icon>supervised_user_circle</mat-icon> Admin
             </a>
 
@@ -90,7 +82,7 @@
                   </button>
 
                   <!-- admin -->
-                  <button mat-raised-button color="warn" routerLink="/admin/info-admin" *ngIf="currentUser">
+                  <button mat-raised-button color="warn" routerLink="/admin/dash-board" *ngIf="currentUser">
                     Admin
                   </button>
                   <!-- admin -->

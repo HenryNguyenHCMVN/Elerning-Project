@@ -94,13 +94,19 @@ export class CourseService {
   }
 
   // Hủy ghi danh
-  unsubscribeCourse(unregister: HuyGhiDanhKhoaHoc): Observable<HuyGhiDanhKhoaHoc> {
+  unsubscribeCourse(unregister: any): Observable<HuyGhiDanhKhoaHoc> {
     let url = `QuanLyKhoaHoc/HuyGhiDanh`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.api.
-      post<HuyGhiDanhKhoaHoc>(url, unregister, { headers: headers }).pipe(tap((data: any) => {
-        console.log(data);
-      }),
+      post<HuyGhiDanhKhoaHoc>(url, unregister).pipe(tap((data: any) =>{}),
+      catchError((err) => {
+        if (err.status === 500) {
+          this.notificationService.error(`${err.error}`)
+        } else {
+          this.notificationService.success(' ::: Unsubscribed successfully :::');
+          window.location.reload();
+        }
+        return throwError(err);
+      })
       )
   }
 

@@ -1,35 +1,30 @@
-<!-- slidebar -->
-
-<!-- <mat-drawer-container autosize class="example-container">
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        <div>
-            <button mat-button routerLink="/admin/course-management">Course Management</button>
-        </div>
-        <div>
-            <button mat-button routerLink="/admin/user-management">User Management</button>
-        </div>
-    </mat-drawer>
-    <mat-toolbar color="primary">
-        <button type="button" mat-button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-  <mat-icon>menu</mat-icon>
-</button>
-        <button mat-button style="font-size: 1rem;" routerLink="/admin/info-admin">Admin</button>
-        <button mat-button color="accent" style="font-size: 1rem;" routerLink="/">Back Home Page</button>
-        <span class="example-spacer"></span>
-        <button [matMenuTriggerFor]="menu" mat-button style="font-size: 1rem;" *ngIf="thongTinNguoiDung">{{thongTinNguoiDung.hoTen}}
-
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-            <span>User Info</span>
-        </button>
-        <button mat-menu-item>
-          <span (click)="handleLogOut()">Log out</span>
-      </button>
-        </mat-menu>
-
-
-        </button>
-    </mat-toolbar>
-</mat-drawer-container> -->
-
-<!-- ----------------------------------------------------------------- -->
+<div class="dashboard">
+  <div class="container">
+    <h5>Admin Page</h5>
+    <div class="cardGroup">
+      <!-- Chọn nhóm -->
+      <div class="courses">
+        <mat-form-field class="form-group">
+          <mat-label>Group</mat-label>
+          <mat-select>
+            <mat-option (click)="getGroupCode(maNhom)" *ngFor="let maNhom of mangMaNhom" value="{{ maNhom }}">
+              {{ maNhom }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+        <div class="infoCourse">
+          <p>Courses available </p>
+          <p>Groups : {{this.maNhom}}</p>
+          <p>Amounts: <span class="length">{{this.listCourse}}</span> class</p>
+      </div>
+        <div class="infoClient">
+          <p>Registered students</p>
+          <p>Groups : {{this.maNhom}}</p>
+          <p>Amounts : <span class="length">{{this.listClient}} </span> user</p>
+      </div>
+    </div>
+  </div>
+</div>

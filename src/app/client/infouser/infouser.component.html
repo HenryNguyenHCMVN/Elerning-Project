@@ -35,9 +35,7 @@
         </div>
       </mat-tab>
       <mat-tab label="History Registered">
-        <div class="ticket">
-          <input type="text" placeholder="Find courses" class="inputSearch" (keyup)="searchHistory($event)">
-
+        <div class="historyRe">
           <table mat-table [dataSource]="chiTiet">
             <ng-container matColumnDef="stt">
               <th mat-header-cell *matHeaderCellDef> STT </th>
@@ -57,7 +55,7 @@
             <ng-container matColumnDef="ngayDat">
               <th mat-header-cell *matHeaderCellDef>Detele Course</th>
               <td mat-cell *matCellDef="let item">
-                <button mat-icon-button color="warn" (click)="onDelete()">
+                <button mat-icon-button color="warn" (click)="onDelete(item.maKhoaHoc)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </td>

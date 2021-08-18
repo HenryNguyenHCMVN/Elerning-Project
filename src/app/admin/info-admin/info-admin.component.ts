@@ -25,23 +25,6 @@ export class InfoAdminComponent implements OnInit {
       console.log(data);
       this.thongTinNguoiDung = data;
     })
-
-    // this.authService.currentUser.subscribe(data =>{
-    // lấy từ local
-    // console.log(data)
-    // chỗ này khá phức tạp code logic lắm ko gán nhu8 vậy dc
-    // this.token = data.accessTokenta
-    // this.dataS = data
-    // let update = {...this.userSignIn}
-    // update.accessToken = `Bearer ${this.dataS.accessToken}`
-    // this.userSignIn = update
-    // console.log(this.userSignIn.accessToken);
-
-    // this.authService.infoUser(this.userSignIn.accessToken).subscribe(data=>{
-    //   console.log(data);
-
-    // })
-    // })
   }
 
 }

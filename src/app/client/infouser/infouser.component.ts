@@ -13,6 +13,8 @@ import { ModalinfouserComponent } from './modalinfouser/modalinfouser.component'
 })
 export class InfouserComponent implements OnInit {
 
+  maKhoaHoc?:ChiTietKhoaHocGhiDanh[];
+  chiTiet: any;
   infoUser: any;
   ELEMENT_DATA!: ChiTietKhoaHocGhiDanh[];
   historyCourse = new MatTableDataSource(this.ELEMENT_DATA);
@@ -30,17 +32,22 @@ export class InfouserComponent implements OnInit {
     this.getInfoAccount();
   }
   getInfoAccount() {
-    let account = { taikhoan: "" };
-    account.taikhoan = this.authService.getCurrentUser();
-    this.authService.infoUser(account).subscribe((data) => {
-      const { chiTietKhoaHocGhiDanh, ..._data } = data
-      this.authService.setCurrentUser(_data)
-      this.authService.currentUser.subscribe((data) => {
-        console.log(data);
-        this.infoUser = data;
-      });
-      this.historyCourse.data = chiTietKhoaHocGhiDanh;
+    // let account = { taikhoan: "" };
+    // account.taikhoan = this.authService.getCurrentUser();
+    // this.authService.infoUser(account).subscribe((data) => {
+    //   const { chiTietKhoaHocGhiDanh, ..._data } = data
+    //   this.authService.setCurrentUser(_data)
+    //   this.authService.currentUser.subscribe((data) => {
+    //     console.log(data);
+    //     this.infoUser = data;
+    //   });
+    //   this.historyCourse.data = chiTietKhoaHocGhiDanh;
+    // });
+    this.authService.infoUser(this.infoUser).subscribe((data) => {
+      this.infoUser = data;
+      this.chiTiet = data.chiTietKhoaHocGhiDanh;
     });
+    this.historyCourse.data = this.chiTiet;
   }
 
   searchHistory(event: any){
@@ -48,7 +55,7 @@ export class InfouserComponent implements OnInit {
   }
   updateInfoUser(){
     this.matDialog.open(ModalinfouserComponent);
-    this.authService.setCurrentUser(this.infoUser);
+    this.authService.setCurrentAccount(this.infoUser);
     this.dataService.formEdit.setValue({
     taiKhoan:         this.infoUser.taiKhoan,
     maLoaiNguoiDung:  this.infoUser.maLoaiNguoiDung,
@@ -60,6 +67,10 @@ export class InfouserComponent implements OnInit {
     })
   }
   onDelete(){
+    let unRegister = { taikhoan: "", maKhoaHoc:"" };
+    unRegister.taikhoan = this.authService.getCurrentUser().taiKhoan;
+    unRegister.maKhoaHoc = this.chiTiet.maKhoaHoc;
+    console.log(unRegister);
 
   }
 }

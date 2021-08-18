@@ -126,6 +126,11 @@ export interface DangKyKhoaHoc {
   taiKhoan:  string;
 }
 
+export interface HuyGhiDanhKhoaHoc {
+  maKhoaHoc: string;
+  taiKhoan:  string;
+}
+
 export interface CapNhatKhoaHoc {
   maKhoaHoc:        string;
   biDanh:           string;

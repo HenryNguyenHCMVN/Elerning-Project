@@ -29,6 +29,7 @@ export class SigninComponent implements OnInit {
       localStorage.setItem("token", JSON.stringify(data.accessToken));
       //lưu data vào AuthService
       this.authService.setCurrentUser(data);
+      this.authService.setCurrentAccount(data);
 
       const {successURL} = this.activatedRoute.snapshot.queryParams;
       if (successURL) {
@@ -37,7 +38,7 @@ export class SigninComponent implements OnInit {
         this.notificationService.success(`Hello ` + data.hoTen);
         setTimeout(() => {
           this.router.navigate(["/"]);
-        }, 1000); 
+        }, 1000);
       }
     },
     (error) =>{

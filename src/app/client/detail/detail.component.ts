@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DangKyKhoaHoc } from 'src/app/core/models/client';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CourseService } from 'src/app/core/services/course/course.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';
 
@@ -10,35 +12,42 @@ import { NotificationService } from 'src/app/core/share/data/notification.servic
 })
 export class DetailComponent implements OnInit {
 
-  register: any = {
-    taiKhoan: "",
-    maKhoaHoc: "",
-  }
-
   id: any;
   courseDetail: any;
+  register: any = {
+    maKhoaHoc: "",
+    taiKhoan: ""
+  };
+  taiKhoan:any;
+
 
   constructor(public activatedRoute: ActivatedRoute,
     public courseService: CourseService,
+    public authService:AuthService,
     public notificationService:NotificationService) { }
 
   ngOnInit(): void {
-
-    this.activatedRoute.params.subscribe((result) => {
-      console.log(this.id);
-      this.id = result.id;
-      this.courseService.getDetailCourseApi(this.id).subscribe((data) => {
-        console.log(data);
-        this.courseDetail = data;
-      })
-    });
+    this.getDetail();
   }
 
-  createRegister() {
-    this.courseService.registerCourse(this.register).subscribe((res) => {
-      this.notificationService.success('Successfully registered for the course')
-    },(err) => {
-      this.notificationService.error('Registered for this course already!')
+  getDetail(){
+    this.activatedRoute.params.subscribe((result) => {
+      this.id = result.id;
+      this.courseService.getDetailCourseApi(this.id).subscribe((data) => {
+        this.courseDetail = data;
+        this.register.maKhoaHoc = this.courseDetail.maKhoaHoc;
+      })
+    });
+
+    this.authService.currentUser.subscribe((data) => {
+      this.taiKhoan = data
+      this.register.taiKhoan = this.taiKhoan.taiKhoan;
     })
+  }
+
+
+  createRegister() {
+    console.log(this.register);
+    this.courseService.registerCourse(this.register).subscribe((data) =>{})
   }
 }

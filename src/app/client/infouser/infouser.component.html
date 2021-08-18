@@ -38,7 +38,7 @@
         <div class="ticket">
           <input type="text" placeholder="Find courses" class="inputSearch" (keyup)="searchHistory($event)">
 
-          <table mat-table [dataSource]="historyCourse">
+          <table mat-table [dataSource]="chiTiet">
             <ng-container matColumnDef="stt">
               <th mat-header-cell *matHeaderCellDef> STT </th>
               <td mat-cell *matCellDef="let stt = index">{{stt + 1}}</td>
@@ -55,7 +55,7 @@
             </ng-container>
 
             <ng-container matColumnDef="ngayDat">
-              <th mat-header-cell *matHeaderCellDef></th>
+              <th mat-header-cell *matHeaderCellDef>Detele Course</th>
               <td mat-cell *matCellDef="let item">
                 <button mat-icon-button color="warn" (click)="onDelete()">
                   <mat-icon>delete</mat-icon>

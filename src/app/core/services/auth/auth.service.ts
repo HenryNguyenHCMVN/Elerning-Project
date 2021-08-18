@@ -43,6 +43,7 @@ export class AuthService {
     const userJson = localStorage.getItem('userLogin');
     if (userJson) {
       this.setCurrentUser(JSON.parse(userJson));
+      this.setCurrentAccount(JSON.parse(userJson));
     }
 
   }

@@ -46,6 +46,7 @@ export class DataService {
       // $key: null,
       taiKhoan: '',
       matKhau: '',
+      conFirmMatKhau: '',
       hoTen: '',
       maNhom: '',
       maLoaiNguoiDung: 'Student',

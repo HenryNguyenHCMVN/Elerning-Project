@@ -10,8 +10,6 @@ import { LoaderService } from './core/loader/loader.service';
 })
 export class AppComponent implements OnInit, OnDestroy{
   title = 'my-app';
-  mediaSub!: Subscription;
-  deviceXs!: boolean;
 
 
   constructor(public mediaObserver: MediaObserver, public loaderService:LoaderService){
@@ -19,13 +17,8 @@ export class AppComponent implements OnInit, OnDestroy{
 
     }, 4000);
   }
-  ngOnInit(){
-    this.mediaSub = this.mediaObserver.media$.subscribe((result:MediaChange) =>{
-      console.log(result.mqAlias);
-      this.deviceXs = result.mqAlias ==="xs" ? true: false;
-    })
-  }
+  ngOnInit(){}
+
   ngOnDestroy(){
-    this.mediaSub.unsubscribe();
   }
 }

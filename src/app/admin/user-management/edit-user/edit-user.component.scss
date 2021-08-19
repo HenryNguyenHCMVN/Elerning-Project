@@ -1,5 +1,6 @@
-.container {
-    width: 40vw;
+@import '../../../../assets/scss/container.scss';
+.containeredit {
+    max-width: 40vw;
     margin: 0 auto;
     h1 {
         text-align: center;

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from '../core/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../core/share/data/notification.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,14 +14,13 @@ import { Router } from '@angular/router';
 export class AdminComponent implements OnInit {
 
   @ViewChild('drawer') drawer: any;
-
   currentUser: any;
-
   showFiller = false;
-
   thongTinNguoiDung: any = null;
-
-  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router) { }
+  constructor(public breakpointObserver: BreakpointObserver,
+    public authService: AuthService,
+    public router: Router,
+    public notificationService:NotificationService) { }
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe((result) => {
@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
   handleLogOut() {
     this.currentUser = null;
     localStorage.clear();
-    alert("Log out successful");
+    this.notificationService.success('Log Out Successfull')
     this.router.navigate(["/signin"]);
   }
 
@@ -46,7 +46,6 @@ export class AdminComponent implements OnInit {
       this.drawer.close();
     }
   }
-
 }
 
 

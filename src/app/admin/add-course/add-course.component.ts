@@ -12,21 +12,16 @@ import { NotificationService } from 'src/app/core/share/data/notification.servic
 export class AddCourseComponent implements OnInit {
 
   constructor(public courseService: CourseService, private authService: AuthService, private notificationService:NotificationService) { }
-
   categoryList: any = [];
-
   infoPerson: any = [];
-
   mangThemKhoaHoc: any = [];
-
   public selected!: Date | null;
-
   public mangMaNhom: Array<any> = ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP010"];
-
   url: any;
-
   msg = "";
 
+
+  //thêm hình ảnh
   imgAddCourse(event:any){
     if(!event.target.files[0] || event.target.files[0].length == 0){
       this.msg = 'You must select an image';
@@ -48,16 +43,16 @@ export class AddCourseComponent implements OnInit {
 		}
   }
 
+  //lấy danh sách khóa học
   getListCategory() {
       this.courseService.getListCategoryCourseApi().subscribe((result) =>{
-        console.log(result);
         this.categoryList = result;
       })
   }
 
+  //thông tin người dùng
   getInfoPerson(){
     this.authService.currentUser.subscribe((result) =>{
-      console.log(result);
       this.infoPerson = result;
     })
   }
@@ -68,14 +63,7 @@ export class AddCourseComponent implements OnInit {
     this.getInfoPerson();
   }
 
-  handleFileInput(event:any) {
-
-}
-
   themKhoaHoc(value:ThemKhoaHoc, files:any){
-    console.log(value);
-    console.log(files[0]);
-
     // thêm ảnh cho khóa học
     value.hinhAnh = files[0].name;
     this.courseService.addCourseApi(value).subscribe((result) =>{
@@ -90,12 +78,12 @@ export class AddCourseComponent implements OnInit {
           }
         })
       }
-      this.notificationService.success('::: Add A Successfull :::');
+      this.notificationService.success(':::Add A Successfull:::');
       setTimeout(() => {
         window.location.reload();
       }, 3000);
     })
-    this.notificationService.error('::: Course code or course name already exists :::');
+    this.notificationService.error('Course code or course name already exists');
   }
 
 

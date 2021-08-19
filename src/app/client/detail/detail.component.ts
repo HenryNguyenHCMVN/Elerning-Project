@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DangKyKhoaHoc } from 'src/app/core/models/client';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CourseService } from 'src/app/core/services/course/course.service';
 import { NotificationService } from 'src/app/core/share/data/notification.service';
@@ -14,23 +13,19 @@ export class DetailComponent implements OnInit {
 
   id: any;
   courseDetail: any;
-  register: any = {
-    maKhoaHoc: "",
-    taiKhoan: ""
-  };
-  taiKhoan:any;
-
+  register: any = { maKhoaHoc: "", taiKhoan: "" };
+  taiKhoan: any;
 
   constructor(public activatedRoute: ActivatedRoute,
     public courseService: CourseService,
-    public authService:AuthService,
-    public notificationService:NotificationService) { }
+    public authService: AuthService,
+    public notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.getDetail();
   }
 
-  getDetail(){
+  getDetail() {
     this.activatedRoute.params.subscribe((result) => {
       this.id = result.id;
       this.courseService.getDetailCourseApi(this.id).subscribe((data) => {
@@ -45,9 +40,8 @@ export class DetailComponent implements OnInit {
     })
   }
 
-
   createRegister() {
     console.log(this.register);
-    this.courseService.registerCourse(this.register).subscribe((data) =>{})
+    this.courseService.registerCourse(this.register).subscribe((data) => { })
   }
 }

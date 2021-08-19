@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -18,92 +17,80 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 })
 export class UserManagementComponent implements OnInit {
 
-  @ViewChild('form') formDK!:NgForm;
-
+  // @ViewChild('form') formDK!:NgForm;
   // dùng MatPaginator để phân trang
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   // dùng MatSort để sort tên, thứ tự
-  @ViewChild(MatSort) sort!:MatSort;
-
+  @ViewChild(MatSort) sort!: MatSort;
   // lấy đối tượng từ .ts
   public ELEMENT_DATA!: TimKiemNguoiDung[];
   public mangNguoiDung = new MatTableDataSource(this.ELEMENT_DATA);
-
-  public displayedColumns: string[] = ['stt','taiKhoan', 'email', 'maLoaiNguoiDung','matKhau', 'soDT', 'hoTen', 'xoa', 'capNhat'];
-
-  public mangMaNhom: Array<any> = ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP10"];
-
+  public displayedColumns: string[] = ['stt', 'taiKhoan', 'email', 'maLoaiNguoiDung', 'matKhau', 'soDT', 'hoTen', 'xoa', 'capNhat'];
+  public mangMaNhom: Array<any> = ["GP01", "GP02", "GP03", "GP04", "GP05", "GP06", "GP07", "GP08", "GP09", "GP10"];
   searchKey: any;
   error: string = "";
   delUser: string = "";
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private matDialog: MatDialog, public dataService: DataService, private notificationService:NotificationService) { }
+  constructor(public authService: AuthService,
+    public matDialog: MatDialog,
+    public dataService: DataService,
+    public notificationService: NotificationService) { }
 
-  chonNhom(maNhom:any){
+  //componet dismount
+  ngOnInit(): void {
+    this.authService.getListUser().subscribe((result: any) => {
+      this.mangNguoiDung.data = result;
+      this.mangNguoiDung.paginator = this.paginator;
+      this.mangNguoiDung.sort = this.sort
+    })
+  }
+
+  chonNhom(maNhom: any) {
     this.authService.getListUserGroup(maNhom).subscribe((result) => {
-      this.mangNguoiDung.data= result;
+      this.mangNguoiDung.data = result;
     })
   }
 
   // search
-  applySearch(){
+  applySearch() {
     this.mangNguoiDung.filter = this.searchKey.trim().toLowerCase();
   }
   //clear search
-  onSearchClear(){
+  onSearchClear() {
     this.searchKey = "";
     this.applySearch();
   }
 
-  addUser(){
+  addUser() {
     this.dataService.resetFormGroup();
     this.matDialog.open(AddAUserComponent);
   }
 
   // material angular : sort trên thanh menu và chuyển trang
-  ngAfterViewInit() {
-    this.mangNguoiDung.paginator = this.paginator;
-    this.mangNguoiDung.sort = this.sort
-  }
+  // ngAfterViewInit():void {
 
-  onEdit(user:any){
+  // }
+
+  onEdit(user: any) {
     this.matDialog.open(EditUserComponent);
     this.dataService.formEdit.setValue({
-    taiKhoan:         user.taiKhoan,
-    maLoaiNguoiDung:  user.maLoaiNguoiDung,
-    matKhau:          user.matKhau,
-    email:            user.email,
-    hoTen:            user.hoTen,
-    soDT:             user.soDt,
-    maNhom:           "GP01",
+      taiKhoan: user.taiKhoan,
+      maLoaiNguoiDung: user.maLoaiNguoiDung,
+      matKhau: user.matKhau,
+      email: user.email,
+      hoTen: user.hoTen,
+      soDT: user.soDt,
+      maNhom: "GP01",
     });
   }
 
 
-  onDelete(user:any){
+  onDelete(user: any) {
     if (confirm('Are you sure to delete???')) {
-      this.authService.deteteUser(user).subscribe((res) =>{
-        alert('res' + res)
-
-      },(error) =>{
-        console.log('error' + error);
-
-      });
+      this.authService.deteteUser(user).subscribe((res) => {
+      }, (error) => this.notificationService.error(`${error.error}`));
     }
   }
-
-
-  //componet dismount
-  ngOnInit(): void {
-
-    // lấy thông tin người dùng
-    this.authService.getListUser().subscribe((result: any) => {
-      this.mangNguoiDung.data = result;
-      console.log(result);
-    })
-
-  }
-
 
 }

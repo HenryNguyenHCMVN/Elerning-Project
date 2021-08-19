@@ -9,14 +9,9 @@ import { CourseService } from 'src/app/core/services/course/course.service';
 export class IntroComponent implements OnInit {
 
   @Input() deviceXs!: boolean;
-  constructor() { 
+  constructor() {
   }
-
-
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
 
 

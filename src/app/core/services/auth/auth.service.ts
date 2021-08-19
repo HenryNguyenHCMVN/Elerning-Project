@@ -48,64 +48,58 @@ export class AuthService {
 
   }
 
+  //Đăng nhập
   loginApi(userLogin: any): Observable<NguoiDungDangNhap> {
-    return this.api.post<NguoiDungDangNhap>('QuanLyNguoiDung/DangNhap',userLogin)
-      .pipe(
-        tap((data) => {
-          console.log(data);
-        })
-        )}
+    return this.api.
+    post<NguoiDungDangNhap>('QuanLyNguoiDung/DangNhap',userLogin).pipe(tap((data) => {})
+        )
+      }
 
 
+  //Đăng ký
   addListUser(nguoiDung:DangKyNguoiDung): Observable<DangKyNguoiDung> {
     let url = `QuanLyNguoiDung/DangKy`;
-    return this.api.post<DangKyNguoiDung>(url,nguoiDung).pipe(tap((data: any) => {
-      console.log(data);
-    }),
+    return this.api.
+    post<DangKyNguoiDung>(url,nguoiDung).pipe(tap((data: any) => {})
       )
   }
 
+  //Tìm kiếm người dùng mã gán cứng là GP01
   getListUser(): Observable<TimKiemNguoiDung> {
     let url = `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01`;
-    return this.api.get<TimKiemNguoiDung>(url).pipe(tap((data: any) => {
-      console.log(data);
-
-    }),
+    return this.api.
+    get<TimKiemNguoiDung>(url).pipe(tap((data: any) => { })
     )
   }
+
+  //Tìm kiếm người dùng ={maNhom}
   getListUserGroup(maNhom:any): Observable<TimKiemNguoiDung[]> {
     let url = `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${maNhom}`;
-    return this.api.get<TimKiemNguoiDung[]>(url,maNhom).pipe(tap((data: any) => {
-      console.log(data,maNhom);
-
-    }),
+    return this.api.
+    get<TimKiemNguoiDung[]>(url,maNhom).pipe(tap((data: any) => {})
      )
   }
 
+  //Thông tin người dùng
   infoUser(taiKhoan:any): Observable<ThongTinNguoiDung> {
     let url ="QuanLyNguoiDung/ThongTinNguoiDung";
-    return this.api.post<ThongTinNguoiDung>(url,taiKhoan).pipe(tap((data: any) => {
-      console.log(data);
-    }),
+    return this.api.
+    post<ThongTinNguoiDung>(url,taiKhoan).pipe(tap((data: any) => {})
     )
   }
 
+  //Cập nhật người dùng
   updateUser(user:any): Observable<CapNhatNguoiDung> {
     let url = `QuanLyNguoiDung/CapNhatThongTinNguoiDung`;
-    // const headers = {Authorization :`Bearer ${accessToken}`};
-    return this.api.put<CapNhatNguoiDung>(url,user).pipe(tap((data: any) => {
-      console.log(data);
-    }),
+    return this.api.put<CapNhatNguoiDung>(url,user).pipe(tap((data: any) => {})
     )
   }
 
+  //Xóa người dùng
   deteteUser(taiKhoan:any): Observable<any> {
     let url = `QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`;
-    return this.api.delete(url,taiKhoan).pipe(tap((data: any) => {
-      console.log(data);
-    }),
+    return this.api.delete(url,taiKhoan).pipe(tap((data: any) => {}),
       catchError(err => {
-        console.log(err);
         if (err.status === 500) {
           this.notificationService.error('Registered User - Cannot be deleted')
         } else {

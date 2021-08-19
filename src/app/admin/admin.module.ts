@@ -8,21 +8,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { CourseManagementComponent } from './course-management/course-management.component';
 
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import { MaterialModule } from '../core/share/material/material.module';
 import { InfoAdminComponent } from './info-admin/info-admin.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { FormsModule } from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material/core';
 import { AddAUserComponent } from './user-management/add-auser/add-auser.component';
 import { EditUserComponent } from './user-management/edit-user/edit-user.component';
 import { EditCourseComponent } from './course-management/edit-course/edit-course.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 
 
 
@@ -44,20 +36,10 @@ import { MatListModule } from '@angular/material/list';
     CommonModule,
     AdminRoutingModule,
     ComponentModule,
-    MatSidenavModule,
     MaterialModule,
     FormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-
   ],
   exports: [
-    MatSidenavModule,
     MaterialModule
   ]
 })

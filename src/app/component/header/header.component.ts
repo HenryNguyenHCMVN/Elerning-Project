@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CourseService } from 'src/app/core/services/course/course.service';
+import { NotificationService } from 'src/app/core/share/data/notification.service';
 
 
 @Component({
@@ -15,22 +16,19 @@ import { CourseService } from 'src/app/core/services/course/course.service';
 export class HeaderComponent implements OnInit {
 
   @Input() deviceXs!: boolean;
-
   @Input() course: any;
-
   @ViewChild('drawer') drawer: any;
 
-  constructor(private courseService: CourseService,
-    private authService: AuthService,
-    private router:Router,
-    private breakpointObserver: BreakpointObserver) { }
+  constructor(public courseService: CourseService,
+    public authService: AuthService,
+    public router:Router,
+    public breakpointObserver: BreakpointObserver,
+    public notificationService:NotificationService) { }
 
-  private subcription = new Subscription();
+  public subcription = new Subscription();
 
   currentUser: any = null;
-
   categoryList: any = [];
-
   searchKey: any;
 
 
@@ -56,24 +54,21 @@ export class HeaderComponent implements OnInit {
 
   getListCategory() {
     this.courseService.getListCategoryCourseApi().subscribe((data) => {
-      console.log(data);
       this.categoryList = data;
     })
   }
 
   handleLogOut(){
-    console.log('123');
     this.currentUser = null;
     localStorage.clear();
-    alert("Log out successful");
+    this.notificationService.success('Log out successful')
     this.router.navigate(["/signin"]);
   }
 
   //hủy API để tối ưu performance
-  ngOnDestroy() {
-    console.log("out!!!");
-    this.subcription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subcription.unsubscribe();
+  // }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(

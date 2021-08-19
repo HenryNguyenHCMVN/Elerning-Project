@@ -12,10 +12,8 @@ import { LoaderService } from '../core/loader/loader.service';
 export class ClientComponent implements OnInit {
 
   categoryList: any = [];
-
   searchKey: any;
-
-  constructor(public loaderService:LoaderService, private breakpointObserver: BreakpointObserver) { }
+  constructor(public loaderService:LoaderService, public breakpointObserver: BreakpointObserver) { }
 
       // search
       applySearch(){

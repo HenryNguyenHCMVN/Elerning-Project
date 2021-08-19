@@ -10,12 +10,6 @@ import { SignupComponent } from './signup/signup.component';
 import { IntroComponent } from './intro/intro.component';
 import { ComponentModule } from '../component/component.module';
 
-
-import {MatSelectModule} from '@angular/material/select';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../core/share/material/material.module';
 import { CourseComponent } from './home/course/course.component';
@@ -42,18 +36,13 @@ import { ModalinfouserComponent } from './infouser/modalinfouser/modalinfouser.c
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule,
     ClientRoutingModule,
     ComponentModule,
     ReactiveFormsModule,
-    CarouselModule
+    CarouselModule,
+    MaterialModule,
   ],
   exports: [
-    MatButtonModule,
-    MatInputModule,
-    MatCardModule,
-    MatSelectModule,
-    MatRadioModule,
   ],
   providers:[DataService],
 })

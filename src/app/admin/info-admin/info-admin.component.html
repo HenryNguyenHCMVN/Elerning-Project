@@ -1,12 +1,11 @@
 <div class="container">
     <h1>User Details</h1>
     <div *ngIf="thongTinNguoiDung">
-        <mat-card>Username: {{thongTinNguoiDung.taiKhoan}}</mat-card>
+        <mat-card>Username: {{thongTinNguoiDung.taiKhoan | uppercase}}</mat-card>
         <mat-card>Email: {{thongTinNguoiDung.email}}</mat-card>
         <mat-card>Name: {{thongTinNguoiDung.hoTen}}</mat-card>
         <mat-card>User Type Code: {{thongTinNguoiDung.maLoaiNguoiDung}}</mat-card>
         <mat-card>Group code: {{thongTinNguoiDung.maNhom}}</mat-card>
         <mat-card>Phone: {{thongTinNguoiDung.soDT}}</mat-card>
-        <!-- <mat-card>Token: {{thongTinNguoiDung.accessToken}}</mat-card> -->
     </div>
 </div>

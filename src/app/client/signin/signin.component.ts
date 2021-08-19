@@ -10,19 +10,16 @@ import { NotificationService } from 'src/app/core/share/data/notification.servic
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private notificationService:NotificationService) { }
+  constructor(public authService: AuthService,
+    public router: Router,
+    public activatedRoute: ActivatedRoute,
+    public notificationService: NotificationService) { }
 
   hide = true;
-
-  noSignIn: string ="";
-
-  userLogin: any = {
-    taiKhoan: "",
-    matKhau: "",
-  };
+  noSignIn: string = "";
+  userLogin: any = { taiKhoan: "", matKhau: "" };
 
   handleLogin() {
-
     this.authService.loginApi(this.userLogin).subscribe((data) => {
       // lưu data local
       localStorage.setItem("userLogin", JSON.stringify(data));
@@ -31,22 +28,20 @@ export class SigninComponent implements OnInit {
       this.authService.setCurrentUser(data);
       this.authService.setCurrentAccount(data);
 
-      const {successURL} = this.activatedRoute.snapshot.queryParams;
+      const { successURL } = this.activatedRoute.snapshot.queryParams;
       if (successURL) {
         this.router.navigate([successURL]);
-      }else{
+      } else {
         this.notificationService.success(`Hello ` + data.hoTen);
         setTimeout(() => {
           this.router.navigate(["/"]);
         }, 1000);
       }
     },
-    (error) =>{
-      console.log(error.error);
-      this.noSignIn = error.error;
-      this.notificationService.error("Incorrect account or password")
-    })
-
+      (error) => {
+        this.noSignIn = error.error;
+        this.notificationService.error("Incorrect account or password")
+      })
   }
 
   ngOnInit(): void {

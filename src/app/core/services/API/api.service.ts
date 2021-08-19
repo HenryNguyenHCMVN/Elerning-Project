@@ -1,7 +1,8 @@
 import { HttpClient, HttpContext, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { LoaderService } from '../../loader/loader.service';
 
 
 
@@ -30,34 +31,57 @@ export class ApiService {
 
   private BASE_URL = "https://elearning0706.cybersoft.edu.vn/api";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private loadingService: LoaderService) { }
 
   get<T>(url: string, option = {} as Options): Observable<T> {
-    return this.httpClient
-    .get<T>(`${this.BASE_URL}/${url}`, option)
-    .pipe(catchError(this.handleError)
-    );
+    this.loadingService.show()
+    return this.httpClient.get<T>(`${this.BASE_URL}/${url}`, option).pipe(tap((data) => {
+      setTimeout(() => {
+        this.loadingService.hidden()
+      }, 500);
+    }, error => {
+      setTimeout(() => {
+        this.loadingService.hidden()
+      }, 500);
+    }), catchError(this.handleError)
+    )
   }
 
-  post<T>(url:string, body:any, option = {} as Options): Observable<T>{
-    return this.httpClient
-    .post<T>(`${this.BASE_URL}/${url}`,body, option)
-    .pipe(catchError(this.handleError)
-    );
+
+  post<T>(uri: string, data: any, options = {} as Options): Observable<T> {
+    this.loadingService.show()
+    return this.httpClient.post<T>(`${this.BASE_URL}/${uri}`, data, options).pipe(tap((data) => {
+      console.log(data);
+      setTimeout(() => {
+        this.loadingService.hidden()
+      }, 500);
+    }, err => {
+      this.loadingService.hidden()
+    }), catchError(this.handleError))
   }
 
-  put<T>(url:string, body:any, option = {} as Options): Observable<T>{
-    return this.httpClient
-    .put<T>(`${this.BASE_URL}/${url}`,body, option)
-    .pipe(catchError(this.handleError)
-    );
+  put<T>(uri: string, data: any, options = {} as Options): Observable<T> {
+    this.loadingService.show()
+    return this.httpClient.put<T>(`${this.BASE_URL}/${uri}`, data, options).pipe(tap((data) => {
+      console.log(data);
+      setTimeout(() => {
+        this.loadingService.hidden()
+      }, 500);
+    }, err => {
+      this.loadingService.hidden()
+    }), catchError(this.handleError))
   }
 
-  delete<T>(url: string, option = {} as Options): Observable<T> {
-    return this.httpClient
-    .delete<T>(`${this.BASE_URL}/${url}`, option)
-    .pipe(catchError(this.handleError)
-    );
+  delete<T>(uri: string, options = {} as Options): Observable<T> {
+    this.loadingService.show()
+    return this.httpClient.delete<T>(`${this.BASE_URL}/${uri}`, options).pipe(tap((data) => {
+      console.log(data);
+      setTimeout(() => {
+        this.loadingService.hidden()
+      }, 500);
+    }, err => {
+      this.loadingService.hidden()
+    }), catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse) {

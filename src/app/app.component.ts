@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {MediaChange, MediaObserver} from '@angular/flex-layout'
-import {Subscription} from 'rxjs'
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MediaChange, MediaObserver } from '@angular/flex-layout'
+import { Subscription } from 'rxjs'
 import { LoaderService } from './core/loader/loader.service';
 
 @Component({
@@ -8,17 +8,23 @@ import { LoaderService } from './core/loader/loader.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy{
+
+export class AppComponent {
   title = 'my-app';
 
+  public loading: Boolean = false;
+  private subCription = new Subscription;
+  constructor(public loaderService: LoaderService, private changeDetectorRef: ChangeDetectorRef) { }
+  ngOnInit() { }
 
-  constructor(public mediaObserver: MediaObserver, public loaderService:LoaderService){
-    setTimeout(() => {
-
-    }, 4000);
+  ngAfterViewInit() {
+    this.subCription.add(this.loaderService.isLoading.subscribe(data => {
+      this.loading = data;
+      this.changeDetectorRef.detectChanges();
+    }))
   }
-  ngOnInit(){}
 
-  ngOnDestroy(){
+  ngOnDestroy() {
+    this.subCription.unsubscribe()
   }
 }

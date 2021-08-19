@@ -9,16 +9,20 @@ import { LoaderService } from './loader.service';
 })
 export class IntereptorService implements HttpInterceptor{
 
-  constructor(public loaderService: LoaderService) { }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.loaderService.isLoading.next(true);
+  requestCount: number = 0;
 
-    return next.handle(req).pipe(
-      finalize(
-        () => {
-          this.loaderService.isLoading.next(false);
+  constructor(public loaderService: LoaderService) { }
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (this.requestCount === 0) {
+            this.loaderService.show()
         }
-      )
-    );
+        return next.handle(request).pipe(
+            finalize(() => {
+                this.requestCount -= 1
+                if (this.requestCount === 0) {
+                    this.loaderService.hidden()
+                }
+            })
+        )
   }
 }

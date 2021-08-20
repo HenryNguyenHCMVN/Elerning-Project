@@ -1,0 +1,10 @@
+<mat-card class="example-card" *ngIf="detailCourse">
+  <mat-card-header>
+    <mat-card-title>{{detailCourse.maKhoaHoc}}</mat-card-title>
+    <mat-card-subtitle>{{detailCourse.tenKhoaHoc}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src={{detailCourse.hinhAnh}} alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>{{detailCourse.moTa}}</p>
+  </mat-card-content>
+</mat-card>

@@ -9,12 +9,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
 import { ClientRoutingModule } from '../client/client-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModaldetailcourseComponent } from './modaldetailcourse/modaldetailcourse.component';
 
 @NgModule({
   declarations: [
     ComponentComponent,
     HeaderComponent,
     FooterComponent,
+    ModaldetailcourseComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatMenuModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ModaldetailcourseComponent,
   ]
 })
 export class ComponentModule { }

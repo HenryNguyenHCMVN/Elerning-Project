@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'; //add tap để xử lý thành công hoặc thất bại
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { CapNhatKhoaHoc, DangKyKhoaHoc, DanhMucKhoaHoc, DanhSachKhoaHoc, HuyGhiDanhKhoaHoc, ThemKhoaHoc } from '../../models/client';
 import { ApiService } from '../API/api.service';
 import { NotificationService } from '../../share/data/notification.service';
@@ -20,6 +20,19 @@ interface Options {
   providedIn: 'root'
 })
 export class CourseService {
+
+  modalCourseDetail = new BehaviorSubject({} as Object);
+  shareCourseDetail = this.modalCourseDetail.asObservable()
+
+  getCurrentModalCourseDetail() {
+    this.modalCourseDetail.value
+  }
+
+  setCuurentModalCourseDetail(value: any) {
+    console.log(value);
+
+    this.modalCourseDetail.next(value)
+  }
 
   constructor(private httpClient: HttpClient, private api: ApiService, public notificationService: NotificationService) { }
 

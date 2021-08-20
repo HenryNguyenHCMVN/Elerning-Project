@@ -1,10 +1,11 @@
-import { Component,OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CourseService } from 'src/app/core/services/course/course.service';
 
-import {Subscription} from 'rxjs'
+import { Subscription } from 'rxjs'
 import { MatPaginator } from '@angular/material/paginator';
-import { DataService } from 'src/app/core/share/data/data.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { MatDialog } from '@angular/material/dialog';
+import { ModaldetailcourseComponent } from 'src/app/component/modaldetailcourse/modaldetailcourse.component';
 
 
 @Component({
@@ -20,23 +21,24 @@ export class HomeComponent implements OnInit {
   course: any;
   maNhom: any;
 
+
   public mangMaNhom: Array<any> = [
-    "GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP10"
+    "GP01", "GP02", "GP03", "GP04", "GP05", "GP06", "GP07", "GP08", "GP09", "GP10"
   ];
 
-  constructor(private courseService: CourseService, private dataService: DataService) { }
+  constructor(private courseService: CourseService, private modal: MatDialog) { }
 
   ngOnInit(): void {
     this.getListCourse();
     this.courseList.paginator = this.paginator;
   }
 
-  chonNhom(maNhom:any){
-    this.courseService.getListCourseApi(maNhom).subscribe((data) =>this.courseList = data)
+  chonNhom(maNhom: any) {
+    this.courseService.getListCourseApi(maNhom).subscribe((data) => this.courseList = data)
   }
 
-  getListCourse () {
-    this.courseService.getListCourseApiGP01().subscribe((data) =>this.courseList = data)
+  getListCourse() {
+    this.courseService.getListCourseApiGP01().subscribe((data) => this.courseList = data)
   }
 
   //hủy API để tối ưu performance
@@ -44,11 +46,12 @@ export class HomeComponent implements OnInit {
   //   this.subcription.unsubscribe();
   // }
 
-  openDialog(){
-    this.dataService.sharingDataDetailCourse(this.course);
+  openDialog(course: Object) {
+    this.courseService.setCuurentModalCourseDetail(course);
+    this.modal.open(ModaldetailcourseComponent)
   }
 
-  clickDetail(){}
+  clickDetail() { }
 
   customOptions: OwlOptions = {
     autoplay: true,
@@ -63,17 +66,17 @@ export class HomeComponent implements OnInit {
     responsive: {
       0: {
         items: 1,
-    nav: false,
+        nav: false,
 
       },
       400: {
         items: 2,
-    nav: false,
+        nav: false,
 
       },
       740: {
         items: 3,
-    nav: false,
+        nav: false,
 
       },
       940: {

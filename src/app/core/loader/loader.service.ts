@@ -8,14 +8,14 @@ import { delay } from 'rxjs/operators';
 export class LoaderService {
 
   public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public loadingService = this.isLoading.asObservable().pipe(delay(3))
+  public loadingService = this.isLoading.asObservable().pipe(delay(3));
 
   constructor() { }
 
   show() {
-    this.isLoading.next(true)
+    this.isLoading.next(true);
   }
   hidden() {
-    this.isLoading.next(false)
+    this.isLoading.next(false);
   }
 }

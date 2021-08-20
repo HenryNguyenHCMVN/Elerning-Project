@@ -68,7 +68,7 @@ export class EditCourseComponent implements OnInit {
         })
       }
       this.notificationService.success(':::Edit Successfull:::');
-      // setTimeout(() => { window.location.reload() }, 2000);
+      setTimeout(() => { window.location.reload() }, 1000);
     })
     this.notificationService.error('Image is wrong format or size');
   }

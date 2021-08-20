@@ -43,7 +43,11 @@ export class AuthService {
     const userJson = localStorage.getItem('userLogin');
     if (userJson) {
       this.setCurrentUser(JSON.parse(userJson));
-      this.setCurrentAccount(JSON.parse(userJson));
+    }
+
+    const userJsonAccount = localStorage.getItem('userLogin');
+    if (userJsonAccount) {
+      this.setCurrentAccount(JSON.parse(userJsonAccount));
     }
 
   }
@@ -99,14 +103,14 @@ export class AuthService {
   deteteUser(taiKhoan:any): Observable<any> {
     let url = `QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`;
     return this.api.delete(url,taiKhoan).pipe(tap((data: any) => {}),
-      catchError(err => {
+      catchError((err) => {
         if (err.status === 500) {
           this.notificationService.error('Registered User - Cannot be deleted')
         } else {
-          this.notificationService.success (' ::: Deleted successful :::');
+          this.notificationService.success (':::Deleted successful:::');
           window.location.reload();
         }
-        return err
+        return err;
       }))
   }
 }

@@ -123,7 +123,7 @@ export class CourseService {
           if (err.status === 500) {
             this.notificationService.error(`${err.error}`)
           } else {
-            this.notificationService.success(' ::: Unsubscribed successfully :::');
+            this.notificationService.success(':::Unsubscribed successfully:::');
             window.location.reload();
           }
           return throwError(err);
@@ -140,7 +140,7 @@ export class CourseService {
           if (err.status === 500) {
             this.notificationService.error('Courses already enrolled students cannot be deleted')
           } else {
-            this.notificationService.success(' ::: Deleted successful :::');
+            this.notificationService.success(':::Deleted successful:::');
             window.location.reload();
           }
           return err;

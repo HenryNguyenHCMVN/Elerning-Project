@@ -87,9 +87,11 @@ export class UserManagementComponent implements OnInit {
 
 
   onDelete(user: any) {
+    debugger
     if (confirm('Are you sure to delete???')) {
-      this.authService.deteteUser(user).subscribe((res) => {
-      }, (error) => this.notificationService.error(`${error.error}`));
+      this.authService.deteteUser(user).subscribe(
+        (res) => this.notificationService.success('Detele Successfull'),
+        (error) => this.notificationService.error(`Cannot delete this user`));
     }
   }
 

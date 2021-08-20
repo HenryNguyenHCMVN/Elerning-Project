@@ -14,13 +14,13 @@ export class IntereptorService implements HttpInterceptor{
   constructor(public loaderService: LoaderService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.requestCount === 0) {
-            this.loaderService.show()
+            this.loaderService.show();
         }
         return next.handle(request).pipe(
             finalize(() => {
                 this.requestCount -= 1
                 if (this.requestCount === 0) {
-                    this.loaderService.hidden()
+                    this.loaderService.hidden();
                 }
             })
         )
